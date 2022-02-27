@@ -1,12 +1,12 @@
 <template>
-  <div class='q-pa-md'>
     <q-table
-
       :rows='rows'
       :columns='columns'
       row-key='name'
+      table-header-class='bg-grey-5'
+      flat
+      square
     />
-  </div>
 </template>
 
 <script setup>

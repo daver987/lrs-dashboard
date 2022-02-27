@@ -248,22 +248,27 @@
                   />
                 </div>
               </q-card-section>
+              <q-card-section>
+                <q-btn
+                  @click="quote.writeUserData"
+                  color="primary"
+                  label="Save Quote"
+                  class="q-mr-lg"
+                  disabled
+                />
+
+                <q-btn
+                  @click="store.openDialog"
+                  size="md"
+                  color="primary"
+                  label="Save Booking"
+                  disabled
+                />
+              </q-card-section>
             </q-card>
           </q-expansion-item>
 
-          <q-btn
-            @click="quote.writeUserData"
-            color="primary"
-            label="Save Quote"
-            class="q-mr-lg"
-          />
 
-          <q-btn
-            @click="store.openDialog"
-            size="md"
-            color="primary"
-            label="Save Booking"
-          />
         </q-list>
       </q-form>
 

@@ -57,6 +57,13 @@ function openQuote() {
             <q-item-section> Resources </q-item-section>
           </q-item>
 
+          <q-item clickable v-ripple to="reservations">
+            <q-item-section avatar>
+              <q-icon name="calendar_month" />
+            </q-item-section>
+            <q-item-section> Reservations </q-item-section>
+          </q-item>
+
           <q-item clickable v-ripple to="quotes">
             <q-item-section avatar>
               <q-icon name="request_quote" />
@@ -64,12 +71,7 @@ function openQuote() {
             <q-item-section> Quotes </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="reservations">
-            <q-item-section avatar>
-              <q-icon name="calendar_month" />
-            </q-item-section>
-            <q-item-section> Reservations </q-item-section>
-          </q-item>
+
 
           <q-item clickable v-ripple to="pricing">
             <q-item-section avatar>
