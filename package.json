@@ -1,0 +1,40 @@
+{
+  "name": "lrs-dashboard",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite",
+    "develop": "yarn dev",
+    "build": "vite build",
+    "preview": "vite preview --port 5050",
+    "test:unit": "vitest --environment jsdom",
+    "test:e2e": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress open'",
+    "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress run'"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.13.7",
+    "@headlessui/vue": "^1.5.0",
+    "@quasar/extras": "^1.12.5",
+    "@quasar/quasar-ui-qcalendar": "^4.0.0-beta.13",
+    "@types/google.maps": "^3.48.1",
+    "@unocss/reset": "^0.26.4",
+    "firebase": "9.6.7",
+    "pinia": "^2.0.11",
+    "quasar": "^2.5.5",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.12"
+  },
+  "devDependencies": {
+    "@quasar/vite-plugin": "^1.0.5",
+    "@vitejs/plugin-vue": "^2.2.2",
+    "@vue/test-utils": "^2.0.0-rc.18",
+    "cypress": "^9.5.0",
+    "jsdom": "^19.0.0",
+    "prettier": "^2.5.1",
+    "sass": "~1.32.0",
+    "start-server-and-test": "^1.14.0",
+    "unocss": "^0.26.4",
+    "unplugin-vue-components": "^0.17.21",
+    "vite": "^2.8.4",
+    "vitest": "^0.5.7"
+  }
+}
