@@ -7,6 +7,8 @@
         Accounts
       </h2>
     </div>
+    <AccountsTable />
   </q-page>
 </template>
 <script setup></script>
+

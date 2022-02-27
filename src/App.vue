@@ -52,14 +52,14 @@ function openQuote() {
 
           <q-item clickable v-ripple to="/resources">
             <q-item-section avatar>
-              <q-icon name="send" />
+              <q-icon name="category" />
             </q-item-section>
             <q-item-section> Resources </q-item-section>
           </q-item>
 
           <q-item clickable v-ripple to="quotes">
             <q-item-section avatar>
-              <q-icon name="drafts" />
+              <q-icon name="request_quote" />
             </q-item-section>
             <q-item-section> Quotes </q-item-section>
           </q-item>
