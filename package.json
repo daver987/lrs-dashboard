@@ -1,6 +1,12 @@
 {
   "name": "lrs-dashboard",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "description": "LRS Dashboard",
+  "author": {
+    "name": "David Robertson",
+    "email": "daveyalexander@outlook.com"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "develop": "yarn dev",

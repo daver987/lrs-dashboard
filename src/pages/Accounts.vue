@@ -1,6 +1,12 @@
 <template>
   <q-page>
-    <h2>Accounts Page</h2>
+    <div class="q-pa-md bg-grey-4 mb-4">
+      <h2
+        class="font-bold text-center tracking-wider text-3xl text-black uppercase"
+      >
+        Accounts
+      </h2>
+    </div>
   </q-page>
 </template>
 <script setup></script>

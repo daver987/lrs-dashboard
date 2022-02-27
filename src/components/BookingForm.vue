@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white">
-    <div class="row q-pa-md justify-between items-center bg-grey-3">
+    <div class="row q-pa-md justify-between items-center bg-grey-4">
       <div class="mb-4">
         <span>Quote Number # </span
         ><span class="font-bold">{{ counter.quoteNumber }}</span>

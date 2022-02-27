@@ -1,6 +1,12 @@
 <template>
   <q-page>
-    <h3>Resources Page</h3>
+    <div class="q-pa-md bg-grey-4 mb-4">
+      <h2
+        class="font-bold text-center tracking-wider text-3xl text-black uppercase"
+      >
+        Resources
+      </h2>
+    </div>
   </q-page>
 </template>
 

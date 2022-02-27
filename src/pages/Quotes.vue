@@ -1,6 +1,13 @@
 <template>
   <q-page>
-    <div class="text-black text-center w-full p-4 text-h4">Quotes</div>
+    <div class="q-pa-md bg-grey-4 mb-4">
+      <h2
+        class="font-bold text-center tracking-wider text-3xl text-black uppercase"
+      >
+        Quotes
+      </h2>
+    </div>
+
     <QuoteTable />
   </q-page>
 </template>

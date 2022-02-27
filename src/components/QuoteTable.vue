@@ -1,6 +1,6 @@
 <template>
   <q-markup-table
-    ><thead>
+    ><thead class="bg-grey-5">
       <tr>
         <th v-for="col in columns" :key="col.name" class="text-center">
           {{ col.label }}
