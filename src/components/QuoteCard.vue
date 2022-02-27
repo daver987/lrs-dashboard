@@ -25,10 +25,7 @@
       <p class="text-weight-bold text-body1">Distance: {{ routeDistance }}</p>
       <p class="text-weight-bold text-body1">Time: {{ routeDuration }}</p>
     </q-card-section>
-    <q-card-section> </q-card-section>
-    <q-card-actions>
-      <q-btn label="Save Quote" @click="store.increment" type="button" />
-    </q-card-actions>
+
   </q-card>
 </template>
 
