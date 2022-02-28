@@ -251,11 +251,10 @@
               </q-card-section>
               <q-card-section>
                 <q-btn
-                  @click="quote.writeUserData"
+                  @click="total.priceCalculator"
                   color="primary"
                   label="Save Quote"
                   class="q-mr-lg"
-                  disabled
                 />
 
                 <q-btn
@@ -361,53 +360,56 @@
 import { Loader } from '@googlemaps/js-api-loader'
 import { useMap } from '../stores/useMap'
 import { storeToRefs } from 'pinia'
-import { useQuote } from '../stores/useQuote'
+// import { useQuote } from '../stores/useQuote'
 import { useCounterStore } from '../stores/counter'
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { usePriceCalculator } from '../stores/usePriceCalculator'
 //TODO: Add price calculation function possible composable, add enable and disable buttons
-const quote = useQuote()
+const total = usePriceCalculator()
 const counter = useCounterStore()
 const store = useMap()
+const { sedDistTotal, suvDistTotal, premSedanDistTotal, premSuvDistTotal } =
+  total
 
 const vehicle = ref('sedan')
 
-const options = [
+const options = reactive([
   {
     label: 'Luxury Sedan',
     value: 'sedan',
     id: 1,
     caption: 'Vehicles include Cadillac XTS or similar',
-    cost: 100,
+    cost: sedDistTotal,
   },
   {
     label: 'Luxury SUV',
     value: 'suv',
     id: 2,
     caption: 'Vehicles include Chevy Suburban or similar',
-    cost: 100,
+    cost: suvDistTotal,
   },
   {
     label: 'Premium Luxury Sedan',
     value: 'premium_sedan',
     id: 3,
     caption: 'Vehicles include Lincoln Continental or similar',
-    cost: 100,
+    cost: premSedanDistTotal,
   },
   {
     label: 'Premium Luxury SUV',
     value: 'premium_suv',
     id: 4,
     caption: 'Vehicles include Lincoln Navigator or similar',
-    cost: 100,
+    cost: premSuvDistTotal,
   },
   {
     label: '12 Passenger Van',
     value: 'van',
     id: 5,
     caption: 'Vehicles include Ford Transit or similar',
-    cost: 100,
+    cost: 0,
   },
-]
+])
 
 const loader = new Loader({
   apiKey: 'AIzaSyAHssosELrwwDVsFJUwVchowi-Asv65pow',
