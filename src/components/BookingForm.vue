@@ -18,7 +18,7 @@
             >
             <q-card-section class="row q-gutter-sm">
               <q-input
-                v-model="confirmationNumber"
+                v-model="counterStore.quoteNumber"
                 bg-color="white"
                 class="col"
                 outlined
@@ -27,9 +27,10 @@
                 label="Confirmation Number"
                 name="confirmation_number"
                 for="confirmation_number"
+                readonly
               />
               <q-input
-                v-model="accountNumber"
+                v-model="accounts.accountNumber"
                 bg-color="white"
                 class="col"
                 outlined
@@ -38,12 +39,13 @@
                 label="Account Number"
                 name="account_number"
                 for="account_number"
+                readonly
               />
             </q-card-section>
 
             <q-card-section class="row q-gutter-md">
               <q-input
-                v-model="billingContact"
+                v-model="accounts.billingContact"
                 bg-color="white"
                 class="col"
                 outlined
@@ -52,9 +54,10 @@
                 label="Billing Contact"
                 name="billing_contact"
                 for="billing_contact"
+                :rules="[(val) => !!val || 'Field is required']"
               />
               <q-input
-                v-model="companyName"
+                v-model="accounts.companyName"
                 bg-color="white"
                 class="col"
                 outlined
@@ -63,12 +66,13 @@
                 label="Company Name"
                 name="company_name"
                 for="company_name"
+                :rules="[(val) => !!val || 'Field is required']"
               />
             </q-card-section>
 
             <q-card-section class="row q-gutter-md">
               <q-input
-                v-model="paxFirstName"
+                v-model="accounts.passengerFirstName"
                 bg-color="white"
                 class="col"
                 outlined
@@ -78,7 +82,7 @@
                 name="pax_first_name"
                 for="pax_first_name" />
               <q-input
-                v-model="paxLastName"
+                v-model="accounts.passengerLastName"
                 bg-color="white"
                 class="col"
                 outlined
@@ -91,7 +95,7 @@
 
             <q-card-section class="row q-gutter-md">
               <q-input
-                v-model="paxPhone"
+                v-model="accounts.passengerPhoneNumber"
                 mask="phone"
                 bg-color="white"
                 class="col"
@@ -102,7 +106,7 @@
                 name="pax-phone"
                 for="pax-phone" />
               <q-input
-                v-model="paxEmail"
+                v-model="accounts.passengerEmail"
                 mask="email"
                 bg-color="white"
                 class="col"
@@ -138,7 +142,7 @@
               <!-- Pickup Date -->
               <q-input
                 dense
-                v-model="pickupDate"
+                v-model="store.pickupDate"
                 mask="date"
                 :rules="['date']"
                 outlined
@@ -156,7 +160,7 @@
                       transition-show="scale"
                       transition-hide="scale"
                     >
-                      <q-date v-model="pickupDate">
+                      <q-date v-model="store.pickupDate">
                         <div class="row items-center justify-end">
                           <q-btn
                             v-close-popup
@@ -174,7 +178,7 @@
               <!-- Pickup Time -->
               <q-input
                 dense
-                v-model="pickupTime"
+                v-model="store.pickupTime"
                 mask="time"
                 :rules="['time']"
                 outlined
@@ -191,7 +195,7 @@
                       transition-show="scale"
                       transition-hide="scale"
                     >
-                      <q-time v-model="pickupTime">
+                      <q-time v-model="store.pickupTime">
                         <div class="row items-center justify-end">
                           <q-btn
                             v-close-popup
@@ -210,7 +214,7 @@
             <!-- Pickup Location -->
             <q-card-section>
               <q-input
-                v-model="locationDescription"
+                v-model="store.locationDescription"
                 bg-color="white"
                 class="col"
                 outlined
@@ -224,7 +228,7 @@
 
             <q-card-section>
               <q-input
-                v-model="pickupAddress"
+                v-model="store.pickupAddress"
                 bg-color="white"
                 class="col"
                 outlined
@@ -237,7 +241,7 @@
             </q-card-section>
             <q-card-section>
               <q-input
-                v-model="dropOffAddress"
+                v-model="store.dropOffAddress"
                 bg-color="white"
                 class="col"
                 outlined
@@ -251,7 +255,7 @@
 
             <q-card-section class="row q-gutter-md">
               <q-input
-                v-model="tripNotes"
+                v-model="store.tripNotes"
                 bg-color="white"
                 class="col"
                 outlined
@@ -407,9 +411,13 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { useMap } from '../stores/useMap'
+import { useAccounts } from '../stores/useAccounts'
+import { useCounterStore } from '../stores/counter'
 
+const counterStore = useCounterStore()
+const accounts = useAccounts()
 const store = useMap()
-const accountNumber = ref('')
+
 const fareInfo = reactive([
   {
     itemLabel: 'Flat Rate',

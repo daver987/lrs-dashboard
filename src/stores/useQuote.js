@@ -1,5 +1,5 @@
 import { addDoc, collection } from 'firebase/firestore'
-import { defineStore } from 'pinia'
+import { defineStore, acceptHMRUpdate } from 'pinia'
 import { useMap } from './useMap'
 import { useCounterStore } from '../stores/counter'
 import { db } from '../firebase'
@@ -70,3 +70,7 @@ export const useQuote = defineStore({
     },
   },
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useQuote, import.meta.hot))
+}

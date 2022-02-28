@@ -17,22 +17,40 @@ export const useMap = defineStore({
       selectedVehicleType: '',
 
       selectNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+
+      luggageCount: 1,
       selectedLuggageCount: '',
+
+      passengerCount: 1,
       selectedPassengerCount: '',
+
       selectedHourCount: '',
 
       tripStatus: ['Unasigned', 'Assigned', 'Done'],
       selectedTripStatus: '',
 
+      pickupDate: '',
+      selectedPickupDate: '',
+
+      pickupTime: '',
+      selectedPickupTime: '',
+
+      tripNotes: '',
+
+      locationDescription: '',
+
+      pickupAddress: '',
       selectedOriginAddress: '',
+      originAutocomplete: null,
+
+      dropOffAddress: '',
       selectedDestinationAddress: '',
       destinationAutocomplete: null,
-      passengerCount: 1,
-      luggageCount: 1,
+
       date: null,
-      pickupAddress: '',
+
       originInput: '',
-      originAutocomplete: null,
+
       destinationInput: '',
       place: null,
       results: null,
