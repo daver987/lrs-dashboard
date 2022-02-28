@@ -1,8 +1,8 @@
 <template>
   <q-page>
-    <div class="q-pa-md bg-grey-4 mb-4">
+    <div class="bg-grey-4 mb-4 q-pa-md">
       <h2
-        class="font-bold text-center tracking-wider text-3xl text-black uppercase"
+        class="font-bold text-center text-black tracking-wider text-3xl uppercase"
       >
         Reservations
       </h2>
@@ -29,8 +29,8 @@ import { ref as myRef } from 'vue'
 import { db } from '../firebase'
 
 const data = myRef(null)
-const starCountRef = ref(db, '/quotes/quote_number')
-onValue(starCountRef, (snapshot) => {
+const quoteRef = ref(db, '/quotes/quote_number')
+onValue(quoteRef, (snapshot) => {
   data.value = snapshot.val()
   console.log(data.value)
 })

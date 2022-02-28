@@ -114,6 +114,7 @@
                   bg-color="white"
                   class="col"
                   v-model="selectedOriginAddress"
+                  ref="address"
                   label="Pickup Address"
                   hint="Enter in the name or address of the pickup location"
                   lazy-rules
@@ -230,7 +231,7 @@
                   <q-select
                     v-model="passengerCount"
                     label="Passenger Count"
-                    :options="paxCount"
+                    :options="selectNumbers"
                     bg-color="white"
                     class="col"
                     outlined
@@ -240,7 +241,7 @@
                   <q-select
                     v-model="luggageCount"
                     label="Luggage Count"
-                    :options="paxCount"
+                    :options="selectNumbers"
                     bg-color="white"
                     class="col"
                     outlined
@@ -281,7 +282,12 @@
           >
             <q-card class="bg-grey-3">
               <q-card-section>
-                <div v-show="true" class="h-64 w-full" id="map"></div>
+                <div
+                  v-show="true"
+                  class="h-64 w-full"
+                  id="map"
+                  ref="myMap"
+                ></div>
               </q-card-section>
               <q-card-section v-if="selectedDestinationAddress">
                 <div class="row">
@@ -409,9 +415,9 @@ const loader = new Loader({
   version: 'weekly',
   region: 'ca',
 })
-
+const myMap = ref(null)
 loader.load().then(() => {
-  const map = new google.maps.Map(document.getElementById('map'), {
+  const map = new google.maps.Map(myMap.value, {
     mapTypeControl: false,
     center: { lat: 43.65107, lng: -79.347015 },
     zoom: 9,
@@ -506,6 +512,7 @@ class AutocompleteDirectionsHandler {
 const {
   luggageCount,
   passengerCount,
+  selectNumbers,
   date,
   serviceType,
   selectedServiceType,
@@ -518,7 +525,6 @@ const {
   place,
   routeDistance,
   routeDuration,
-  paxCount,
   firstName,
   lastName,
   email,

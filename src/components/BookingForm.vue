@@ -103,8 +103,8 @@
                 dense
                 type="tel"
                 label="Passenger Phone"
-                name="pax-phone"
-                for="pax-phone" />
+                name="passenger_phone"
+                for="passenger_phone" />
               <q-input
                 v-model="accounts.passengerEmail"
                 mask="email"
@@ -114,8 +114,8 @@
                 dense
                 type="email"
                 label="Passenger Email"
-                name="pax-email"
-                for="pax-email"
+                name="passenger_email"
+                for="passenger_email"
             /></q-card-section>
           </q-card>
         </q-expansion-item>
@@ -334,8 +334,8 @@
                 dense
                 type="text"
                 label="Pax #"
-                name="pax_count"
-                for="pax_count"
+                name="passenger_count"
+                for="passenger_count"
                 :options="store.selectNumbers"
               />
             </q-card-section>

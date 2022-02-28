@@ -1,7 +1,6 @@
 <template>
-  <q-markup-table
-    flat
-    square><thead class="bg-grey-5">
+  <q-markup-table flat square
+    ><thead class="bg-grey-5">
       <tr>
         <th v-for="col in columns" :key="col.name" class="text-center">
           {{ col.label }}
@@ -22,8 +21,9 @@
 </template>
 <script setup>
 //Todo: Migrate to q-table, fix firebase keys for quotes and accounts and customers
-import { getDatabase, ref, onValue } from 'firebase/database'
+import { ref, onValue } from 'firebase/database'
 import { ref as myRef } from 'vue'
+import { db } from '../firebase'
 const columns = [
   {
     name: 'quote_number',
@@ -70,11 +70,11 @@ const columns = [
   },
 ]
 const data = myRef(null)
-const db = getDatabase()
 const quoteRef = ref(db, '/quotes/quote_number')
 onValue(quoteRef, (snapshot) => {
   data.value = snapshot.val()
   console.log(data.value)
 })
+
 const rows = data.value
 </script>
