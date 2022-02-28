@@ -1,5 +1,5 @@
 <template>
   <q-page>
-    <BookingForm />
+    <QuoteForm />
   </q-page>
 </template>

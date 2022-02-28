@@ -21,6 +21,7 @@
   </q-markup-table>
 </template>
 <script setup>
+//Todo: Migrate to q-table, fix firebase keys for quotes and accounts and customers
 import { getDatabase, ref, onValue } from 'firebase/database'
 import { ref as myRef } from 'vue'
 const columns = [

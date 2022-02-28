@@ -1,11 +1,15 @@
 <template>
   <q-page>
-    <div class="q-pa-md bg-grey-4 mb-4">
+    <div class="bg-grey-4 mb-4 q-pa-md">
       <h2
-        class="font-bold text-center tracking-wider text-3xl text-black uppercase"
+        class="font-bold text-center text-black tracking-wider text-3xl uppercase"
       >
         My Office
       </h2>
     </div>
+    <BookingForm />
   </q-page>
 </template>
+<script>
+//todo: Add orders to do today, add shortcuts to add clients, and go to booking form
+</script>

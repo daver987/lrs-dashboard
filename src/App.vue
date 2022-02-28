@@ -71,8 +71,6 @@ function openQuote() {
             <q-item-section> Quotes </q-item-section>
           </q-item>
 
-
-
           <q-item clickable v-ripple to="pricing">
             <q-item-section avatar>
               <q-icon name="attach_money" />
@@ -86,7 +84,7 @@ function openQuote() {
       <RouterView />
     </q-page-container>
     <q-dialog v-model="seamless" position="bottom" full-width>
-      <BookingForm />
+      <QuoteForm />
     </q-dialog>
   </q-layout>
 </template>

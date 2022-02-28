@@ -30,6 +30,7 @@
 </template>
 
 <script setup>
+
 import { useMap } from '../stores/useMap'
 
 const store = useMap()

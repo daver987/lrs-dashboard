@@ -1,529 +1,431 @@
 <template>
-  <div class="bg-white">
-    <div class="row q-pa-md justify-between items-center bg-grey-4">
-      <div class="mb-4">
-        <span>Quote Number # </span
-        ><span class="font-bold">{{ counter.quoteNumber }}</span>
-      </div>
-      <h2
-        class="font-bold text-center tracking-wider text-3xl text-black uppercase mb-4"
-      >
-        Quick Rate Lookup
-      </h2>
-      <q-btn
-        label="New Rate"
-        type="reset"
-        size="md"
-        color="primary"
-        flat
-        class="mb-4"
-      />
-    </div>
-    <q-card class="bg-white row q-px-md q-gutter-md" flat>
-      <q-form
-        @submit.prevent="store.saveQuote"
-        @reset="store.$reset()"
-        class="col"
-      >
-        <q-list class="bg-white space-y-6">
-          <q-expansion-item
-            group="somegroup"
-            icon="explore"
-            label="Trip Details"
-            default-opened
-            header-class="text-black bg-grey-5"
-          >
-            <q-card bordered flat class="bg-grey-3 q-pa-sm">
-              <q-card-section
-                ><span class="text-bold text-lg"
-                  >Trip Details</span
-                ></q-card-section
-              >
-              <q-card-section class="row q-gutter-sm">
-                <q-select
-                  label="Service Type"
-                  :options="serviceType"
-                  v-model="selectedServiceType"
-                  outlined
-                  bg-color="white"
-                  class="col"
-                  dense
-                >
-                </q-select>
+  <q-form class="bg-white row q-px-md q-gutter-md" flat>
+    <!-- column one -->
+    <q-card flat class="col">
+      <q-list>
+        <q-expansion-item
+          group="accountInfo"
+          icon="groups"
+          label="Account Information"
+          header-class="text-black bg-grey-5"
+          default-opened
+        >
+          <q-card bordered flat class="bg-grey-3">
+            <q-card-section
+              ><span class="text-bold text-lg"
+                >Customer Details</span
+              ></q-card-section
+            >
+            <q-card-section class="row q-gutter-sm">
+              <q-input
+                v-model="confirmationNumber"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Confirmation Number"
+                name="confirmation-number"
+                for="confirmation-number"
+              />
+              <q-input
+                v-model="accountNumber"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Account Number"
+                name="account-number"
+                for="account-number"
+              />
+            </q-card-section>
 
-                <q-input
-                  v-model="date"
-                  bg-color="white"
-                  class="col"
-                  outlined
-                  dense
-                >
-                  <template v-slot:prepend>
-                    <q-icon name="event" class="cursor-pointer">
-                      <q-popup-proxy
-                        cover
-                        transition-show="scale"
-                        transition-hide="scale"
-                      >
-                        <q-date v-model="date" mask="YYYY-MM-DD HH:mm">
-                          <div class="row items-center justify-end">
-                            <q-btn
-                              v-close-popup
-                              label="Close"
-                              color="primary"
-                              flat
-                            />
-                          </div>
-                        </q-date>
-                      </q-popup-proxy>
-                    </q-icon>
-                  </template>
+            <q-card-section class="row q-gutter-md">
+              <q-input
+                v-model="billingContact"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Billing Contact"
+                name="billing-contact"
+                for="billing-contact"
+              />
+              <q-input
+                v-model="companyName"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Company Name"
+                name="company-name"
+                for="company-name"
+              />
+            </q-card-section>
 
-                  <template v-slot:append>
-                    <q-icon name="access_time" class="cursor-pointer">
-                      <q-popup-proxy
-                        cover
-                        transition-show="scale"
-                        transition-hide="scale"
-                      >
-                        <q-time
-                          v-model="date"
-                          mask="YYYY-MM-DD HH:mm"
-                          format24h
-                        >
-                          <div class="row items-center justify-end">
-                            <q-btn
-                              v-close-popup
-                              label="Close"
-                              color="primary"
-                              flat
-                            />
-                          </div>
-                        </q-time>
-                      </q-popup-proxy>
-                    </q-icon>
-                  </template>
-                </q-input>
-              </q-card-section>
-              <q-card-section>
-                <q-input
-                  name="origin-input"
-                  type="text"
-                  for="origin-input"
-                  outlined
-                  bg-color="white"
-                  class="col"
-                  v-model="selectedOriginAddress"
-                  label="Pickup Address"
-                  hint="Enter in the name or address of the pickup location"
-                  lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Please type something',
-                  ]"
-                  dense
-                />
-              </q-card-section>
-              <q-card-section v-if="selectedServiceType !== 'Hourly'">
-                <q-input
-                  name="destination-input"
-                  type="text"
-                  for="destination-input"
-                  outlined
-                  bg-color="white"
-                  class="col"
-                  v-model="selectedDestinationAddress"
-                  label="Drop-Off Address"
-                  hint="Enter in the name or address of the drop-off location"
-                  lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Please type something',
-                  ]"
-                  dense
-                />
-              </q-card-section>
-              <q-card-section v-if="selectedServiceType === 'Hourly'">
-                <span class="mr-8">Number Of Hours</span>
-                <q-btn
-                  round
-                  color="black"
-                  icon="remove"
-                  @click="counter.decrementHour"
-                />
-                <span class="text-lg p-2">{{ counter.hourCount }}</span>
-                <q-btn
-                  round
-                  color="black"
-                  icon="add"
-                  @click="counter.incrementHour"
-                />
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
+            <q-card-section class="row q-gutter-md">
+              <q-input
+                v-model="paxFirstName"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Passenger First Name"
+                name="pax-first-name"
+                for="pax-first-name" />
+              <q-input
+                v-model="paxLastName"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Passenger Last Name"
+                name="pax-last-name"
+                for="pax-last-name"
+            /></q-card-section>
 
-          <q-expansion-item
-            group="somegroup"
-            icon="perm_identity"
-            label="Contact Information"
-            header-class="text-black bg-grey-5"
-          >
-            <q-card flat bordered class="bg-grey-3 q-pa-sm">
-              <q-card-section
-                ><span class="text-bold text-lg"
-                  >Passenger Information</span
-                ></q-card-section
-              >
-              <q-card-section class="row q-gutter-md">
-                <q-input
-                  bg-color="white"
-                  class="col"
-                  outlined
-                  label="First Name"
-                  v-model="firstName"
-                  dense
-                />
-                <q-input
-                  bg-color="white"
-                  class="col"
-                  outlined
-                  label="Last Name"
-                  v-model="lastName"
-                  dense
-                />
-              </q-card-section>
-              <q-card-section class="row q-gutter-md">
-                <q-input
-                  bg-color="white"
-                  class="col"
-                  outlined
-                  label="Email"
-                  type="email"
-                  v-model="email"
-                  dense
-                />
-                <q-input
-                  bg-color="white"
-                  class="col"
-                  outlined
-                  label="Phone Number"
-                  type="tel"
-                  v-model="phone"
-                  dense
-                />
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-
-          <q-expansion-item
-            group="somegroup"
-            icon="more"
-            label="Additional Information"
-            header-class="text-black bg-grey-5"
-          >
-            <q-card flat bordered class="bg-grey-3 q-pa-sm">
-              <q-card-section
-                ><span class="text-bold text-lg"
-                  >Additional Information</span
-                ></q-card-section
-              >
-              <q-card-section>
-                <div class="row q-gutter-sm">
-                  <q-select
-                    v-model="passengerCount"
-                    label="Passenger Count"
-                    :options="paxCount"
-                    bg-color="white"
-                    class="col"
-                    outlined
-                    dense
-                  />
-
-                  <q-select
-                    v-model="luggageCount"
-                    label="Luggage Count"
-                    :options="paxCount"
-                    bg-color="white"
-                    class="col"
-                    outlined
-                    dense
-                  />
-                </div>
-              </q-card-section>
-              <q-card-section>
-                <q-btn
-                  @click="quote.writeUserData"
-                  color="primary"
-                  label="Save Quote"
-                  class="q-mr-lg"
-                  disabled
-                />
-
-                <q-btn
-                  @click="store.openDialog"
-                  size="md"
-                  color="primary"
-                  label="Save Booking"
-                  disabled
-                />
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-
-
-        </q-list>
-      </q-form>
-
-      <q-card class="col">
-        <q-list class="bg-white space-y-6">
-          <q-expansion-item
-            group="summary"
-            icon="event"
-            label="Booking Summary"
-            header-class="text-black bg-grey-5"
-            default-opened
-          >
-            <q-card class="bg-grey-3">
-              <q-card-section>
-                <div v-show="true" class="h-64 w-full" id="map"></div>
-              </q-card-section>
-              <q-card-section v-if="selectedDestinationAddress">
-                <div class="row">
-                  <p class="col">
-                    Service Type:
-                    <span class="text-bold">{{ selectedServiceType }}</span>
-                  </p>
-                  <p class="col">
-                    Time & Distance:
-                    <span class="text-bold"
-                      >{{ routeDuration }} / {{ routeDistance }}</span
-                    >
-                  </p>
-                </div>
-                <p>
-                  Pickup Location:
-                  <span class="text-bold">{{ selectedOriginAddress }}</span>
-                </p>
-                <p>
-                  Drop-Off Location:
-                  <span class="text-bold">{{
-                    selectedDestinationAddress
-                  }}</span>
-                </p>
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-          <q-expansion-item
-            group="summary"
-            icon="paid"
-            label="Cost Summary"
-            header-class="text-black bg-grey-5"
-          >
-            <q-card class="bg-grey-3 col">
-              <q-card-section>
-                <q-list>
-                  <q-item
-                    tag="label"
-                    v-for="option in options"
-                    :key="options.id"
-                  >
-                    <q-item-section avatar>
-                      <q-radio
-                        v-model="vehicle"
-                        :val="option.value"
-                        color="primary"
-                        :name="option.value"
-                      />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-item-label>{{ option.label }}</q-item-label>
-                      <q-item-label caption>{{ option.caption }}</q-item-label>
-                    </q-item-section>
-                    <q-item-section side class="text-bold"
-                      >$ {{ option.cost }}</q-item-section
-                    >
-                  </q-item>
-                </q-list>
-              </q-card-section>
-            </q-card>
-          </q-expansion-item>
-        </q-list>
-      </q-card>
+            <q-card-section class="row q-gutter-md">
+              <q-input
+                v-model="paxPhone"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Passenger Phone"
+                name="pax-phone"
+                for="pax-phone" />
+              <q-input
+                v-model="paxEmail"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Passenger Email"
+                name="pax-email"
+                for="pax-email"
+            /></q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
     </q-card>
-  </div>
 
-  <Alert message="Your Quote Has Been Saved" :myAlert="store.myAlert" />
+    <!-- second column -->
+    <q-card flat class="col">
+      <q-list
+        ><q-expansion-item
+          group="tripInfo"
+          icon="map"
+          label="Routing Details"
+          header-class="text-black bg-grey-5"
+          default-opened
+        >
+          <q-card bordered flat class="bg-grey-3">
+            <q-card-section
+              ><span class="text-bold text-lg"
+                >Routing Details</span
+              ></q-card-section
+            >
+            <q-card-section class="row q-gutter-sm">
+              <!-- Pickup Date -->
+              <q-input
+                dense
+                v-model="pickupDate"
+                mask="date"
+                :rules="['date']"
+                outlined
+                name="pickup-date"
+                for="pickup-date"
+                label="Pickup Date"
+                class="col"
+                bg-color="white"
+              >
+                <template v-slot:append>
+                  <q-icon name="event" class="cursor-pointer">
+                    <q-popup-proxy
+                      ref="qDateProxy"
+                      cover
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-date v-model="pickupDate">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-date>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+
+              <!-- Pickup Time -->
+              <q-input
+                dense
+                v-model="pickupTime"
+                mask="time"
+                :rules="['time']"
+                outlined
+                name="pickup-time"
+                for="pickup-time"
+                label="Pickup Time"
+                class="col"
+                bg-color="white"
+              >
+                <template v-slot:append>
+                  <q-icon name="access_time" class="cursor-pointer">
+                    <q-popup-proxy
+                      cover
+                      transition-show="scale"
+                      transition-hide="scale"
+                    >
+                      <q-time v-model="pickupTime">
+                        <div class="row items-center justify-end">
+                          <q-btn
+                            v-close-popup
+                            label="Close"
+                            color="primary"
+                            flat
+                          />
+                        </div>
+                      </q-time>
+                    </q-popup-proxy>
+                  </q-icon>
+                </template>
+              </q-input>
+            </q-card-section>
+
+            <!-- Pickup Location -->
+            <q-card-section>
+              <q-input
+                v-model="locationDescription"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Location Description"
+                name="location-description"
+                for="location-description"
+              />
+            </q-card-section>
+
+            <q-card-section>
+              <q-input
+                v-model="pickupAddress"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Pickup Address"
+                name="pickup-address"
+                for="pickup-address"
+              />
+            </q-card-section>
+            <q-card-section>
+              <q-input
+                v-model="dropOffAddress"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Drop-Off Address"
+                name="drop-off-address"
+                for="drop-off-address"
+              />
+            </q-card-section>
+
+            <q-card-section class="row q-gutter-md">
+              <q-input
+                v-model="tripNotes"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="textarea"
+                label="Trip Notes"
+                name="trip-notes"
+                for="trip-notes"
+              />
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
+    </q-card>
+
+    <!-- third column -->
+    <q-card flat class="col">
+      <q-list class="bg-white space-y-6">
+        <q-expansion-item
+          group="extras"
+          icon="add_box"
+          label="Extras"
+          header-class="text-black bg-grey-5"
+          default-opened
+        >
+          <q-card bordered flat class="bg-grey-3">
+            <q-card-section
+              ><span class="text-bold text-lg"
+                >Trip Extras</span
+              ></q-card-section
+            ><q-card-section>
+              <q-select
+                v-model="tripStatus"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Trip Status"
+                name="trip-status"
+                for="trip-status"
+              />
+            </q-card-section>
+
+            <q-card-section class="row q-gutter-md">
+              <q-select
+                v-model="hourCount"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Hours"
+                name="num-hours"
+                for="num-hours"
+              />
+              <q-select
+                v-model="luggageCount"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Luggage"
+                name="luggage-count"
+                for="luggage-count"
+              />
+              <q-select
+                v-model="paxCount"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Pax #"
+                name="pax-count"
+                for="pax-count"
+              />
+            </q-card-section>
+
+            <q-card-section class="row q-gutter-md">
+              <q-select
+                v-model="serviceType"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Service Type"
+                name="service-type"
+                for="service-type"
+              />
+              <q-select
+                v-model="vehicleType"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Vehicle Type"
+                name="vehicle-type"
+                for="vehicle-type"
+              />
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+
+        <q-expansion-item
+          group="extras"
+          icon="attach_money"
+          label="Total Cost"
+          header-class="text-black bg-grey-5"
+        >
+          <q-card class="bg-grey-3 col">
+            <q-card-section
+              ><span class="text-bold text-lg">Total Cost</span></q-card-section
+            >
+            <q-card-section>
+              <q-list>
+                <q-item tag="label" v-for="item in fareInfo" :key="item.id">
+                  <q-item-section>
+                    <q-item-label>{{ item.itemLabel }}</q-item-label>
+                    <!-- <q-item-label caption>Label One</q-item-label> -->
+                  </q-item-section>
+                  <q-item-section side class="text-bold"
+                    ><q-input
+                      v-model="item.rate"
+                      bg-color="white"
+                      class="col"
+                      outlined
+                      dense
+                      type="text"
+                      name="flat-rate"
+                      for="flat-rate"
+                    />
+                  </q-item-section>
+                </q-item>
+              </q-list>
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
+    </q-card>
+  </q-form>
 </template>
 
 <script setup>
-import { Loader } from '@googlemaps/js-api-loader'
-import { useMap } from '../stores/useMap'
-import { storeToRefs } from 'pinia'
-import { useQuote } from '../stores/useQuote'
-import { useCounterStore } from '../stores/counter'
-import { ref } from 'vue'
-
-const quote = useQuote()
-const counter = useCounterStore()
-const store = useMap()
-
-const vehicle = ref('sedan')
-
-const options = [
+import { ref, reactive } from 'vue'
+const accountNumber = ref('')
+const fareInfo = reactive([
   {
-    label: 'Luxury Sedan',
-    value: 'sedan',
+    itemLabel: 'Flat Rate',
+    rate: 0,
     id: 1,
-    caption: 'Vehicles include Cadillac XTS or similar',
-    cost: 100,
   },
+
   {
-    label: 'Luxury SUV',
-    value: 'suv',
+    itemLabel: 'Gratuity',
+    rate: 0,
+
     id: 2,
-    caption: 'Vehicles include Chevy Suburban or similar',
-    cost: 100,
   },
   {
-    label: 'Premium Luxury Sedan',
-    value: 'premium_sedan',
+    itemLabel: 'Toll Fees',
+    rate: 0,
     id: 3,
-    caption: 'Vehicles include Lincoln Continental or similar',
-    cost: 100,
   },
   {
-    label: 'Premium Luxury SUV',
-    value: 'premium_suv',
+    itemLabel: 'HST',
+    rate: 0,
     id: 4,
-    caption: 'Vehicles include Lincoln Navigator or similar',
-    cost: 100,
   },
   {
-    label: '12 Passenger Van',
-    value: 'van',
+    itemLabel: 'Total',
+    rate: 0,
     id: 5,
-    caption: 'Vehicles include Ford Transit or similar',
-    cost: 100,
   },
-]
-
-const loader = new Loader({
-  apiKey: 'AIzaSyAHssosELrwwDVsFJUwVchowi-Asv65pow',
-  libraries: ['places'],
-  version: 'weekly',
-  region: 'ca',
-})
-
-loader.load().then(() => {
-  const map = new google.maps.Map(document.getElementById('map'), {
-    mapTypeControl: false,
-    center: { lat: 43.65107, lng: -79.347015 },
-    zoom: 9,
-  })
-
-  new AutocompleteDirectionsHandler(map)
-})
-
-class AutocompleteDirectionsHandler {
-  map
-  originPlaceId
-  destinationPlaceId
-  travelMode
-  directionsService
-  directionsRenderer
-
-  constructor(map) {
-    this.map = map
-    this.originPlaceId = ''
-    this.destinationPlaceId = ''
-    this.travelMode = google.maps.TravelMode.DRIVING
-    this.directionsService = new google.maps.DirectionsService()
-    this.directionsRenderer = new google.maps.DirectionsRenderer()
-    this.directionsRenderer.setMap(map)
-
-    originInput.value = document.getElementById('origin-input')
-    originAutocomplete.value = new google.maps.places.Autocomplete(
-      originInput.value
-    )
-    // Specify just the place data fields that you need.
-    originAutocomplete.value.setFields(['all'])
-    this.setupPlaceChangedListener(originAutocomplete.value, 'ORIG')
-
-    destinationInput.value = document.getElementById('destination-input')
-    destinationAutocomplete.value = new google.maps.places.Autocomplete(
-      destinationInput.value
-    )
-    // Specify just the place data fields that you need.
-    destinationAutocomplete.value.setFields(['all'])
-    this.setupPlaceChangedListener(destinationAutocomplete.value, 'DEST')
-  }
-
-  // Sets a listener on a radio button to change the filter type on Places
-  // Autocomplete.
-  setupPlaceChangedListener(autocomplete, mode) {
-    autocomplete.bindTo('bounds', this.map)
-    autocomplete.addListener('place_changed', () => {
-      place.value = autocomplete.getPlace()
-
-      if (!place.value.place_id) {
-        window.alert('Please select an option from the dropdown list.')
-        return
-      }
-
-      if (mode === 'ORIG') {
-        this.originPlaceId = place.value.place_id
-      } else {
-        this.destinationPlaceId = place.value.place_id
-      }
-      this.route()
-    })
-  }
-
-  route() {
-    if (!this.originPlaceId || !this.destinationPlaceId) {
-      return
-    }
-
-    this.directionsService.route(
-      {
-        origin: { placeId: this.originPlaceId },
-        destination: { placeId: this.destinationPlaceId },
-        travelMode: this.travelMode,
-      },
-      (response, status) => {
-        if (status === 'OK') {
-          this.directionsRenderer.setDirections(response)
-          routeDistance.value = response.routes[0].legs[0].distance.text
-          routeDuration.value = response.routes[0].legs[0].duration.text
-          selectedOriginAddress.value = response.routes[0].legs[0].start_address
-          selectedDestinationAddress.value =
-            response.routes[0].legs[0].end_address
-          console.log(response.routes)
-        } else {
-          window.alert('Directions request failed due to ' + status)
-        }
-      }
-    )
-  }
-}
-
-const {
-  luggageCount,
-  passengerCount,
-  date,
-  serviceType,
-  selectedServiceType,
-  selectedOriginAddress,
-  selectedDestinationAddress,
-  originInput,
-  destinationInput,
-  originAutocomplete,
-  destinationAutocomplete,
-  place,
-  routeDistance,
-  routeDuration,
-  paxCount,
-  firstName,
-  lastName,
-  email,
-  phone,
-} = storeToRefs(store)
+])
 </script>
