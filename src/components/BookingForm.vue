@@ -25,8 +25,8 @@
                 dense
                 type="text"
                 label="Confirmation Number"
-                name="confirmation-number"
-                for="confirmation-number"
+                name="confirmation_number"
+                for="confirmation_number"
               />
               <q-input
                 v-model="accountNumber"
@@ -36,8 +36,8 @@
                 dense
                 type="text"
                 label="Account Number"
-                name="account-number"
-                for="account-number"
+                name="account_number"
+                for="account_number"
               />
             </q-card-section>
 
@@ -50,8 +50,8 @@
                 dense
                 type="text"
                 label="Billing Contact"
-                name="billing-contact"
-                for="billing-contact"
+                name="billing_contact"
+                for="billing_contact"
               />
               <q-input
                 v-model="companyName"
@@ -61,8 +61,8 @@
                 dense
                 type="text"
                 label="Company Name"
-                name="company-name"
-                for="company-name"
+                name="company_name"
+                for="company_name"
               />
             </q-card-section>
 
@@ -75,8 +75,8 @@
                 dense
                 type="text"
                 label="Passenger First Name"
-                name="pax-first-name"
-                for="pax-first-name" />
+                name="pax_first_name"
+                for="pax_first_name" />
               <q-input
                 v-model="paxLastName"
                 bg-color="white"
@@ -85,28 +85,30 @@
                 dense
                 type="text"
                 label="Passenger Last Name"
-                name="pax-last-name"
-                for="pax-last-name"
+                name="pax_last_name"
+                for="pax_last_name"
             /></q-card-section>
 
             <q-card-section class="row q-gutter-md">
               <q-input
                 v-model="paxPhone"
+                mask="phone"
                 bg-color="white"
                 class="col"
                 outlined
                 dense
-                type="text"
+                type="tel"
                 label="Passenger Phone"
                 name="pax-phone"
                 for="pax-phone" />
               <q-input
                 v-model="paxEmail"
+                mask="email"
                 bg-color="white"
                 class="col"
                 outlined
                 dense
-                type="text"
+                type="email"
                 label="Passenger Email"
                 name="pax-email"
                 for="pax-email"
@@ -140,8 +142,8 @@
                 mask="date"
                 :rules="['date']"
                 outlined
-                name="pickup-date"
-                for="pickup-date"
+                name="pickup_date"
+                for="pickup_date"
                 label="Pickup Date"
                 class="col"
                 bg-color="white"
@@ -176,8 +178,8 @@
                 mask="time"
                 :rules="['time']"
                 outlined
-                name="pickup-time"
-                for="pickup-time"
+                name="pickup_time"
+                for="pickup_time"
                 label="Pickup Time"
                 class="col"
                 bg-color="white"
@@ -215,8 +217,8 @@
                 dense
                 type="text"
                 label="Location Description"
-                name="location-description"
-                for="location-description"
+                name="location_description"
+                for="location_description"
               />
             </q-card-section>
 
@@ -229,8 +231,8 @@
                 dense
                 type="text"
                 label="Pickup Address"
-                name="pickup-address"
-                for="pickup-address"
+                name="pickup_address"
+                for="pickup_address"
               />
             </q-card-section>
             <q-card-section>
@@ -242,8 +244,8 @@
                 dense
                 type="text"
                 label="Drop-Off Address"
-                name="drop-off-address"
-                for="drop-off-address"
+                name="drop_off_address"
+                for="drop_off_address"
               />
             </q-card-section>
 
@@ -256,8 +258,8 @@
                 dense
                 type="textarea"
                 label="Trip Notes"
-                name="trip-notes"
-                for="trip-notes"
+                name="trip_notes"
+                for="trip_notes"
               />
             </q-card-section>
           </q-card>
@@ -267,7 +269,7 @@
 
     <!-- third column -->
     <q-card flat class="col">
-      <q-list class="bg-white space-y-6">
+      <q-list class="bg-white space-y-4">
         <q-expansion-item
           group="extras"
           icon="add_box"
@@ -282,76 +284,82 @@
               ></q-card-section
             ><q-card-section>
               <q-select
-                v-model="tripStatus"
+                v-model="store.selectedTripStatus"
                 bg-color="white"
                 class="col"
                 outlined
                 dense
                 type="text"
                 label="Trip Status"
-                name="trip-status"
-                for="trip-status"
+                name="trip_status"
+                for="trip_status"
+                :options="store.tripStatus"
               />
             </q-card-section>
 
             <q-card-section class="row q-gutter-md">
               <q-select
-                v-model="hourCount"
+                v-model="store.selectedHourCount"
                 bg-color="white"
                 class="col"
                 outlined
                 dense
                 type="text"
                 label="Hours"
-                name="num-hours"
-                for="num-hours"
+                name="hour_count"
+                for="hour_count"
+                :options="store.selectNumbers"
               />
               <q-select
-                v-model="luggageCount"
+                v-model="store.selectedLuggageCount"
                 bg-color="white"
                 class="col"
                 outlined
                 dense
                 type="text"
                 label="Luggage"
-                name="luggage-count"
-                for="luggage-count"
+                name="luggage_count"
+                for="luggage_count"
+                :options="store.selectNumbers"
               />
               <q-select
-                v-model="paxCount"
+                v-model="store.selectedPassengerCount"
                 bg-color="white"
                 class="col"
                 outlined
                 dense
                 type="text"
                 label="Pax #"
-                name="pax-count"
-                for="pax-count"
+                name="pax_count"
+                for="pax_count"
+                :options="store.selectNumbers"
               />
             </q-card-section>
 
             <q-card-section class="row q-gutter-md">
               <q-select
-                v-model="serviceType"
+                v-model="store.selectedServiceType"
                 bg-color="white"
                 class="col"
                 outlined
                 dense
                 type="text"
                 label="Service Type"
-                name="service-type"
-                for="service-type"
+                name="service_type"
+                for="service_type"
+                :options="store.serviceType"
               />
               <q-select
-                v-model="vehicleType"
+                v-model="store.selectedVehicleType"
                 bg-color="white"
                 class="col"
                 outlined
                 dense
                 type="text"
                 label="Vehicle Type"
-                name="vehicle-type"
-                for="vehicle-type"
+                name="vehicle_type"
+                for="vehicle_type"
+                :options="store.vehicleType"
               />
             </q-card-section>
           </q-card>
@@ -382,8 +390,8 @@
                       outlined
                       dense
                       type="text"
-                      name="flat-rate"
-                      for="flat-rate"
+                      :name="item.name"
+                      :for="item.name"
                     />
                   </q-item-section>
                 </q-item>
@@ -398,32 +406,39 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { useMap } from '../stores/useMap'
+
+const store = useMap()
 const accountNumber = ref('')
 const fareInfo = reactive([
   {
     itemLabel: 'Flat Rate',
+    name: 'flat_rate',
     rate: 0,
     id: 1,
   },
 
   {
     itemLabel: 'Gratuity',
+    name: 'gratuity',
     rate: 0,
-
     id: 2,
   },
   {
     itemLabel: 'Toll Fees',
+    name: 'toll_fees',
     rate: 0,
     id: 3,
   },
   {
     itemLabel: 'HST',
+    name: 'hst',
     rate: 0,
     id: 4,
   },
   {
     itemLabel: 'Total',
+    name: 'total',
     rate: 0,
     id: 5,
   },

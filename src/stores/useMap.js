@@ -5,8 +5,25 @@ export const useMap = defineStore({
   state: () => {
     return {
       serviceType: ['To Airport', 'From Airport', 'Point To Point', 'Hourly'],
-      paxCount: [1, 2, 3, 4, 5, 6],
       selectedServiceType: '',
+
+      vehicleType: [
+        'Sedan',
+        'SUV',
+        'Premium Sedan',
+        'Premium SUV',
+        '12 Passenger Van',
+      ],
+      selectedVehicleType: '',
+
+      selectNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      selectedLuggageCount: '',
+      selectedPassengerCount: '',
+      selectedHourCount: '',
+
+      tripStatus: ['Unasigned', 'Assigned', 'Done'],
+      selectedTripStatus: '',
+
       selectedOriginAddress: '',
       selectedDestinationAddress: '',
       destinationAutocomplete: null,
