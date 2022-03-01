@@ -312,7 +312,7 @@
             icon="paid"
             label="Cost Summary"
             header-class="text-black bg-grey-5"
-            v-model="total.isOpen"
+            v-model="isOpen"
           >
             <q-card class="bg-grey-3 col">
               <q-card-section>
@@ -356,13 +356,11 @@ import { useMap } from '../stores/useMap'
 import { storeToRefs } from 'pinia'
 import { useQuote } from '../stores/useQuote'
 import { useCounterStore } from '../stores/counter'
-import { ref } from 'vue'
 import { usePriceCalculator } from '../stores/usePriceCalculator'
 import { usePrefs } from '../stores/usePrefs'
-// import { usePricing } from '../composables/usePricing'
+
 //TODO: Add price calculation function possible composable, add enable and disable buttons
 
-// const { distTotal, timeTotal } = usePricing(options.kmCost)
 const total = usePriceCalculator()
 const counter = useCounterStore()
 const quote = useQuote()
@@ -378,9 +376,9 @@ const {
   isClosed,
 } = storeToRefs(total)
 
-const vehicle = ref('sedan')
+const vehicle = $ref('sedan')
 
-const options = ref([
+const options = $ref([
   {
     label: 'Sedan',
     value: 'sedan',
@@ -439,9 +437,9 @@ const loader = new Loader({
   version: 'weekly',
   region: 'ca',
 })
-const myMap = ref(null)
+const myMap = $ref(null)
 loader.load().then(() => {
-  const map = new google.maps.Map(myMap.value, {
+  const map = new google.maps.Map(myMap, {
     mapTypeControl: false,
     center: { lat: 43.65107, lng: -79.347015 },
     zoom: 9,
