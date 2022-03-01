@@ -25,7 +25,7 @@ export const usePriceCalculator = defineStore({
         premSedan: 95,
         premSuv: 125,
       }
-      const kmCost = { sedan: 1.7, suv: 2.5, premSedan: 1.8, premSuv: 2.8 }
+      const kmCost = { sedan: 1.7, suv: 2.75, premSedan: 1.85, premSuv: 3 }
       const mapStore = useMap()
       this.distance = mapStore.routeDistance.match(/[+-]?\d+(\.\d+)?/g)
       this.time = mapStore.routeDuration.match(/\d+/)
@@ -33,17 +33,17 @@ export const usePriceCalculator = defineStore({
       if (this.distance < 25) {
         this.sedDistTotal = hourlyCost.sedan
       } else {
-        this.sedDistTotal = kmCost.sedan * this.distance
+        this.sedDistTotal = kmCost.sedan * this.distance - 25 + hourlyCost.sedan
       }
       if (60 / this.time > 1) {
         this.sedTimeTotal = hourlyCost.sedan * 2
       } else {
         this.sedTimeTotal = (hourlyCost.sedan * this.time) / 60
       }
-      if (this.distance < 25) {
+      if (this.distance < 30) {
         this.suvDistTotal = hourlyCost.suv
       } else {
-        this.suvDistTotal = kmCost.suv * this.distance
+        this.suvDistTotal = kmCost.suv * this.distance - 30 + hourlyCost.suv
       }
       if (60 / this.time > 1) {
         this.suvTimeTotal = hourlyCost.suv * 2
@@ -53,17 +53,19 @@ export const usePriceCalculator = defineStore({
       if (this.distance < 25) {
         this.premSedanDistTotal = hourlyCost.premSedan
       } else {
-        this.premSedanDistTotal = kmCost.premSedan * this.distance
+        this.premSedanDistTotal =
+          kmCost.premSedan * this.distance - 25 + hourlyCost.premSedan
       }
       if (60 / this.time > 1) {
         this.premSedanTimeTotal = hourlyCost.premSedan * 2
       } else {
         this.premSedanTimeTotal = (hourlyCost.premSedan * this.time) / 60
       }
-      if (this.distance < 25) {
+      if (this.distance < 29) {
         this.premSuvDistTotal = hourlyCost.premSuv
       } else {
-        this.premSuvDistTotal = kmCost.premSuv * this.distance
+        this.premSuvDistTotal =
+          kmCost.premSuv * this.distance - 29 + hourlyCost.premSuv
       }
       if (60 / this.time > 1) {
         this.premSuvTimeTotal = hourlyCost.premSuv * 2

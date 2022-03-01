@@ -341,7 +341,7 @@
                       <q-item-label caption>{{ option.caption }}</q-item-label>
                     </q-item-section>
                     <q-item-section side class="text-bold"
-                      >$ {{ option.cost }}</q-item-section
+                      >$ {{ option.cost.toFixed(2) }}</q-item-section
                     >
                   </q-item>
                 </q-list>
@@ -360,11 +360,14 @@
 import { Loader } from '@googlemaps/js-api-loader'
 import { useMap } from '../stores/useMap'
 import { storeToRefs } from 'pinia'
-// import { useQuote } from '../stores/useQuote'
+
 import { useCounterStore } from '../stores/counter'
 import { ref } from 'vue'
 import { usePriceCalculator } from '../stores/usePriceCalculator'
+// import { usePricing } from '../composables/usePricing'
 //TODO: Add price calculation function possible composable, add enable and disable buttons
+
+// const { distTotal, timeTotal } = usePricing(options.kmCost)
 const total = usePriceCalculator()
 const counter = useCounterStore()
 const store = useMap()
@@ -380,6 +383,9 @@ const options = ref([
     id: 1,
     caption: 'Vehicles include Cadillac XTS or similar',
     cost: sedDistTotal,
+    kmCost: 1.7,
+    timeCost: 80,
+    minKm: 25,
   },
   {
     label: 'Luxury SUV',
@@ -387,6 +393,9 @@ const options = ref([
     id: 2,
     caption: 'Vehicles include Chevy Suburban or similar',
     cost: suvDistTotal,
+    kmCost: 2.75,
+    timeCost: 105,
+    minKm: 30,
   },
   {
     label: 'Premium Luxury Sedan',
@@ -394,6 +403,9 @@ const options = ref([
     id: 3,
     caption: 'Vehicles include Lincoln Continental or similar',
     cost: premSedanDistTotal,
+    kmCost: 1.85,
+    timeCost: 95,
+    minKm: 25,
   },
   {
     label: 'Premium Luxury SUV',
@@ -401,6 +413,9 @@ const options = ref([
     id: 4,
     caption: 'Vehicles include Lincoln Navigator or similar',
     cost: premSuvDistTotal,
+    kmCost: 3,
+    timeCost: 125,
+    minKm: 29,
   },
   {
     label: '12 Passenger Van',
@@ -408,6 +423,9 @@ const options = ref([
     id: 5,
     caption: 'Vehicles include Ford Transit or similar',
     cost: 0,
+    kmCost: 0,
+    timeCost: 0,
+    minKm: 0,
   },
 ])
 
