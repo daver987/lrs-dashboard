@@ -362,18 +362,18 @@ import { useMap } from '../stores/useMap'
 import { storeToRefs } from 'pinia'
 // import { useQuote } from '../stores/useQuote'
 import { useCounterStore } from '../stores/counter'
-import { ref, reactive } from 'vue'
+import { ref } from 'vue'
 import { usePriceCalculator } from '../stores/usePriceCalculator'
 //TODO: Add price calculation function possible composable, add enable and disable buttons
 const total = usePriceCalculator()
 const counter = useCounterStore()
 const store = useMap()
 const { sedDistTotal, suvDistTotal, premSedanDistTotal, premSuvDistTotal } =
-  total
+  storeToRefs(total)
 
 const vehicle = ref('sedan')
 
-const options = reactive([
+const options = ref([
   {
     label: 'Luxury Sedan',
     value: 'sedan',
