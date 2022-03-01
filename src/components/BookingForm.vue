@@ -336,7 +336,7 @@
                 label="Pax #"
                 name="passenger_count"
                 for="passenger_count"
-                :options="store.selectNumbers"
+                :options="prefs.selectNumbers"
               />
             </q-card-section>
 
