@@ -6,10 +6,14 @@
     table-header-class="bg-grey-5"
     flat
     square
+    :pagination="pagination"
   />
 </template>
 
 <script setup>
+const pagination = {
+  rowsPerPage: 10,
+}
 const columns = [
   {
     name: 'name',

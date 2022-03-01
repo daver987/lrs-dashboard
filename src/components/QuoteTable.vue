@@ -12,9 +12,9 @@
         <td class="text-center">{{ row.quote_number }}</td>
         <td class="text-center">{{ row.pickup_time }}</td>
         <td class="text-center">{{ row.pickup_time }}</td>
+        <td class="text-center">{{ row.pickup_time }}</td>
         <td class="text-center">{{ row.service_type }}</td>
-        <td class="text-center">{{ row.pickup_time }}</td>
-        <td class="text-center">{{ row.pickup_time }}</td>
+        <td class="text-center">{{ row.pickup_address }}</td>
       </tr>
     </tbody>
   </q-markup-table>
@@ -28,44 +28,44 @@ const columns = [
   {
     name: 'quote_number',
     required: true,
-    align: 'center',
+    align: 'left',
     label: 'Quote Number',
     field: 'Quote Number',
     sortable: true,
   },
   {
     name: 'pickup_day',
-    align: 'center',
+    align: 'left',
     label: 'PU Date',
     field: 'PU Date',
     sortable: true,
   },
   {
-    name: 'pickup_day',
-    align: 'center',
+    name: 'pickup_time',
+    align: 'left',
     label: 'Pickup Time',
     field: 'Pickup Time',
     sortable: true,
   },
   {
     name: 'passenger_name',
-    align: 'center',
+    align: 'left',
     label: 'Passenger Name',
     field: 'Passenger Name',
     sortable: true,
   },
   {
     name: 'service_type',
-    align: 'center',
-    label: 'Vehicle Type',
-    field: 'Vehicle Type',
+    align: 'left',
+    label: 'Service Type',
+    field: 'Service Type',
     sortable: true,
   },
   {
-    name: 'route_duration',
-    align: 'center',
-    label: 'Quote Amount',
-    field: 'Quote Amount',
+    name: 'pickup_address',
+    align: 'left',
+    label: 'Pickup Address',
+    field: 'pickup_address',
     sortable: true,
   },
 ]

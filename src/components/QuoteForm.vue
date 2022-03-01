@@ -251,11 +251,10 @@
               </q-card-section>
               <q-card-section>
                 <q-btn
-                  @click="store.openDialog"
+                  @click="quote.addQuote"
                   size="md"
                   color="primary"
                   label="Save Booking"
-                  disabled
                 />
               </q-card-section>
             </q-card>

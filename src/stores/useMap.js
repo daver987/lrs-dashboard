@@ -9,10 +9,10 @@ export const useMap = defineStore({
       selectedVehicleType: '',
 
       luggageCount: 1,
-      selectedLuggageCount: '',
+      selectedLuggageCount: null,
 
       passengerCount: 1,
-      selectedPassengerCount: '',
+      selectedPassengerCount: null,
 
       selectedHourCount: '',
 
@@ -42,10 +42,9 @@ export const useMap = defineStore({
 
       destinationInput: '',
       place: null,
-      results: null,
+
       routeDistance: null,
       routeDuration: null,
-      show: false,
       myAlert: false,
       firstName: '',
       lastName: '',
@@ -58,14 +57,8 @@ export const useMap = defineStore({
       this.passengerCount = 1
       this.luggageCount = 1
     },
-    increment() {
-      this.quoteNumber++
-    },
     incrementPax() {
       this.passengerCount++
-    },
-    showMap() {
-      this.show = !this.show
     },
     openDialog() {
       this.myAlert = !this.myAlert
