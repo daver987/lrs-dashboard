@@ -25,16 +25,10 @@
       <p class="text-weight-bold text-body1">Distance: {{ routeDistance }}</p>
       <p class="text-weight-bold text-body1">Time: {{ routeDuration }}</p>
     </q-card-section>
-
   </q-card>
 </template>
 
 <script setup>
-
-import { useMap } from '../stores/useMap'
-
-const store = useMap()
-
 defineProps({
   quoteNumber: {
     type: Number,

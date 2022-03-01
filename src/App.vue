@@ -1,17 +1,16 @@
-<script setup lang="ts">
+<script setup>
 import { RouterView } from 'vue-router'
-import { ref } from 'vue'
 
-const leftDrawerOpen = ref(true)
-const miniMode = ref(false)
+let leftDrawerOpen = $ref(true)
+let miniMode = $ref(false)
 
 function toggleLeftDrawer() {
-  miniMode.value = !miniMode.value
+  miniMode = !miniMode
 }
 
-const seamless = ref(false)
+let seamless = $ref(false)
 function openQuote() {
-  seamless.value = !seamless.value
+  seamless = !seamless
 }
 </script>
 
@@ -81,7 +80,7 @@ function openQuote() {
       </q-scroll-area>
     </q-drawer>
     <q-page-container>
-      <RouterView />
+      <router-view />
     </q-page-container>
     <q-dialog v-model="seamless" position="bottom" full-width>
       <QuoteForm />

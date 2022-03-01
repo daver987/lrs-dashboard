@@ -1,12 +1,12 @@
 <template>
-    <q-table
-      :rows='rows'
-      :columns='columns'
-      row-key='name'
-      table-header-class='bg-grey-5'
-      flat
-      square
-    />
+  <q-table
+    :rows="rows"
+    :columns="columns"
+    row-key="name"
+    table-header-class="bg-grey-5"
+    flat
+    square
+  />
 </template>
 
 <script setup>
@@ -16,17 +16,43 @@ const columns = [
     required: true,
     label: 'Customer Number',
     align: 'left',
-    field: row => row.name,
-    format: val => `${val}`,
+    field: (row) => row.name,
+    format: (val) => `${val}`,
     sortable: true,
   },
-  { name: 'Business Name', align: 'left', label: 'Business Name', field: 'business_name', sortable: true },
-  { name: 'Business Address', align: 'left', label: 'Business Address', field: 'business_address', sortable: true },
-  { name: 'Booking Contact', align: 'left', label: 'Booking Contact', field: 'booking_contact' },
-  { name: 'Booking Phone', align: 'center', label: 'Booking Phone', field: 'booking_phone' },
-  { name: 'Booking Email', align: 'center', label: 'Booking Email', field: 'booking_email' },
+  {
+    name: 'Business Name',
+    align: 'left',
+    label: 'Business Name',
+    field: 'business_name',
+    sortable: true,
+  },
+  {
+    name: 'Business Address',
+    align: 'left',
+    label: 'Business Address',
+    field: 'business_address',
+    sortable: true,
+  },
+  {
+    name: 'Booking Contact',
+    align: 'left',
+    label: 'Booking Contact',
+    field: 'booking_contact',
+  },
+  {
+    name: 'Booking Phone',
+    align: 'center',
+    label: 'Booking Phone',
+    field: 'booking_phone',
+  },
+  {
+    name: 'Booking Email',
+    align: 'center',
+    label: 'Booking Email',
+    field: 'booking_email',
+  },
 ]
-
 
 const rows = [
   {
@@ -36,8 +62,6 @@ const rows = [
     booking_contact: 'John Smith',
     booking_phone: '555-123-4567',
     booking_email: 'info@me.com',
-
-
   },
   {
     name: 1002,
@@ -46,7 +70,6 @@ const rows = [
     booking_contact: 'John Smith',
     booking_phone: '555-123-4567',
     booking_email: 'info@me.com',
-
   },
   {
     name: 1003,
@@ -55,7 +78,6 @@ const rows = [
     booking_contact: 'John Smith',
     booking_phone: '555-123-4567',
     booking_email: 'info@me.com',
-
   },
   {
     name: 1004,
@@ -64,7 +86,6 @@ const rows = [
     booking_contact: 'John Smith',
     booking_phone: '555-123-4567',
     booking_email: 'info@me.com',
-
   },
   {
     name: 1005,
@@ -115,6 +136,4 @@ const rows = [
     booking_email: 'info@me.com',
   },
 ]
-
-
 </script>

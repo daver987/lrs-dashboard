@@ -22,7 +22,7 @@
     </div>
     <q-card class="bg-white row q-px-md q-gutter-md" flat>
       <q-form
-        @submit.prevent="store.saveQuote"
+        @submit.prevent="store.$reset()"
         @reset="store.$reset()"
         class="col"
       >
