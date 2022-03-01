@@ -39,18 +39,21 @@ const columns = [
     align: 'left',
     label: 'Booking Contact',
     field: 'booking_contact',
+    sortable: true,
   },
   {
     name: 'Booking Phone',
     align: 'center',
     label: 'Booking Phone',
     field: 'booking_phone',
+    sortable: true,
   },
   {
     name: 'Booking Email',
     align: 'center',
     label: 'Booking Email',
     field: 'booking_email',
+    sortable: true,
   },
 ]
 

@@ -22,7 +22,7 @@
 <script setup>
 //Todo: Migrate to q-table, fix firebase keys for quotes and accounts and customers
 import { ref, onValue } from 'firebase/database'
-import { ref as myRef } from 'vue'
+
 import { db } from '../firebase'
 const columns = [
   {
@@ -69,12 +69,12 @@ const columns = [
     sortable: true,
   },
 ]
-const data = myRef(null)
+const data = $ref(null)
 const quoteRef = ref(db, '/quotes/quote_number')
 onValue(quoteRef, (snapshot) => {
-  data.value = snapshot.val()
-  console.log(data.value)
+  data = snapshot.val()
+  console.log(data)
 })
 
-const rows = data.value
+const rows = data
 </script>

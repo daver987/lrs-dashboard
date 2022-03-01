@@ -10,6 +10,3 @@
     <BookingForm />
   </q-page>
 </template>
-<script>
-//todo: Add orders to do today, add shortcuts to add clients, and go to booking form
-</script>

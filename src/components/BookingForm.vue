@@ -409,7 +409,6 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
 import { useMap } from '../stores/useMap'
 import { useAccounts } from '../stores/useAccounts'
 import { useCounterStore } from '../stores/counter'
@@ -418,7 +417,7 @@ const counterStore = useCounterStore()
 const accounts = useAccounts()
 const store = useMap()
 
-const fareInfo = reactive([
+const fareInfo = $ref([
   {
     itemLabel: 'Flat Rate',
     name: 'flat_rate',

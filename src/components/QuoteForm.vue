@@ -115,13 +115,8 @@
                   bg-color="white"
                   class="col"
                   v-model="selectedOriginAddress"
-                  ref="address"
                   label="Pickup Address"
                   hint="Enter in the name or address of the pickup location"
-                  lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Please type something',
-                  ]"
                   dense
                 />
               </q-card-section>
@@ -136,10 +131,6 @@
                   v-model="selectedDestinationAddress"
                   label="Drop-Off Address"
                   hint="Enter in the name or address of the drop-off location"
-                  lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Please type something',
-                  ]"
                   dense
                 />
               </q-card-section>
