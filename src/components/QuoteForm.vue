@@ -354,7 +354,7 @@
 import { Loader } from '@googlemaps/js-api-loader'
 import { useMap } from '../stores/useMap'
 import { storeToRefs } from 'pinia'
-
+import { useQuote } from '../stores/useQuote'
 import { useCounterStore } from '../stores/counter'
 import { ref } from 'vue'
 import { usePriceCalculator } from '../stores/usePriceCalculator'
@@ -364,7 +364,9 @@ import { usePriceCalculator } from '../stores/usePriceCalculator'
 // const { distTotal, timeTotal } = usePricing(options.kmCost)
 const total = usePriceCalculator()
 const counter = useCounterStore()
+const quote = useQuote()
 const store = useMap()
+
 const {
   sedDistTotal,
   suvDistTotal,

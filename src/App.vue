@@ -1,6 +1,24 @@
 <script setup>
+import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
+import { db } from '@/firebase'
+import { ref, onValue, set } from 'firebase/database'
+import { useCounterStore } from './stores/counter'
+import { storeToRefs } from 'pinia'
 
+const initialCount = useCounterStore()
+const { quoteNumber } = storeToRefs(initialCount)
+
+onMounted(() => {
+  const originCount = ref(db, 'initial_number/')
+  onValue(originCount, (snapshot) => {
+    quoteNumber.value = snapshot.val()
+  })
+})
+function updateNumber() {
+  quoteNumber.value++
+  set(ref(db, 'initial_number/'), quoteNumber.value)
+}
 let leftDrawerOpen = $ref(true)
 let miniMode = $ref(false)
 
@@ -9,9 +27,9 @@ function toggleLeftDrawer() {
 }
 
 let seamless = $ref(false)
-function openQuote() {
-  seamless = !seamless
-}
+// function openQuote() {
+//   seamless = !seamless
+// }
 </script>
 
 <template>
@@ -20,7 +38,7 @@ function openQuote() {
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title> LRS Dashboard </q-toolbar-title>
-        <q-btn label="Quick Quote" class="bg-black" @click="openQuote" />
+        <q-btn label="Quick Quote" class="bg-black" @click="updateNumber" />
       </q-toolbar>
     </q-header>
 
