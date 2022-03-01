@@ -1,5 +1,6 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { useMap } from './useMap'
+import { usePrefs } from './usePrefs'
 
 export const usePriceCalculator = defineStore({
   id: 'priceCalculator',
@@ -21,58 +22,57 @@ export const usePriceCalculator = defineStore({
 
   actions: {
     priceCalculator() {
-      const hourlyCost = {
-        sedan: 80,
-        suv: 105,
-        premSedan: 95,
-        premSuv: 125,
-      }
-      const kmCost = { sedan: 1.7, suv: 2.75, premSedan: 1.85, premSuv: 3 }
+      const prefs = usePrefs()
       const mapStore = useMap()
+
       this.distance = mapStore.routeDistance.match(/[+-]?\d+(\.\d+)?/g)
       this.time = mapStore.routeDuration.match(/\d+/)
 
       if (this.distance < 25) {
-        this.sedDistTotal = hourlyCost.sedan
+        this.sedDistTotal = prefs.hourlyCost.sedan
       } else {
-        this.sedDistTotal = kmCost.sedan * this.distance - 25 + hourlyCost.sedan
+        this.sedDistTotal =
+          prefs.kmCost.sedan * this.distance - 25 + prefs.hourlyCost.sedan
       }
       if (60 / this.time > 1) {
-        this.sedTimeTotal = hourlyCost.sedan * 2
+        this.sedTimeTotal = prefs.hourlyCost.sedan * 2
       } else {
-        this.sedTimeTotal = (hourlyCost.sedan * this.time) / 60
+        this.sedTimeTotal = (prefs.hourlyCost.sedan * this.time) / 60
       }
       if (this.distance < 30) {
-        this.suvDistTotal = hourlyCost.suv
+        this.suvDistTotal = prefs.hourlyCost.suv
       } else {
-        this.suvDistTotal = kmCost.suv * this.distance - 30 + hourlyCost.suv
+        this.suvDistTotal =
+          prefs.kmCost.suv * this.distance - 30 + prefs.hourlyCost.suv
       }
       if (60 / this.time > 1) {
-        this.suvTimeTotal = hourlyCost.suv * 2
+        this.suvTimeTotal = prefs.hourlyCost.suv * 2
       } else {
-        this.suvTimeTotal = (hourlyCost.suv * this.time) / 60
+        this.suvTimeTotal = (prefs.hourlyCost.suv * this.time) / 60
       }
       if (this.distance < 25) {
-        this.premSedanDistTotal = hourlyCost.premSedan
+        this.premSedanDistTotal = prefs.hourlyCost.premSedan
       } else {
         this.premSedanDistTotal =
-          kmCost.premSedan * this.distance - 25 + hourlyCost.premSedan
+          prefs.kmCost.premSedan * this.distance -
+          25 +
+          prefs.hourlyCost.premSedan
       }
       if (60 / this.time > 1) {
-        this.premSedanTimeTotal = hourlyCost.premSedan * 2
+        this.premSedanTimeTotal = prefs.hourlyCost.premSedan * 2
       } else {
-        this.premSedanTimeTotal = (hourlyCost.premSedan * this.time) / 60
+        this.premSedanTimeTotal = (prefs.hourlyCost.premSedan * this.time) / 60
       }
       if (this.distance < 29) {
-        this.premSuvDistTotal = hourlyCost.premSuv
+        this.premSuvDistTotal = prefs.hourlyCost.premSuv
       } else {
         this.premSuvDistTotal =
-          kmCost.premSuv * this.distance - 29 + hourlyCost.premSuv
+          prefs.kmCost.premSuv * this.distance - 29 + prefs.hourlyCost.premSuv
       }
       if (60 / this.time > 1) {
-        this.premSuvTimeTotal = hourlyCost.premSuv * 2
+        this.premSuvTimeTotal = prefs.hourlyCost.premSuv * 2
       } else {
-        this.premSuvTimeTotal = (hourlyCost.premSuv * this.time) / 60
+        this.premSuvTimeTotal = (prefs.hourlyCost.premSuv * this.time) / 60
       }
       this.isOpen = true
       this.isClosed = false

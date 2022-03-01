@@ -537,6 +537,7 @@ const {
   luggageCount,
   passengerCount,
   date,
+  selectedServiceType,
   selectedOriginAddress,
   selectedDestinationAddress,
   originInput,

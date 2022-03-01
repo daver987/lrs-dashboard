@@ -22,7 +22,6 @@
 <script setup>
 //Todo: Migrate to q-table, fix firebase keys for quotes and accounts and customers
 import { ref, onValue } from 'firebase/database'
-import { onMounted } from 'vue'
 
 import { db } from '../firebase'
 const columns = [
