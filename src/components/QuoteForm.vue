@@ -43,7 +43,7 @@
               <q-card-section class="row q-gutter-sm">
                 <q-select
                   label="Service Type"
-                  :options="serviceType"
+                  :options="prefs.serviceType"
                   v-model="selectedServiceType"
                   outlined
                   bg-color="white"
@@ -231,7 +231,7 @@
                   <q-select
                     v-model="passengerCount"
                     label="Passenger Count"
-                    :options="selectNumbers"
+                    :options="prefs.selectNumbers"
                     bg-color="white"
                     class="col"
                     outlined
@@ -241,7 +241,7 @@
                   <q-select
                     v-model="luggageCount"
                     label="Luggage Count"
-                    :options="selectNumbers"
+                    :options="prefs.selectNumbers"
                     bg-color="white"
                     class="col"
                     outlined
@@ -358,6 +358,7 @@ import { useQuote } from '../stores/useQuote'
 import { useCounterStore } from '../stores/counter'
 import { ref } from 'vue'
 import { usePriceCalculator } from '../stores/usePriceCalculator'
+import { usePrefs } from '../stores/usePrefs'
 // import { usePricing } from '../composables/usePricing'
 //TODO: Add price calculation function possible composable, add enable and disable buttons
 
@@ -366,6 +367,7 @@ const total = usePriceCalculator()
 const counter = useCounterStore()
 const quote = useQuote()
 const store = useMap()
+const prefs = usePrefs()
 
 const {
   sedDistTotal,
@@ -534,10 +536,7 @@ class AutocompleteDirectionsHandler {
 const {
   luggageCount,
   passengerCount,
-  selectNumbers,
   date,
-  serviceType,
-  selectedServiceType,
   selectedOriginAddress,
   selectedDestinationAddress,
   originInput,

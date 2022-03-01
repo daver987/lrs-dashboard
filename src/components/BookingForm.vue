@@ -297,7 +297,7 @@
                 label="Trip Status"
                 name="trip_status"
                 for="trip_status"
-                :options="store.tripStatus"
+                :options="prefs.tripStatus"
               />
             </q-card-section>
 
@@ -312,7 +312,7 @@
                 label="Hours"
                 name="hour_count"
                 for="hour_count"
-                :options="store.selectNumbers"
+                :options="prefs.selectNumbers"
               />
               <q-select
                 v-model="store.selectedLuggageCount"
@@ -324,7 +324,7 @@
                 label="Luggage"
                 name="luggage_count"
                 for="luggage_count"
-                :options="store.selectNumbers"
+                :options="prefs.selectNumbers"
               />
               <q-select
                 v-model="store.selectedPassengerCount"
@@ -351,7 +351,7 @@
                 label="Service Type"
                 name="service_type"
                 for="service_type"
-                :options="store.serviceType"
+                :options="prefs.serviceType"
               />
               <q-select
                 v-model="store.selectedVehicleType"
@@ -363,7 +363,7 @@
                 label="Vehicle Type"
                 name="vehicle_type"
                 for="vehicle_type"
-                :options="store.vehicleType"
+                :options="prefs.vehicleType"
               />
             </q-card-section>
           </q-card>
@@ -412,10 +412,12 @@
 import { useMap } from '../stores/useMap'
 import { useAccounts } from '../stores/useAccounts'
 import { useCounterStore } from '../stores/counter'
+import { usePrefs } from '../stores/usePrefs'
 
 const counterStore = useCounterStore()
 const accounts = useAccounts()
 const store = useMap()
+const prefs = usePrefs()
 
 const fareInfo = $ref([
   {
