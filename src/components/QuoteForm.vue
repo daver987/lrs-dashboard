@@ -317,9 +317,32 @@
               <q-card-section>
                 <q-list>
                   <q-item
+                    v-if="store.selectedServiceType === 'Hourly'"
                     tag="label"
                     v-for="option in options"
-                    :key="options.id"
+                    :key="option.id"
+                  >
+                    <q-item-section avatar>
+                      <q-radio
+                        v-model="vehicle"
+                        :val="option.value"
+                        color="primary"
+                        :name="option.value"
+                      />
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>{{ option.label }}</q-item-label>
+                      <q-item-label caption>{{ option.caption }}</q-item-label>
+                    </q-item-section>
+                    <q-item-section side class="text-bold"
+                      >$ {{ option.hourlyCost.toFixed(2) }}</q-item-section
+                    >
+                  </q-item>
+                  <q-item
+                    v-if="store.selectedServiceType !== 'Hourly'"
+                    tag="label"
+                    v-for="option in options"
+                    :key="option.id"
                   >
                     <q-item-section avatar>
                       <q-radio
@@ -373,6 +396,10 @@ const {
   premSuvDistTotal,
   isOpen,
   isClosed,
+  sedTimeTotal,
+  suvTimeTotal,
+  premSedanTimeTotal,
+  premSuvTimeTotal,
 } = storeToRefs(total)
 
 const vehicle = $ref('sedan')
@@ -384,6 +411,7 @@ const options = $ref([
     id: 1,
     caption: 'Vehicles include Cadillac XTS or similar',
     cost: sedDistTotal,
+    hourlyCost: sedTimeTotal,
     kmCost: 1.7,
     timeCost: 80,
     minKm: 25,
@@ -394,6 +422,7 @@ const options = $ref([
     id: 2,
     caption: 'Vehicles include Chevy Suburban or similar',
     cost: suvDistTotal,
+    hourlyCost: suvTimeTotal,
     kmCost: 2.75,
     timeCost: 105,
     minKm: 30,
@@ -404,6 +433,7 @@ const options = $ref([
     id: 3,
     caption: 'Vehicles include Lincoln Continental or similar',
     cost: premSedanDistTotal,
+    hourlyCost: premSedanTimeTotal,
     kmCost: 1.85,
     timeCost: 95,
     minKm: 25,
@@ -414,6 +444,7 @@ const options = $ref([
     id: 4,
     caption: 'Vehicles include Lincoln Navigator or similar',
     cost: premSuvDistTotal,
+    hourlyCost: premSuvTimeTotal,
     kmCost: 3,
     timeCost: 125,
     minKm: 29,
@@ -424,6 +455,7 @@ const options = $ref([
     id: 5,
     caption: 'Vehicles include Ford Transit or similar',
     cost: 0,
+    hourlyCost: 0,
     kmCost: 0,
     timeCost: 0,
     minKm: 0,
