@@ -387,7 +387,7 @@ const vehicle = ref('sedan')
 
 const options = ref([
   {
-    label: 'Luxury Sedan',
+    label: 'Sedan',
     value: 'sedan',
     id: 1,
     caption: 'Vehicles include Cadillac XTS or similar',
@@ -397,7 +397,7 @@ const options = ref([
     minKm: 25,
   },
   {
-    label: 'Luxury SUV',
+    label: 'SUV',
     value: 'suv',
     id: 2,
     caption: 'Vehicles include Chevy Suburban or similar',
@@ -407,7 +407,7 @@ const options = ref([
     minKm: 30,
   },
   {
-    label: 'Premium Luxury Sedan',
+    label: 'Premium Sedan',
     value: 'premium_sedan',
     id: 3,
     caption: 'Vehicles include Lincoln Continental or similar',
@@ -417,7 +417,7 @@ const options = ref([
     minKm: 25,
   },
   {
-    label: 'Premium Luxury SUV',
+    label: 'Premium SUV',
     value: 'premium_suv',
     id: 4,
     caption: 'Vehicles include Lincoln Navigator or similar',
@@ -427,7 +427,7 @@ const options = ref([
     minKm: 29,
   },
   {
-    label: '12 Passenger Van',
+    label: '12 Van',
     value: 'van',
     id: 5,
     caption: 'Vehicles include Ford Transit or similar',
