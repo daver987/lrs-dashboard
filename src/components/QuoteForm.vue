@@ -17,6 +17,7 @@
         color="primary"
         flat
         class="mb-4"
+        @click="store.$reset()"
       />
     </div>
     <q-card class="bg-white row q-px-md q-gutter-md" flat>
@@ -253,7 +254,7 @@
                 <q-btn
                   @click="total.priceCalculator"
                   color="primary"
-                  label="Save Quote"
+                  label="Get Quote"
                   class="q-mr-lg"
                 />
 
