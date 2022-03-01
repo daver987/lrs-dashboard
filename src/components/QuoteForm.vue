@@ -159,6 +159,14 @@
                   @click="counter.incrementHour"
                 />
               </q-card-section>
+              <q-card-section>
+                <q-btn
+                  @click="total.priceCalculator"
+                  color="primary"
+                  label="Get Quote"
+                  class="q-mr-lg"
+                />
+              </q-card-section>
             </q-card>
           </q-expansion-item>
 
@@ -252,13 +260,6 @@
               </q-card-section>
               <q-card-section>
                 <q-btn
-                  @click="total.priceCalculator"
-                  color="primary"
-                  label="Get Quote"
-                  class="q-mr-lg"
-                />
-
-                <q-btn
                   @click="store.openDialog"
                   size="md"
                   color="primary"
@@ -278,7 +279,7 @@
             icon="event"
             label="Booking Summary"
             header-class="text-black bg-grey-5"
-            default-opened
+            v-model="isClosed"
           >
             <q-card class="bg-grey-3">
               <q-card-section>
@@ -320,6 +321,7 @@
             icon="paid"
             label="Cost Summary"
             header-class="text-black bg-grey-5"
+            v-model="total.isOpen"
           >
             <q-card class="bg-grey-3 col">
               <q-card-section>
@@ -372,8 +374,14 @@ import { usePriceCalculator } from '../stores/usePriceCalculator'
 const total = usePriceCalculator()
 const counter = useCounterStore()
 const store = useMap()
-const { sedDistTotal, suvDistTotal, premSedanDistTotal, premSuvDistTotal } =
-  storeToRefs(total)
+const {
+  sedDistTotal,
+  suvDistTotal,
+  premSedanDistTotal,
+  premSuvDistTotal,
+  isOpen,
+  isClosed,
+} = storeToRefs(total)
 
 const vehicle = ref('sedan')
 

@@ -15,6 +15,8 @@ export const usePriceCalculator = defineStore({
     premSuvTimeTotal: 0,
     distance: 0,
     time: 0,
+    isOpen: false,
+    isClosed: true,
   }),
 
   actions: {
@@ -72,6 +74,8 @@ export const usePriceCalculator = defineStore({
       } else {
         this.premSuvTimeTotal = (hourlyCost.premSuv * this.time) / 60
       }
+      this.isOpen = true
+      this.isClosed = false
     },
   },
 })
