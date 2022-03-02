@@ -35,7 +35,10 @@ let seamless = $ref(false)
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title> LRS Dashboard </q-toolbar-title>
-        <span class="text-lg tracking-wider uppercase">{{ $route.name }}</span>
+        <span
+          class="text-lg text-primary text-bold tracking-widest uppercase"
+          >{{ $route.name }}</span
+        >
         <q-space />
         <q-btn label="Quick Quote" class="bg-black" @click="updateNumber" />
       </q-toolbar>

@@ -1,7 +1,7 @@
 <template>
-  <q-form class="bg-white row q-px-md q-gutter-md" flat>
+  <q-form class="bg-white row q-gutter-md" flat>
     <!-- column one -->
-    <q-card flat class="col">
+    <q-card flat class="col" bordered>
       <q-list>
         <q-expansion-item
           group="account_info"

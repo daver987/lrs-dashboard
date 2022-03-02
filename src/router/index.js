@@ -13,17 +13,17 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'MyOffice',
+      name: 'My Office',
       component: MyOffice,
     },
     {
       path: '/quotes',
-      name: 'quotes',
+      name: 'Quotes',
       component: Quotes,
     },
     {
       path: '/quick-quote',
-      name: 'quick-quote',
+      name: 'Quick Quote',
       component: QuickQuote,
     },
 
@@ -34,7 +34,7 @@ const router = createRouter({
     },
     {
       path: '/accounts-entry',
-      name: 'accounts-entry',
+      name: 'Account Entry',
       component: AccountsEntry,
     },
     {
@@ -49,7 +49,7 @@ const router = createRouter({
     },
     {
       path: '/reservations',
-      name: 'reservations',
+      name: 'Reservations',
       component: Reservations,
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
