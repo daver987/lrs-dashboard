@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
-import { db } from '@/firebase'
+import { db } from './firebase'
 import { ref, onValue, set } from 'firebase/database'
 import { useCounterStore } from './stores/counter'
 import { storeToRefs } from 'pinia'
@@ -27,9 +27,7 @@ function toggleLeftDrawer() {
 }
 
 let seamless = $ref(false)
-// function openQuote() {
-//   seamless = !seamless
-// }
+
 </script>
 
 <template>

@@ -7,7 +7,6 @@
         Quotes
       </h2>
     </div>
-
     <QuoteTable />
   </q-page>
 </template>
