@@ -50,11 +50,11 @@ let seamless = $ref(false)
       side="left"
       bordered
       :width="200"
-      class="bg-white"
+      class="bg-grey-3"
       :mini="miniMode"
     >
       <q-scroll-area class="fit">
-        <q-list padding class="space-y-2">
+        <q-list padding>
           <q-item clickable v-ripple to="/" class="bg-grey-3">
             <q-item-section avatar>
               <q-icon name="inbox" />
@@ -67,12 +67,14 @@ let seamless = $ref(false)
             icon="groups"
             label="Accounts"
             header-class="text-black bg-grey-3"
+            to="/accounts"
+            class="bg-white"
           >
-            <q-item clickable v-ripple to="/accounts" class="bg-grey-2">
+            <q-item clickable v-ripple to="/accounts">
               <q-item-section avatar> </q-item-section>
               <q-item-section> At A Glance </q-item-section>
             </q-item>
-            <q-item clickable v-ripple to="/accounts-entry" class="bg-grey-2">
+            <q-item clickable v-ripple to="/accounts-entry">
               <q-item-section avatar>
                 <q-icon name="groups" />
               </q-item-section>
@@ -85,6 +87,8 @@ let seamless = $ref(false)
             icon="request_quote"
             label="Quotes"
             header-class="text-black bg-grey-3"
+            to="/quotes"
+            class="bg-white"
           >
             <q-item clickable v-ripple to="quotes">
               <q-item-section avatar>
@@ -105,6 +109,8 @@ let seamless = $ref(false)
             icon="calendar_month"
             label="Reservations"
             header-class="text-black bg-grey-3"
+            to="/reservations"
+            class="bg-white"
           >
             <q-item clickable v-ripple to="/reservations">
               <q-item-section avatar>
