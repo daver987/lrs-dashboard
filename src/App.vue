@@ -40,7 +40,7 @@ let seamless = $ref(false)
           >{{ $route.name }}</span
         >
         <q-space />
-        <q-btn label="Quick Quote" class="bg-black" @click="updateNumber" />
+        <q-btn label="Quick Quote" class="bg-black" to="/quick-quote" />
       </q-toolbar>
     </q-header>
 
