@@ -48,51 +48,81 @@ let seamless = $ref(false)
       side="left"
       bordered
       :width="200"
-      class="bg-grey-1"
+      class="bg-white"
       :mini="miniMode"
     >
       <q-scroll-area class="fit">
-        <q-list padding class="menu-list">
-          <q-item clickable v-ripple to="/">
+        <q-list padding class="space-y-2">
+          <q-item clickable v-ripple to="/" class="bg-grey-3">
             <q-item-section avatar>
               <q-icon name="inbox" />
             </q-item-section>
             <q-item-section> My Office </q-item-section>
           </q-item>
 
-          <q-item active clickable v-ripple to="/accounts">
-            <q-item-section avatar>
-              <q-icon name="groups" />
-            </q-item-section>
-            <q-item-section> Accounts </q-item-section>
-          </q-item>
+          <q-expansion-item
+            group="accounts"
+            icon="groups"
+            label="Accounts"
+            header-class="text-black bg-grey-3"
+          >
+            <q-item clickable v-ripple to="/accounts" class="bg-grey-2">
+              <q-item-section avatar> </q-item-section>
+              <q-item-section> At A Glance </q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/accounts-entry" class="bg-grey-2">
+              <q-item-section avatar>
+                <q-icon name="groups" />
+              </q-item-section>
+              <q-item-section> Account Entry </q-item-section>
+            </q-item>
+          </q-expansion-item>
 
-          <q-item clickable v-ripple to="/resources">
+          <q-expansion-item
+            group="quotes"
+            icon="request_quote"
+            label="Quotes"
+            header-class="text-black bg-grey-3"
+          >
+            <q-item clickable v-ripple to="quotes">
+              <q-item-section avatar>
+                <q-icon name="request_quote" />
+              </q-item-section>
+              <q-item-section> At A Glance </q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/quick-quote">
+              <q-item-section avatar>
+                <q-icon name="attach_money" />
+              </q-item-section>
+              <q-item-section> Quick Quote </q-item-section>
+            </q-item>
+          </q-expansion-item>
+
+          <q-expansion-item
+            group="reservations"
+            icon="calendar_month"
+            label="Reservations"
+            header-class="text-black bg-grey-3"
+          >
+            <q-item clickable v-ripple to="/reservations">
+              <q-item-section avatar>
+                <q-icon name="calendar_month" />
+              </q-item-section>
+              <q-item-section> At A Glance </q-item-section>
+            </q-item>
+            <q-item clickable v-ripple to="/bookings">
+              <q-item-section avatar>
+                <q-icon name="attach_money" />
+              </q-item-section>
+              <q-item-section> Booking Form </q-item-section>
+            </q-item>
+          </q-expansion-item>
+
+          <q-item clickable v-ripple to="/resources" class="bg-grey-3">
             <q-item-section avatar>
               <q-icon name="category" />
             </q-item-section>
             <q-item-section> Resources </q-item-section>
-          </q-item>
-
-          <q-item clickable v-ripple to="reservations">
-            <q-item-section avatar>
-              <q-icon name="calendar_month" />
-            </q-item-section>
-            <q-item-section> Reservations </q-item-section>
-          </q-item>
-
-          <q-item clickable v-ripple to="quotes">
-            <q-item-section avatar>
-              <q-icon name="request_quote" />
-            </q-item-section>
-            <q-item-section> Quotes </q-item-section>
-          </q-item>
-
-          <q-item clickable v-ripple to="pricing">
-            <q-item-section avatar>
-              <q-icon name="attach_money" />
-            </q-item-section>
-            <q-item-section> Pricing </q-item-section>
           </q-item>
         </q-list>
       </q-scroll-area>

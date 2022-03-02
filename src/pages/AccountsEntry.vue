@@ -4,8 +4,9 @@
       <h2
         class="font-bold text-center text-black tracking-wider text-3xl uppercase"
       >
-        Resources
+        Accounts
       </h2>
     </div>
+    <AccountEntry />
   </q-page>
 </template>

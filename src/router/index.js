@@ -3,8 +3,10 @@ import MyOffice from '../pages/MyOffice.vue'
 import Quotes from '../pages/Quotes.vue'
 import Reservations from '../pages/Reservations.vue'
 import Accounts from '../pages/Accounts.vue'
-import Pricing from '../pages/Pricing.vue'
+import Bookings from '../pages/Bookings.vue'
 import Resources from '../pages/Resources.vue'
+import AccountsEntry from '../pages/AccountsEntry.vue'
+import QuickQuote from '../pages/QuickQuote.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,14 +22,25 @@ const router = createRouter({
       component: Quotes,
     },
     {
+      path: '/quick-quote',
+      name: 'quick-quote',
+      component: QuickQuote,
+    },
+
+    {
       path: '/accounts',
       name: 'Accounts',
       component: Accounts,
     },
     {
-      path: '/pricing',
-      name: 'Pricing',
-      component: Pricing,
+      path: '/accounts-entry',
+      name: 'accounts-entry',
+      component: AccountsEntry,
+    },
+    {
+      path: '/bookings',
+      name: 'Bookings',
+      component: Bookings,
     },
     {
       path: '/resources',

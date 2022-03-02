@@ -4,8 +4,9 @@
       <h2
         class="font-bold text-center text-black tracking-wider text-3xl uppercase"
       >
-        Resources
+        Booking Form
       </h2>
     </div>
+    <BookingForm />
   </q-page>
 </template>
