@@ -20,6 +20,16 @@ export const usePrefs = defineStore({
       premSuv: 125,
     },
     kmCost: { sedan: 1.7, suv: 2.75, premSedan: 1.85, premSuv: 3 },
+    namePrefix: ['Mr', 'Mrs', 'Miss'],
+    paymentMethod: [
+      'Cash',
+      'Credit Card',
+      'Debit Card',
+      'Paypal',
+      'E-Transfer',
+    ],
+    paymentTerms: ['On Completion', 'Net 15', 'Net 30', 'Net 60', 'Net 90'],
+    tripType: ['In House', 'Farm In', 'Farm Out'],
   }),
 })
 

@@ -97,6 +97,7 @@
               <q-input
                 v-model="accounts.passengerPhoneNumber"
                 mask="phone"
+                fill-mask
                 bg-color="white"
                 class="col"
                 outlined
@@ -212,19 +213,6 @@
             </q-card-section>
 
             <!-- Pickup Location -->
-            <q-card-section>
-              <q-input
-                v-model="store.locationDescription"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="text"
-                label="Location Description"
-                name="location_description"
-                for="location_description"
-              />
-            </q-card-section>
 
             <q-card-section>
               <q-input
@@ -250,54 +238,6 @@
                 label="Drop-Off Address"
                 name="drop_off_address"
                 for="drop_off_address"
-              />
-            </q-card-section>
-
-            <q-card-section class="row q-gutter-md">
-              <q-input
-                v-model="store.tripNotes"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="textarea"
-                label="Trip Notes"
-                name="trip_notes"
-                for="trip_notes"
-              />
-            </q-card-section>
-          </q-card>
-        </q-expansion-item>
-      </q-list>
-    </q-card>
-
-    <!-- third column -->
-    <q-card flat class="col">
-      <q-list class="bg-white space-y-4">
-        <q-expansion-item
-          group="extras"
-          icon="add_box"
-          label="Extras"
-          header-class="text-black bg-grey-5"
-          default-opened
-        >
-          <q-card bordered flat class="bg-grey-3">
-            <q-card-section
-              ><span class="text-bold text-lg"
-                >Trip Extras</span
-              ></q-card-section
-            ><q-card-section>
-              <q-select
-                v-model="store.selectedTripStatus"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="text"
-                label="Trip Status"
-                name="trip_status"
-                for="trip_status"
-                :options="prefs.tripStatus"
               />
             </q-card-section>
 
@@ -364,6 +304,68 @@
                 name="vehicle_type"
                 for="vehicle_type"
                 :options="prefs.vehicleType"
+              />
+            </q-card-section>
+
+            <q-card-section class="row q-gutter-md">
+              <q-input
+                v-model="store.tripNotes"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="textarea"
+                label="Trip Notes"
+                name="trip_notes"
+                for="trip_notes"
+              />
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
+    </q-card>
+
+    <!-- third column -->
+    <q-card flat class="col">
+      <q-list class="bg-white space-y-4">
+        <q-expansion-item
+          group="extras"
+          icon="add_box"
+          label="Extras"
+          header-class="text-black bg-grey-5"
+          default-opened
+        >
+          <q-card bordered flat class="bg-grey-3">
+            <q-card-section
+              ><span class="text-bold text-lg"
+                >Trip Extras</span
+              ></q-card-section
+            ><q-card-section>
+              <q-select
+                v-model="store.selectedTripStatus"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Trip Status"
+                name="trip_status"
+                for="trip_status"
+                :options="prefs.tripStatus"
+              />
+            </q-card-section>
+            <q-card-section>
+              <q-select
+                v-model="store.tripType"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Trip Type"
+                name="trip_type"
+                for="trip_type"
+                :options="prefs.tripType"
               />
             </q-card-section>
           </q-card>

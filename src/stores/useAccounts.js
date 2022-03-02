@@ -5,7 +5,9 @@ export const useAccounts = defineStore({
   state: () => ({
     accountNumber: '',
     companyName: '',
+    companyAddress: '',
     billingContact: '',
+    accountNotes: '',
     passengerFirstName: '',
     passengerLastName: '',
     passengerEmail: '',

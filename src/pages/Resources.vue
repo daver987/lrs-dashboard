@@ -7,5 +7,6 @@
         Resources
       </h2>
     </div>
+    <AccountEntry />
   </q-page>
 </template>

@@ -209,6 +209,8 @@
                   type="tel"
                   v-model="phone"
                   dense
+                  mask="(###) ### - ####"
+                  fill-mask
                 />
               </q-card-section>
             </q-card>
