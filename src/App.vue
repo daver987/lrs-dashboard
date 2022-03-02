@@ -2,23 +2,27 @@
 import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { db } from './firebase'
-import { ref, onValue, set } from 'firebase/database'
+import { ref, onValue } from 'firebase/database'
 import { useCounterStore } from './stores/counter'
+import { useAccounts } from './stores/useAccounts'
 import { storeToRefs } from 'pinia'
 
-const initialCount = useCounterStore()
-const { quoteNumber } = storeToRefs(initialCount)
+const count = useCounterStore()
+const { quoteNumber } = storeToRefs(count)
+const accounts = useAccounts()
+const { accountNumber } = storeToRefs(accounts)
 
 onMounted(() => {
-  const originCount = ref(db, 'initial_number/')
-  onValue(originCount, (snapshot) => {
+  const quoteCount = ref(db, 'initial_number/')
+  const accNum = ref(db, 'account_number/')
+  onValue(quoteCount, (snapshot) => {
     quoteNumber.value = snapshot.val()
   })
+  onValue(accNum, (snapshot) => {
+    accountNumber.value = snapshot.val()
+  })
 })
-function updateNumber() {
-  quoteNumber.value++
-  set(ref(db, 'initial_number/'), quoteNumber.value)
-}
+
 let leftDrawerOpen = $ref(true)
 let miniMode = $ref(false)
 

@@ -1,17 +1,19 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { useMap } from './useMap'
 import { useCounterStore } from '../stores/counter'
-import { db } from '../firebase'
-import { ref, set } from 'firebase/database'
+import { saveData } from '../firebase'
 
 export const useQuote = defineStore({
   id: 'quote',
+
   state: () => ({}),
 
   actions: {
     async addQuote() {
       const getQuote = useMap()
       const counter = useCounterStore()
+      const quotes = 'quotes/quote_number/' + counter.quoteNumber
+
       const myQuote = {
         quote_number: counter.quoteNumber,
         service_type: getQuote.selectedServiceType,
@@ -24,7 +26,7 @@ export const useQuote = defineStore({
         route_distance: getQuote.routeDistance,
         route_duration: getQuote.routeDuration,
       }
-      await set(ref(db, 'quotes/quote_number/' + counter.quoteNumber), myQuote)
+      saveData(quotes, myQuote)
       counter.quoteNumber++
       getQuote.openDialog()
     },

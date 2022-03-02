@@ -1,4 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
+import { readData } from '../firebase'
 
 export const usePrefs = defineStore({
   id: 'prefs',
@@ -20,7 +21,7 @@ export const usePrefs = defineStore({
       premSuv: 125,
     },
     kmCost: { sedan: 1.7, suv: 2.75, premSedan: 1.85, premSuv: 3 },
-    namePrefix: ['Mr', 'Mrs', 'Miss'],
+    namePrefix: ['Mr', 'Mrs', 'Ms'],
     paymentMethod: [
       'Cash',
       'Credit Card',
@@ -31,6 +32,12 @@ export const usePrefs = defineStore({
     paymentTerms: ['On Completion', 'Net 15', 'Net 30', 'Net 60', 'Net 90'],
     tripType: ['In House', 'Farm In', 'Farm Out'],
   }),
+  actions: {
+    getAccountNumber() {
+      const data = readData('account_number')
+      this.accountNumber = data
+    },
+  },
 })
 
 if (import.meta.hot) {

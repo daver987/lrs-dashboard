@@ -2,8 +2,8 @@
   <q-page class="subcontent">
     <navigation-bar @today="onToday" @prev="onPrev" @next="onNext" />
 
-    <div class="row justify-center">
-      <div class="flex w-full max-w-6xl">
+    <div class="row justify-center q-pa-md">
+      <div class="flex w-full max-w-7xl">
         <q-calendar-month
           ref="calendar"
           v-model="selectedDate"

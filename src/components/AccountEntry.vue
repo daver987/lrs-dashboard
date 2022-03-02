@@ -1,5 +1,5 @@
 <template>
-  <q-form class="bg-white row q-gutter-md" flat>
+  <q-form class="bg-white row q-gutter-md" flat @submit="accounts.addAccount">
     <!-- column one -->
     <q-card flat class="col" bordered>
       <q-list>
@@ -13,9 +13,9 @@
         >
           <q-card bordered flat class="bg-grey-3">
             <q-card-section
-              ><span class="text-bold text-lg">Account Number </span
+              ><span class="text-bold text-lg"> Account Number </span
               ><span class="text-bold text-md text-red-700">
-                10125
+                {{ accounts.accountNumber }}
               </span></q-card-section
             >
 
@@ -52,7 +52,7 @@
 
             <q-card-section class="row q-gutter-md">
               <q-select
-                v-model="namePrefix"
+                v-model="accounts.selectedNamePrefix"
                 bg-color="white"
                 class="col-2"
                 outlined
@@ -61,7 +61,7 @@
                 label="Prefix"
                 name="name_prefix"
                 for="name_prefix"
-                :options="prefs.bookingPrefix" />
+                :options="prefs.namePrefix" />
               <q-input
                 v-model="accounts.bookingFirstName"
                 bg-color="white"
@@ -111,7 +111,7 @@
             /></q-card-section>
             <q-card-section class="row q-gutter-md">
               <q-input
-                v-model="store.accountNotes"
+                v-model="accounts.accountNotes"
                 bg-color="white"
                 class="col"
                 outlined
@@ -147,7 +147,7 @@
             <!-- Pickup Location -->
             <q-card-section class="row q-gutter-md">
               <q-select
-                v-model="store.paymentMethod"
+                v-model="accounts.paymentMethod"
                 bg-color="white"
                 class="col"
                 outlined
@@ -159,7 +159,7 @@
                 :options="prefs.paymentMethod"
               />
               <q-select
-                v-model="store.paymentTerms"
+                v-model="accounts.paymentTerms"
                 bg-color="white"
                 class="col"
                 outlined
@@ -174,7 +174,7 @@
 
             <q-card-section class="row q-gutter-md">
               <q-input
-                v-model="store.paymentInfo"
+                v-model="accounts.paymentInfo"
                 bg-color="white"
                 class="col"
                 outlined
@@ -185,6 +185,9 @@
                 for="payment_info"
               />
             </q-card-section>
+            <q-card-section>
+              <q-btn label="Save Account" class="bg-primary" type="submit" />
+            </q-card-section>
           </q-card>
         </q-expansion-item>
       </q-list>
@@ -193,47 +196,9 @@
 </template>
 
 <script setup>
-import { useMap } from '../stores/useMap'
 import { useAccounts } from '../stores/useAccounts'
-import { useCounterStore } from '../stores/counter'
 import { usePrefs } from '../stores/usePrefs'
 
-const counterStore = useCounterStore()
 const accounts = useAccounts()
-const store = useMap()
 const prefs = usePrefs()
-
-const fareInfo = $ref([
-  {
-    itemLabel: 'Flat Rate',
-    name: 'flat_rate',
-    rate: 0,
-    id: 1,
-  },
-
-  {
-    itemLabel: 'Gratuity',
-    name: 'gratuity',
-    rate: 0,
-    id: 2,
-  },
-  {
-    itemLabel: 'Toll Fees',
-    name: 'toll_fees',
-    rate: 0,
-    id: 3,
-  },
-  {
-    itemLabel: 'HST',
-    name: 'hst',
-    rate: 0,
-    id: 4,
-  },
-  {
-    itemLabel: 'Total',
-    name: 'total',
-    rate: 0,
-    id: 5,
-  },
-])
 </script>

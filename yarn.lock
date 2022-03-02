@@ -903,6 +903,29 @@
   resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-2.0.0-rc.18.tgz#ff22b252424fe72e5462cbb3a8e7405cef11ffb6"
   integrity sha512-aifolXjVdsogjaLmDoZ0FU8vN+R67aWmg9OuVeED4w5Ij5GFQLrlhM19uhWe/r5xXUL4fXMk3pX5wW6FJP1NcQ==
 
+"@vueuse/core@^7.7.0":
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-7.7.0.tgz#ddc5bbc910fbe0e2eda2cc823998dcf4a13265b4"
+  integrity sha512-DS8+dg758CiWnswebYHjS05PqTtc1ZLomsDlkFjG/KC0iFRgFIsGC66AAGuSXLqWCoirp2xN6N2mkrp1aHdI7A==
+  dependencies:
+    "@vueuse/shared" "7.7.0"
+    vue-demi "*"
+
+"@vueuse/firebase@^7.7.0":
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/firebase/-/firebase-7.7.0.tgz#fd0c3aed821cdeb4229baf1c1741b57ce52605b2"
+  integrity sha512-txUT+MX7o3u/TtCLVbKYYp1dEMs/t6tpX/LCze2xk4o+C+Crds0KeoMFlmPKDeuLLU8nLlzVCumf6nVM7goXvg==
+  dependencies:
+    "@vueuse/shared" "7.7.0"
+    vue-demi "*"
+
+"@vueuse/shared@7.7.0":
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-7.7.0.tgz#4fa97e68f987c8a10bf075de0e57b986da9f1b38"
+  integrity sha512-ANzMcUnjuUPJ9nWqMAqYt8p0qon6AH5pP5/V/0RSWkwCIWZwi57ujIaxizzMwnJECUF/73BmsRmpvvtokCIrKw==
+  dependencies:
+    vue-demi "*"
+
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
