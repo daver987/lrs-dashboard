@@ -911,14 +911,6 @@
     "@vueuse/shared" "7.7.0"
     vue-demi "*"
 
-"@vueuse/firebase@^7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/firebase/-/firebase-7.7.0.tgz#fd0c3aed821cdeb4229baf1c1741b57ce52605b2"
-  integrity sha512-txUT+MX7o3u/TtCLVbKYYp1dEMs/t6tpX/LCze2xk4o+C+Crds0KeoMFlmPKDeuLLU8nLlzVCumf6nVM7goXvg==
-  dependencies:
-    "@vueuse/shared" "7.7.0"
-    vue-demi "*"
-
 "@vueuse/shared@7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-7.7.0.tgz#4fa97e68f987c8a10bf075de0e57b986da9f1b38"
