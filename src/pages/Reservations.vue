@@ -1,12 +1,5 @@
 <template>
   <q-page>
-    <div class="bg-grey-4 mb-4 q-pa-md">
-      <h2
-        class="font-bold text-center text-black tracking-wider text-3xl uppercase"
-      >
-        Reservations
-      </h2>
-    </div>
     <QuoteCard
       v-for="quotes in data"
       :key="quotes.quote_number"

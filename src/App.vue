@@ -27,7 +27,6 @@ function toggleLeftDrawer() {
 }
 
 let seamless = $ref(false)
-
 </script>
 
 <template>
@@ -36,6 +35,8 @@ let seamless = $ref(false)
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title> LRS Dashboard </q-toolbar-title>
+        <span class="text-lg tracking-wider uppercase">{{ $route.name }}</span>
+        <q-space />
         <q-btn label="Quick Quote" class="bg-black" @click="updateNumber" />
       </q-toolbar>
     </q-header>

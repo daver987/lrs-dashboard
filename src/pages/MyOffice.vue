@@ -1,65 +1,49 @@
 <template>
-  <q-page class='subcontent'>
-    <div class='bg-grey-4 mb-4 q-pa-md'>
-      <h2
-        class='font-bold text-center text-black tracking-wider text-3xl uppercase'
+  <q-page class="subcontent">
+    <div
+      class="q-pa-lg"
+      style="
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+      "
+    >
+      <div
+        style="
+          max-width: 800px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        "
       >
-        My Office
-      </h2>
-    </div>
-    <div class='q-pa-lg' style='display: flex; flex-direction: row; justify-content: center; width: 100%;'>
-      <div style='max-width: 800px; width: 100%; display: flex; flex-direction: column;'>
-        <div
-          class='title-bar'
-          style='display: flex;'
-        >
+        <div class="title-bar" style="display: flex">
           <button
-            tabindex='0'
-            class='date-button direction-button direction-button__left'
-            @click='onPrev'
+            tabindex="0"
+            class="date-button direction-button direction-button__left"
+            @click="onPrev"
           >
-            <span
-              class='q-calendar__focus-helper'
-              tabindex='-1'
-            />
+            <span class="q-calendar__focus-helper" tabindex="-1" />
           </button>
-          <div class='dates-holder'>
-            <transition
-              :name='transition'
-              appear
-            >
-              <div
-                :key='parsedStart.date'
-                class='internal-dates-holder'
-              >
-                <div
-                  v-for='day in days'
-                  :key='day.date'
-                  :style='dayStyle'
-                >
+          <div class="dates-holder">
+            <transition :name="transition" appear>
+              <div :key="parsedStart.date" class="internal-dates-holder">
+                <div v-for="day in days" :key="day.date" :style="dayStyle">
                   <button
-                    tabindex='0'
-                    style='width: 100%;'
-                    :class='dayClass(day)'
-                    @click="selectedDate = day.date; transition = ''"
+                    tabindex="0"
+                    style="width: 100%"
+                    :class="dayClass(day)"
+                    @click="selectedDate = day.date"
+                    transition=""
                   >
-                    <span
-                      class='q-calendar__focus-helper'
-                      tabindex='-1'
-                    />
-                    <div
-                      style='width: 100%;'
-                    >
+                    <span class="q-calendar__focus-helper" tabindex="-1" />
+                    <div style="width: 100%">
                       {{ monthFormatter(day, true) }}
                     </div>
-                    <div
-                      style='width: 100%; font-size: 16px; font-weight: 700;'
-                    >
+                    <div style="width: 100%; font-size: 16px; font-weight: 700">
                       {{ dayFormatter(day, false) }}
                     </div>
-                    <div
-                      style='width: 100%; font-size: 10px;'
-                    >
+                    <div style="width: 100%; font-size: 10px">
                       {{ weekdayFormatter(day, true) }}
                     </div>
                   </button>
@@ -68,29 +52,26 @@
             </transition>
           </div>
           <button
-            tabindex='0'
-            class='date-button direction-button direction-button__right'
-            @click='onNext'
+            tabindex="0"
+            class="date-button direction-button direction-button__right"
+            @click="onNext"
           >
-            <span
-              class='q-calendar__focus-helper'
-              tabindex='-1'
-            />
+            <span class="q-calendar__focus-helper" tabindex="-1" />
           </button>
         </div>
         <q-calendar-day
-          ref='calendar'
-          v-model='selectedDate'
+          ref="calendar"
+          v-model="selectedDate"
           bordered
           animated
-          style='height: 500px;'
-          @change='onChange'
-          @moved='onMoved'
-          @click-date='onClickDate'
-          @click-time='onClickTime'
-          @click-interval='onClickInterval'
-          @click-head-intervals='onClickHeadIntervals'
-          @click-head-day='onClickHeadDay'
+          style="height: 500px"
+          @change="onChange"
+          @moved="onMoved"
+          @click-date="onClickDate"
+          @click-time="onClickTime"
+          @click-interval="onClickInterval"
+          @click-head-intervals="onClickHeadIntervals"
+          @click-head-day="onClickHeadDay"
         />
       </div>
     </div>
@@ -135,13 +116,21 @@ export default defineComponent({
     })
     const parsedStart = computed(() => {
       if (selectedDate.value) {
-        return getStartOfWeek(parseTimestamp(selectedDate.value), weekdays, today2.value)
+        return getStartOfWeek(
+          parseTimestamp(selectedDate.value),
+          weekdays,
+          today2.value
+        )
       }
       return undefined
     })
     const parsedEnd = computed(() => {
       if (selectedDate.value) {
-        return getEndOfWeek(parseTimestamp(selectedDate.value), weekdays, today2.value)
+        return getEndOfWeek(
+          parseTimestamp(selectedDate.value),
+          weekdays,
+          today2.value
+        )
       }
       return undefined
     })
@@ -154,7 +143,7 @@ export default defineComponent({
           parsedStart.value,
           parsedEnd.value,
           today2.value,
-          weekdaySkips.value,
+          weekdaySkips.value
         )
       }
       return []
@@ -188,27 +177,24 @@ export default defineComponent({
     function monthFormatterFunc() {
       const longOptions = { timeZone: 'UTC', month: 'long' }
       const shortOptions = { timeZone: 'UTC', month: 'short' }
-      return createNativeLocaleFormatter(
-        locale.value,
-        (_tms, short) => (short ? shortOptions : longOptions),
+      return createNativeLocaleFormatter(locale.value, (_tms, short) =>
+        short ? shortOptions : longOptions
       )
     }
 
     function weekdayFormatterFunc() {
       const longOptions = { timeZone: 'UTC', weekday: 'long' }
       const shortOptions = { timeZone: 'UTC', weekday: 'short' }
-      return createNativeLocaleFormatter(
-        locale.value,
-        (_tms, short) => (short ? shortOptions : longOptions),
+      return createNativeLocaleFormatter(locale.value, (_tms, short) =>
+        short ? shortOptions : longOptions
       )
     }
 
     function dayFormatterFunc() {
       const longOptions = { timeZone: 'UTC', day: '2-digit' }
       const shortOptions = { timeZone: 'UTC', day: 'numeric' }
-      return createNativeLocaleFormatter(
-        locale.value,
-        (_tms, short) => (short ? shortOptions : longOptions),
+      return createNativeLocaleFormatter(locale.value, (_tms, short) =>
+        short ? shortOptions : longOptions
       )
     }
 
@@ -268,7 +254,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang='sass' scoped>
+<style lang="sass" scoped>
 .title-bar
   position: relative
   width: 100%
