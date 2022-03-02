@@ -4,13 +4,13 @@ import { RouterView } from 'vue-router'
 import { db } from './firebase'
 import { ref, onValue } from 'firebase/database'
 import { useCounterStore } from './stores/counter'
-import { useAccounts } from './stores/useAccounts'
+import { usePrefs } from './stores/usePrefs'
 import { storeToRefs } from 'pinia'
 
 const count = useCounterStore()
 const { quoteNumber } = storeToRefs(count)
-const accounts = useAccounts()
-const { accountNumber } = storeToRefs(accounts)
+const prefs = usePrefs()
+const { accountNumber } = storeToRefs(prefs)
 
 onMounted(() => {
   const quoteCount = ref(db, 'initial_number/')

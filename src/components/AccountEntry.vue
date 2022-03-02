@@ -15,7 +15,7 @@
             <q-card-section
               ><span class="text-bold text-lg"> Account Number </span
               ><span class="text-bold text-md text-red-700">
-                {{ accounts.accountNumber }}
+                {{ prefs.accountNumber }}
               </span></q-card-section
             >
 

@@ -4,6 +4,7 @@ import { readData } from '../firebase'
 export const usePrefs = defineStore({
   id: 'prefs',
   state: () => ({
+    accountNumber: null,
     vehicleType: [
       'Sedan',
       'SUV',

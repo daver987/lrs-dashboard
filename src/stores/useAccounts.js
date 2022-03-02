@@ -1,10 +1,10 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { saveData } from '../firebase'
+import { usePrefs } from './usePrefs'
 
 export const useAccounts = defineStore({
   id: 'accounts',
   state: () => ({
-    accountNumber: null,
     companyName: '',
     companyAddress: '',
     billingContact: '',
@@ -24,7 +24,8 @@ export const useAccounts = defineStore({
   }),
   actions: {
     addAccount() {
-      const path = 'accounts/account_number/' + this.accountNumber
+      const prefs = usePrefs()
+      const path = 'accounts/account_number/' + prefs.accountNumber
       const accountInfo = {
         company_name: this.companyName,
         company_address: this.companyAddress,
@@ -40,8 +41,9 @@ export const useAccounts = defineStore({
         payment_info: this.paymentInfo,
       }
       saveData(path, accountInfo)
-      this.accountNumber++
-      saveData('account_number', this.accountNumber)
+      prefs.accountNumber++
+      saveData('account_number', prefs.accountNumber)
+      this.$reset()
     },
 
     deleteAccount() {},
