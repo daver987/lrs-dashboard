@@ -52,7 +52,7 @@
         <q-expansion-item
           group="account_info"
           icon="attach_money"
-          label="Financial Details"
+          label="Account Financial Details"
           header-class="text-black bg-grey-5"
         >
           <q-card bordered flat class="bg-grey-3">
@@ -61,47 +61,8 @@
                 >Financial Details</span
               ></q-card-section
             >
-            <!-- Pickup Location -->
-            <q-card-section class="row q-gutter-md">
-              <q-select
-                v-model="accounts.paymentMethod"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="text"
-                label="Payment Method"
-                name="payment_method"
-                for="payment_method"
-                :options="prefs.paymentMethod"
-              />
-              <q-select
-                v-model="accounts.paymentTerms"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="text"
-                label="Payment Terms"
-                name="payment_terms"
-                for="payment_terms"
-                :options="prefs.paymentTerms"
-              />
-            </q-card-section>
-
-            <q-card-section class="row q-gutter-md">
-              <q-input
-                v-model="accounts.paymentInfo"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="textarea"
-                label="Payment Info"
-                name="payment_info"
-                for="payment_info"
-              />
-            </q-card-section>
+            <!-- Financial Entry -->
+            <FinancialEntry />
             <q-card-section>
               <q-btn label="Save Account" class="bg-primary" type="submit" />
             </q-card-section>
@@ -122,15 +83,17 @@
         >
           <q-card bordered flat class="bg-grey-3">
             <q-card-section class="row"
-              ><div class="col-5">
-                <span class="text-bold text-lg">Account Contact </span>
-                <span class="text-bold text-md text-red-700">
-                  {{ prefs.accountNumber }} </span
-                ><span class="text-bold text-md text-red-700"
-                  >-{{ prefs.subAccountNumber }}</span
-                >
+              ><div class="flex col justify-start content-center">
+                <div>
+                  <span class="text-bold text-lg">Account Contact </span>
+                  <span class="text-bold text-md text-red-700">
+                    {{ prefs.accountNumber }} </span
+                  ><span class="text-bold text-md text-red-700"
+                    >-{{ prefs.subAccountNumber }}</span
+                  >
+                </div>
               </div>
-              <div class="col">
+              <!-- <div class="col">
                 <q-option-group
                   name="accepted_genres"
                   v-model="accounts.selectedSubAccountType"
@@ -139,8 +102,17 @@
                   color="primary"
                   inline
                   dense
-                /></div
-            ></q-card-section>
+                />
+              </div> -->
+              <div class="flex col justify-end">
+                <q-toggle
+                  v-model="addFinancial"
+                  label="Add Financial"
+                  left-label
+                  class="place-self-end"
+                />
+              </div>
+            </q-card-section>
             <IndividualEntry />
 
             <q-card-section class="row q-gutter-md">
@@ -160,9 +132,10 @@
         </q-expansion-item>
 
         <q-expansion-item
+          v-if="addFinancial"
           group="account_financial"
           icon="attach_money"
-          label="Financial Details"
+          label="Individual Financial Details"
           header-class="text-black bg-grey-5"
         >
           <q-card bordered flat class="bg-grey-3">
@@ -172,46 +145,7 @@
               ></q-card-section
             >
             <!-- Pickup Location -->
-            <q-card-section class="row q-gutter-md">
-              <q-select
-                v-model="accounts.paymentMethod"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="text"
-                label="Payment Method"
-                name="payment_method"
-                for="payment_method"
-                :options="prefs.paymentMethod"
-              />
-              <q-select
-                v-model="accounts.paymentTerms"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="text"
-                label="Payment Terms"
-                name="payment_terms"
-                for="payment_terms"
-                :options="prefs.paymentTerms"
-              />
-            </q-card-section>
-
-            <q-card-section class="row q-gutter-md">
-              <q-input
-                v-model="accounts.paymentInfo"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="textarea"
-                label="Payment Info"
-                name="payment_info"
-                for="payment_info"
-              />
-            </q-card-section>
+            <FinancialEntry />
             <q-card-section>
               <q-btn label="Save Account" class="bg-primary" type="submit" />
             </q-card-section>
@@ -227,7 +161,9 @@ import { useAccounts } from '../stores/useAccounts'
 import { usePrefs } from '../stores/usePrefs'
 import IndividualEntry from '../components/forms/IndividualEntry.vue'
 import BusinessEntry from '../components/forms/BusinessEntry.vue'
+import FinancialEntry from '../components/forms/FinancialEntry.vue'
 
 const accounts = useAccounts()
 const prefs = usePrefs()
+const addFinancial = $ref(false)
 </script>
