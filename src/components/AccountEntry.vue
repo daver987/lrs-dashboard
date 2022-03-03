@@ -3,6 +3,7 @@
     <!-- column one -->
     <q-card flat class="col" bordered>
       <q-list class="space-y-2">
+        <!-- Company Entry -->
         <q-expansion-item
           group="account_info"
           icon="groups"
@@ -49,6 +50,8 @@
             </q-card-section>
           </q-card>
         </q-expansion-item>
+
+        <!--Company Financial Entry -->
         <q-expansion-item
           group="account_info"
           icon="attach_money"
@@ -61,11 +64,8 @@
                 >Financial Details</span
               ></q-card-section
             >
-            <!-- Financial Entry -->
+
             <FinancialEntry />
-            <q-card-section>
-              <q-btn label="Save Account" class="bg-primary" type="submit" />
-            </q-card-section>
           </q-card>
         </q-expansion-item>
       </q-list>
@@ -73,8 +73,9 @@
 
     <!-- second column -->
     <q-card flat class="col">
-      <q-list class="space-y-2"
-        ><q-expansion-item
+      <q-list class="space-y-2">
+        <!-- Conatat Entry -->
+        <q-expansion-item
           group="account_financial"
           icon="groups"
           label="Contact Details"
@@ -113,6 +114,7 @@
                 />
               </div>
             </q-card-section>
+
             <IndividualEntry />
 
             <q-card-section class="row q-gutter-md">
@@ -131,6 +133,7 @@
           </q-card>
         </q-expansion-item>
 
+        <!-- Individual Financial Entry -->
         <q-expansion-item
           v-if="addFinancial"
           group="account_financial"
@@ -144,11 +147,7 @@
                 >Financial Details</span
               ></q-card-section
             >
-            <!-- Pickup Location -->
             <FinancialEntry />
-            <q-card-section>
-              <q-btn label="Save Account" class="bg-primary" type="submit" />
-            </q-card-section>
           </q-card>
         </q-expansion-item>
       </q-list>

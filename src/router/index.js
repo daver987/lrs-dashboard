@@ -33,7 +33,7 @@ const router = createRouter({
       component: Accounts,
     },
     {
-      path: '/accounts-entry',
+      path: '/account-entry',
       name: 'Account Entry',
       component: AccountsEntry,
     },
