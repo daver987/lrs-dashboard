@@ -1,7 +1,7 @@
 <template>
   <q-card-section>
     <q-input
-      v-model="accounts.companyName"
+      v-model="companyName"
       bg-color="white"
       outlined
       dense
@@ -12,7 +12,7 @@
       :rules="[(val) => !!val || 'Field is required']"
     />
     <q-input
-      v-model="accounts.companyAddress"
+      v-model="companyAddress"
       bg-color="white"
       outlined
       dense
@@ -24,7 +24,7 @@
     />
     <div class="row q-gutter-md">
       <q-input
-        v-model="accounts.companyPhone"
+        v-model="companyPhone"
         mask="phone"
         fill-mask
         bg-color="white"
@@ -37,7 +37,7 @@
         for="company_phone"
       />
       <q-input
-        v-model="accounts.companyEmail"
+        v-model="companyEmail"
         mask="email"
         bg-color="white"
         class="col"
@@ -55,4 +55,10 @@
 <script setup>
 import { useAccounts } from '../../stores/useAccounts'
 const accounts = useAccounts()
+defineProps({
+  companyName: '',
+  companyAddress: '',
+  companyPhone: '',
+  companyEmail: '',
+})
 </script>

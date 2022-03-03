@@ -1,7 +1,7 @@
 <template>
   <q-card-section class="row q-gutter-md">
     <q-select
-      v-model="accounts.selectedNamePrefix"
+      v-model="namePrefix"
       bg-color="white"
       class="col-2"
       outlined
@@ -10,32 +10,32 @@
       label="Prefix"
       name="name_prefix"
       for="name_prefix"
-      :options="prefs.namePrefix" />
+      :options="['Mr', 'Mrs', 'Ms']" />
     <q-input
-      v-model="accounts.bookingFirstName"
+      v-model="firstName"
       bg-color="white"
       class="col"
       outlined
       dense
       type="text"
       label="First Name"
-      name="booking_first_name"
-      for="booking_first_name" />
+      name="contact_first_name"
+      for="contact_first_name" />
     <q-input
-      v-model="accounts.bookingLastName"
+      v-model="lastName"
       bg-color="white"
       class="col"
       outlined
       dense
       type="text"
       label="Last Name"
-      name="booking_last_name"
-      for="booking_last_name"
+      name="contact_last_name"
+      for="contact_last_name"
   /></q-card-section>
 
   <q-card-section class="row q-gutter-md">
     <q-input
-      v-model="accounts.bookingPhone"
+      v-model="phone"
       mask="phone"
       fill-mask
       bg-color="white"
@@ -47,7 +47,7 @@
       name="contact_phone"
       for="contact_phone" />
     <q-input
-      v-model="accounts.bookingEmail"
+      v-model="email"
       mask="email"
       bg-color="white"
       class="col"
@@ -61,9 +61,11 @@
 </template>
 
 <script setup>
-import { useAccounts } from '../../stores/useAccounts'
-import { usePrefs } from '../../stores/usePrefs'
-
-const accounts = useAccounts()
-const prefs = usePrefs()
+defineProps({
+  namePrefix: '',
+  firstName: '',
+  lastName: '',
+  phone: '',
+  email: '',
+})
 </script>

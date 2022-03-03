@@ -5,22 +5,18 @@ export const usePrefs = defineStore({
   id: 'prefs',
   state: () => ({
     accountNumber: null,
-    subAccountNumber: 1,
+    contactAccountNumber: 1,
     accountType: [
       {
         label: 'Coprorate',
         value: 'coprorate',
       },
-      // {
-      //   label: 'Sub Account',
-      //   value: 'sub account',
-      // },
       {
         label: 'Individual',
         value: 'individual',
       },
     ],
-    subAccountType: [
+    contactType: [
       {
         label: 'Booking',
         value: 'booking',

@@ -1,7 +1,7 @@
 <template>
   <q-card-section class="row q-gutter-md">
     <q-select
-      v-model="accounts.paymentMethod"
+      v-model="selectedPaymentMethod"
       bg-color="white"
       class="col"
       outlined
@@ -10,10 +10,10 @@
       label="Payment Method"
       name="payment_method"
       for="payment_method"
-      :options="prefs.paymentMethod"
+      :options="['Cash', 'Credit Card', 'Debit Card', 'Paypal', 'E-Transfer']"
     />
     <q-select
-      v-model="accounts.paymentTerms"
+      v-model="selectedPaymentTerms"
       bg-color="white"
       class="col"
       outlined
@@ -22,13 +22,13 @@
       label="Payment Terms"
       name="payment_terms"
       for="payment_terms"
-      :options="prefs.paymentTerms"
+      :options="['On Completion', 'Net 15', 'Net 30', 'Net 60', 'Net 90']"
     />
   </q-card-section>
 
   <q-card-section class="row q-gutter-md">
     <q-input
-      v-model="accounts.paymentInfo"
+      v-model="paymentInfo"
       bg-color="white"
       class="col"
       outlined
@@ -42,8 +42,9 @@
 </template>
 
 <script setup>
-import { useAccounts } from '../../stores/useAccounts'
-import { usePrefs } from '../../stores/usePrefs'
-const prefs = usePrefs()
-const accounts = useAccounts()
+defineProps({
+  selectedPaymentMethod: '',
+  selectedPaymentTerms: '',
+  paymentInfo: '',
+})
 </script>
