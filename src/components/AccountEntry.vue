@@ -94,21 +94,11 @@
                   >
                 </div>
               </div>
-              <!-- <div class="col">
-                <q-option-group
-                  name="accepted_genres"
-                  v-model="accounts.selectedSubAccountType"
-                  :options="prefs.subAccountType"
-                  type="checkbox"
-                  color="primary"
-                  inline
-                  dense
-                />
-              </div> -->
+
               <div class="flex col justify-end">
                 <q-toggle
                   v-model="addFinancial"
-                  label="Add Financial"
+                  label="Add Financial Details"
                   left-label
                   class="place-self-end"
                 />
@@ -121,7 +111,7 @@
               <q-input
                 v-model="accounts.accountNotes"
                 bg-color="white"
-                class="col"
+                class="col-9"
                 outlined
                 dense
                 type="textarea"
@@ -129,6 +119,19 @@
                 name="contact_notes"
                 for="contact_notes"
               />
+              <div class="col">
+                <q-item-label class="text-bold q-mb-sm"
+                  >Contact Type</q-item-label
+                >
+                <q-option-group
+                  name="accepted_genres"
+                  v-model="accounts.selectedSubAccountType"
+                  :options="prefs.subAccountType"
+                  type="checkbox"
+                  color="primary"
+                  dense
+                />
+              </div>
             </q-card-section>
           </q-card>
         </q-expansion-item>
