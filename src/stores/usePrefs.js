@@ -61,10 +61,7 @@ export const usePrefs = defineStore({
     tripType: ['In House', 'Farm In', 'Farm Out'],
   }),
   actions: {
-    getAccountNumber() {
-      const data = readData('account_number')
-      this.accountNumber = data
-    },
+    //actions go here
   },
 })
 

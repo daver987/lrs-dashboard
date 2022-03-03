@@ -31,12 +31,13 @@
             </q-card-section>
 
             <template v-if="selectedAccountType === 'coprorate'">
-              <q-card-section>
+              <q-card-section class="col q-gutter-sm">
                 <q-input
                   v-model="companyName"
                   bg-color="white"
                   outlined
                   dense
+                  class="row"
                   type="text"
                   label="Company Name"
                   name="company_name"
@@ -48,19 +49,20 @@
                   bg-color="white"
                   outlined
                   dense
+                  class="row"
                   type="text"
                   label="Company Address"
                   name="company_address"
                   for="company_address"
                   :rules="[(val) => !!val || 'Field is required']"
                 />
-                <div class="row q-gutter-md">
+                <div class="row gap-2">
                   <q-input
                     v-model="companyPhone"
                     mask="phone"
                     fill-mask
                     bg-color="white"
-                    class="col-3"
+                    class="col-4"
                     outlined
                     dense
                     type="tel"
@@ -82,7 +84,8 @@
                   />
                 </div>
               </q-card-section>
-              <q-card-section class="row q-gutter-md">
+
+              <q-card-section class="row q-gutter-sm">
                 <q-input
                   v-model="companyNotes"
                   bg-color="white"
@@ -98,7 +101,7 @@
             </template>
 
             <template v-if="selectedAccountType === 'individual'">
-              <q-card-section class="row q-gutter-md">
+              <q-card-section class="row q-gutter-sm">
                 <q-select
                   v-model="individualPrefix"
                   bg-color="white"
@@ -132,32 +135,49 @@
                   for="individual_last_name"
               /></q-card-section>
 
-              <q-card-section class="row q-gutter-md">
+              <q-card-section class="col q-gutter-sm">
                 <q-input
-                  v-model="individualPhone"
-                  mask="phone"
-                  fill-mask
+                  v-model="individualAddress"
                   bg-color="white"
-                  class="col-3"
                   outlined
                   dense
-                  type="tel"
-                  label="Contact Phone"
-                  name="individual_phone"
-                  for="individual_phone" />
-                <q-input
-                  v-model="individualEmail"
-                  mask="email"
-                  bg-color="white"
-                  class="col"
-                  outlined
-                  dense
-                  type="email"
-                  label="Contact Email"
-                  name="individual_email"
-                  for="individual_email"
-              /></q-card-section>
-              <q-card-section class="row q-gutter-md">
+                  class="row"
+                  type="text"
+                  label="Address"
+                  name="individual_address"
+                  for="individual_address"
+                  :rules="[(val) => !!val || 'Field is required']"
+                />
+                <div class="row gap-2">
+                  <q-input
+                    v-model="individualPhone"
+                    mask="phone"
+                    fill-mask
+                    bg-color="white"
+                    class="col-3"
+                    outlined
+                    dense
+                    type="tel"
+                    label="Contact Phone"
+                    name="individual_phone"
+                    for="individual_phone"
+                  />
+                  <q-input
+                    v-model="individualEmail"
+                    mask="email"
+                    bg-color="white"
+                    class="col"
+                    outlined
+                    dense
+                    type="email"
+                    label="Contact Email"
+                    name="individual_email"
+                    for="individual_email"
+                  />
+                </div>
+              </q-card-section>
+
+              <q-card-section class="row q-gutter-sm">
                 <q-input
                   v-model="individualNotes"
                   bg-color="white"

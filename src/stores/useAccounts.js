@@ -6,6 +6,7 @@ export const useAccounts = defineStore({
   id: 'accounts',
   state: () => ({
     selectedAccountType: 'coprorate',
+    combinedContactAccountNumber: null,
     companyName: '',
     companyAddress: '',
     companyPhone: '',
@@ -51,6 +52,7 @@ export const useAccounts = defineStore({
 
       if (this.selectedAccountType === 'coprorate') {
         this.accountInfo = {
+          account_type: this.selectedAccountType,
           company_account_number: prefs.accountNumber,
           company_name: this.companyName,
           company_address: this.companyAddress,
@@ -61,6 +63,8 @@ export const useAccounts = defineStore({
           company_payment_terms: this.companyPaymentTerms,
           company_payment_info: this.companyPaymentInfo,
         }
+        this.combinedContactAccountNumber =
+          prefs.contactAccountNumber + '-' + prefs.accountNumber
         this.contactInfo = {
           contact_account_number: prefs.contactAccountNumber,
           contact_type: this.selectedContactType,
@@ -76,7 +80,7 @@ export const useAccounts = defineStore({
         prefs.accountNumber++
         prefs.contactAccountNumber++
         saveData('prefs/account_number/', prefs.accountNumber)
-        saveData('prefs/contact_account_number/', prefs.contactAccountNumber)
+        saveData('prefs/contact_account_number/', prefs.accountNumber)
         this.$reset()
       } else {
         this.individualCompanyName =
@@ -86,6 +90,7 @@ export const useAccounts = defineStore({
           ' ' +
           this.individualLastName
         this.accountInfo = {
+          account_type: this.selectedAccountType,
           company_name: this.individualCompanyName,
           company_address: this.individualAddress,
           company_phone: this.individualPhone,
@@ -95,6 +100,8 @@ export const useAccounts = defineStore({
           company_payment_terms: this.companyPaymentTerms,
           company_payment_info: this.companyPaymentInfo,
         }
+        this.combinedContactAccountNumber =
+          prefs.contactAccountNumber + '-' + prefs.accountNumber
         this.contactInfo = {
           contact_account_number: prefs.contactAccountNumber,
           contact_type: this.selectedContactType,
@@ -108,7 +115,8 @@ export const useAccounts = defineStore({
         saveData(accountPath, this.accountInfo, this.contactInfo)
         prefs.accountNumber++
         prefs.contactAccountNumber++
-        saveData('account_number', prefs.accountNumber)
+        saveData('prefs/account_number/', prefs.accountNumber)
+        saveData('prefs/contact_account_number/', prefs.contactAccountNumber)
         this.$reset()
       }
     },
