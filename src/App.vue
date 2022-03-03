@@ -152,7 +152,7 @@ let seamless = $ref(false)
           v-if="$route.name === 'Account Entry'"
           label="Save Account"
           class="bg-primary"
-          @click="accounts.addAccount"
+          @click="addFirestoreAccount"
         />
         <q-btn
           v-if="$route.name === 'Quick Quote'"
