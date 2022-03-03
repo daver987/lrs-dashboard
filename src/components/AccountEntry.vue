@@ -1,7 +1,7 @@
 <template>
   <q-form class="bg-white row q-gutter-md" flat @submit="accounts.addAccount">
     <!-- column one -->
-    <q-card flat class="col" bordered>
+    <q-card flat class="col">
       <q-list class="space-y-2">
         <!-- Company Entry -->
         <q-expansion-item

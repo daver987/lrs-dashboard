@@ -139,14 +139,6 @@
                 @click="counter.incrementHour"
               />
             </q-card-section>
-            <q-card-section>
-              <q-btn
-                @click="total.priceCalculator"
-                color="primary"
-                label="Get Quote"
-                class="q-mr-lg"
-              />
-            </q-card-section>
           </q-card>
         </q-expansion-item>
 

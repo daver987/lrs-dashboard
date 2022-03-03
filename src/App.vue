@@ -6,11 +6,13 @@ import { ref, onValue } from 'firebase/database'
 import { useCounterStore } from './stores/counter'
 import { usePrefs } from './stores/usePrefs'
 import { storeToRefs } from 'pinia'
+import { usePriceCalculator } from './stores/usePriceCalculator'
 
 const count = useCounterStore()
 const { quoteNumber } = storeToRefs(count)
 const prefs = usePrefs()
 const { accountNumber } = storeToRefs(prefs)
+const price = usePriceCalculator()
 
 onMounted(() => {
   const quoteCount = ref(db, 'initial_number/')
@@ -148,6 +150,13 @@ let seamless = $ref(false)
           label="Save Account"
           class="bg-primary"
           type="submit"
+        />
+        <q-btn
+          v-if="$route.name === 'Quick Quote'"
+          @click="price.priceCalculator"
+          color="primary"
+          label="Get Rate"
+          class="q-mr-lg"
         />
       </q-toolbar>
     </q-footer>
