@@ -13,12 +13,12 @@
           <q-card bordered flat class="bg-grey-3">
             <q-card-section
               ><span class="text-bold text-lg"
-                >Customer Details</span
+                >Passenger Details</span
               ></q-card-section
             >
             <q-card-section class="row q-gutter-sm">
               <q-input
-                v-model="counterStore.quoteNumber"
+                v-model="prefs.quoteNumber"
                 bg-color="white"
                 class="col"
                 outlined
@@ -30,7 +30,7 @@
                 readonly
               />
               <q-input
-                v-model="accounts.accountNumber"
+                v-model="prefs.accountNumber"
                 bg-color="white"
                 class="col"
                 outlined
@@ -72,7 +72,7 @@
 
             <q-card-section class="row q-gutter-md">
               <q-input
-                v-model="accounts.passengerFirstName"
+                v-model="contactFirstName"
                 bg-color="white"
                 class="col"
                 outlined
@@ -82,7 +82,7 @@
                 name="pax_first_name"
                 for="pax_first_name" />
               <q-input
-                v-model="accounts.passengerLastName"
+                v-model="contactLastName"
                 bg-color="white"
                 class="col"
                 outlined
@@ -95,11 +95,11 @@
 
             <q-card-section class="row q-gutter-md">
               <q-input
-                v-model="accounts.passengerPhoneNumber"
+                v-model="contactPhone"
                 mask="phone"
                 fill-mask
                 bg-color="white"
-                class="col"
+                class="col-4"
                 outlined
                 dense
                 type="tel"
@@ -107,7 +107,7 @@
                 name="passenger_phone"
                 for="passenger_phone" />
               <q-input
-                v-model="accounts.passengerEmail"
+                v-model="contactEmail"
                 mask="email"
                 bg-color="white"
                 class="col"
@@ -243,6 +243,7 @@
 
             <q-card-section class="row q-gutter-md">
               <q-select
+                v-if="store.selectedServiceType === 'Hourly'"
                 v-model="store.selectedHourCount"
                 bg-color="white"
                 class="col"
@@ -269,7 +270,7 @@
               <q-select
                 v-model="store.selectedPassengerCount"
                 bg-color="white"
-                class="col"
+                class="col-3"
                 outlined
                 dense
                 type="text"
@@ -284,7 +285,7 @@
               <q-select
                 v-model="store.selectedServiceType"
                 bg-color="white"
-                class="col"
+                class="col-5"
                 outlined
                 dense
                 type="text"
@@ -338,7 +339,7 @@
           <q-card bordered flat class="bg-grey-3">
             <q-card-section
               ><span class="text-bold text-lg"
-                >Trip Extras</span
+                >Trip Details</span
               ></q-card-section
             ><q-card-section>
               <q-select
@@ -411,6 +412,7 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
 import { useMap } from '../stores/useMap'
 import { useAccounts } from '../stores/useAccounts'
 import { useCounterStore } from '../stores/counter'
@@ -418,6 +420,9 @@ import { usePrefs } from '../stores/usePrefs'
 
 const counterStore = useCounterStore()
 const accounts = useAccounts()
+const { contactFirstName, contactLastName, contactEmail, contactPhone } =
+  storeToRefs(accounts)
+
 const store = useMap()
 const prefs = usePrefs()
 

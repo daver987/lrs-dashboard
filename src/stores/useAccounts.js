@@ -29,10 +29,11 @@ export const useAccounts = defineStore({
     contactPhone: '',
     contactEmail: '',
     contactNotes: '',
-    contactAddFinancialDetails: false,
     contactPaymentMethod: '',
     contactPaymentTerms: '',
     contactPaymentInfo: '',
+    contactAddFinancialDetails: false,
+    billingContact: '',
   }),
   actions: {
     addAccount() {

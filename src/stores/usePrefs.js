@@ -6,6 +6,7 @@ export const usePrefs = defineStore({
   state: () => ({
     accountNumber: null,
     contactAccountNumber: 1,
+    quoteNumber: null,
     accountType: [
       {
         label: 'Coprorate',
