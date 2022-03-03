@@ -2,7 +2,7 @@
   <div class="row py-2 q-px-md justify-between items-center">
     <div>
       <span class="text-bold">Quote Number # </span
-      ><span class="text-bold text-red-700">{{ counter.quoteNumber }}</span>
+      ><span class="text-bold text-red-700">{{ prefs.quoteNumber }}</span>
     </div>
     <q-btn
       label="New Rate"
