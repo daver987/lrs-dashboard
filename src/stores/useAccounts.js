@@ -17,6 +17,7 @@ export const useAccounts = defineStore({
     paymentMethod: '',
     paymentTerms: '',
     paymentInfo: '',
+    selectedAccountType: 'corporate',
     passengerFirstName: '',
     passengerLastName: '',
     passengerEmail: '',

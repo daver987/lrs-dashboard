@@ -12,12 +12,23 @@
           disable
         >
           <q-card bordered flat class="bg-grey-3">
-            <q-card-section
-              ><span class="text-bold text-lg"> Account Number </span
-              ><span class="text-bold text-md text-red-700">
-                {{ prefs.accountNumber }}
-              </span></q-card-section
-            >
+            <q-card-section class="row"
+              ><div class="col-5">
+                <span class="text-bold text-lg"> Account Number </span
+                ><span class="text-bold text-md text-red-700">
+                  {{ prefs.accountNumber }}
+                </span>
+              </div>
+              <div class="col-7">
+                <q-option-group
+                  v-model="accounts.selectedAccountType"
+                  :options="prefs.accountType"
+                  color="primary"
+                  inline
+                  dense
+                />
+              </div>
+            </q-card-section>
 
             <q-card-section>
               <q-input
