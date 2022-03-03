@@ -8,7 +8,7 @@
           ref="calendar"
           v-model="selectedDate"
           :now="nowDate"
-          :day-min-height="120"
+          :day-min-height="107"
           animated
           bordered
           @change="onChange"
