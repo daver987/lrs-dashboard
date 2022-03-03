@@ -3,25 +3,28 @@ import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { db } from './firebase'
 import { ref, onValue } from 'firebase/database'
-import { useCounterStore } from './stores/counter'
 import { usePrefs } from './stores/usePrefs'
 import { storeToRefs } from 'pinia'
 import { usePriceCalculator } from './stores/usePriceCalculator'
+import { useAccounts } from './stores/useAccounts'
 
-const count = useCounterStore()
-const { quoteNumber } = storeToRefs(count)
 const prefs = usePrefs()
-const { accountNumber } = storeToRefs(prefs)
+const { accountNumber, quoteNumber, contactAccountNumber } = storeToRefs(prefs)
 const price = usePriceCalculator()
+const accounts = useAccounts()
 
 onMounted(() => {
-  const quoteCount = ref(db, 'initial_number/')
-  const accNum = ref(db, 'account_number/')
+  const quoteCount = ref(db, 'prefs/quote_number')
+  const accNum = ref(db, 'prefs/account_number/')
+  const contactAccNum = ref(db, 'prefs/contact_account_number/')
   onValue(quoteCount, (snapshot) => {
     quoteNumber.value = snapshot.val()
   })
   onValue(accNum, (snapshot) => {
     accountNumber.value = snapshot.val()
+  })
+  onValue(contactAccNum, (snapshot) => {
+    contactAccountNumber.value = snapshot.val()
   })
 })
 
@@ -149,7 +152,7 @@ let seamless = $ref(false)
           v-if="$route.name === 'Account Entry'"
           label="Save Account"
           class="bg-primary"
-          type="submit"
+          @click="accounts.addAccount"
         />
         <q-btn
           v-if="$route.name === 'Quick Quote'"

@@ -252,7 +252,7 @@
                   <span class="text-bold text-md text-red-700">
                     {{ prefs.accountNumber }} </span
                   ><span class="text-bold text-md text-red-700"
-                    >-{{ prefs.contactAccountNumber }}</span
+                    >-{{ prefs.initialContactAccountNumber }}</span
                   >
                 </div>
               </div>

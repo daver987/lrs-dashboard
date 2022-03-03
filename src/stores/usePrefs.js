@@ -5,7 +5,8 @@ export const usePrefs = defineStore({
   id: 'prefs',
   state: () => ({
     accountNumber: null,
-    contactAccountNumber: 1,
+    contactAccountNumber: null,
+    initialContactAccountNumber: 1,
     quoteNumber: null,
     accountType: [
       {
