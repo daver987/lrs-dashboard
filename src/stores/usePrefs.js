@@ -11,13 +11,13 @@ export const usePrefs = defineStore({
         label: 'Coprorate',
         value: 'coprorate',
       },
+      // {
+      //   label: 'Sub Account',
+      //   value: 'sub account',
+      // },
       {
         label: 'Individual',
         value: 'individual',
-      },
-      {
-        label: 'Sub Account',
-        value: 'sub account',
       },
     ],
     subAccountType: [

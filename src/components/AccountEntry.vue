@@ -2,14 +2,13 @@
   <q-form class="bg-white row q-gutter-md" flat @submit="accounts.addAccount">
     <!-- column one -->
     <q-card flat class="col" bordered>
-      <q-list>
+      <q-list class="space-y-2">
         <q-expansion-item
           group="account_info"
           icon="groups"
           label="Account Details"
           header-class="text-black bg-grey-5"
           default-opened
-          disable
         >
           <q-card bordered flat class="bg-grey-3">
             <q-card-section class="row"
@@ -29,59 +28,12 @@
                 />
               </div>
             </q-card-section>
-
-            <q-card-section>
-              <q-input
-                v-model="accounts.companyName"
-                bg-color="white"
-                outlined
-                dense
-                type="text"
-                label="Company Name"
-                name="company_name"
-                for="company_name"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-              <q-input
-                v-model="accounts.companyAddress"
-                bg-color="white"
-                outlined
-                dense
-                type="text"
-                label="Company Address"
-                name="company_address"
-                for="company_address"
-                :rules="[(val) => !!val || 'Field is required']"
-              />
-              <div class="row q-gutter-md">
-                <q-input
-                  v-model="accounts.companyPhone"
-                  mask="phone"
-                  fill-mask
-                  bg-color="white"
-                  class="col-3"
-                  outlined
-                  dense
-                  type="tel"
-                  label="Company Phone"
-                  name="company_phone"
-                  for="company_phone"
-                />
-                <q-input
-                  v-model="accounts.companyEmail"
-                  mask="email"
-                  bg-color="white"
-                  class="col"
-                  outlined
-                  dense
-                  type="email"
-                  label="Company Email"
-                  name="company_email"
-                  for="company_email"
-                />
-              </div>
-            </q-card-section>
-
+            <BusinessEntry
+              v-if="accounts.selectedAccountType === 'coprorate'"
+            />
+            <IndividualEntry
+              v-if="accounts.selectedAccountType === 'individual'"
+            />
             <q-card-section class="row q-gutter-md">
               <q-input
                 v-model="accounts.accountNotes"
@@ -94,6 +46,64 @@
                 name="account_notes"
                 for="account_notes"
               />
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+        <q-expansion-item
+          group="account_info"
+          icon="attach_money"
+          label="Financial Details"
+          header-class="text-black bg-grey-5"
+        >
+          <q-card bordered flat class="bg-grey-3">
+            <q-card-section
+              ><span class="text-bold text-lg"
+                >Financial Details</span
+              ></q-card-section
+            >
+            <!-- Pickup Location -->
+            <q-card-section class="row q-gutter-md">
+              <q-select
+                v-model="accounts.paymentMethod"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Payment Method"
+                name="payment_method"
+                for="payment_method"
+                :options="prefs.paymentMethod"
+              />
+              <q-select
+                v-model="accounts.paymentTerms"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="text"
+                label="Payment Terms"
+                name="payment_terms"
+                for="payment_terms"
+                :options="prefs.paymentTerms"
+              />
+            </q-card-section>
+
+            <q-card-section class="row q-gutter-md">
+              <q-input
+                v-model="accounts.paymentInfo"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="textarea"
+                label="Payment Info"
+                name="payment_info"
+                for="payment_info"
+              />
+            </q-card-section>
+            <q-card-section>
+              <q-btn label="Save Account" class="bg-primary" type="submit" />
             </q-card-section>
           </q-card>
         </q-expansion-item>
@@ -131,66 +141,8 @@
                   dense
                 /></div
             ></q-card-section>
+            <IndividualEntry />
 
-            <q-card-section class="row q-gutter-md">
-              <q-select
-                v-model="accounts.selectedNamePrefix"
-                bg-color="white"
-                class="col-2"
-                outlined
-                dense
-                type="select"
-                label="Prefix"
-                name="name_prefix"
-                for="name_prefix"
-                :options="prefs.namePrefix" />
-              <q-input
-                v-model="accounts.bookingFirstName"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="text"
-                label="First Name"
-                name="booking_first_name"
-                for="booking_first_name" />
-              <q-input
-                v-model="accounts.bookingLastName"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="text"
-                label="Last Name"
-                name="booking_last_name"
-                for="booking_last_name"
-            /></q-card-section>
-
-            <q-card-section class="row q-gutter-md">
-              <q-input
-                v-model="accounts.bookingPhone"
-                mask="phone"
-                fill-mask
-                bg-color="white"
-                class="col-3"
-                outlined
-                dense
-                type="tel"
-                label="Contact Phone"
-                name="contact_phone"
-                for="contact_phone" />
-              <q-input
-                v-model="accounts.bookingEmail"
-                mask="email"
-                bg-color="white"
-                class="col"
-                outlined
-                dense
-                type="email"
-                label="Contact Email"
-                name="contact_email"
-                for="contact_email"
-            /></q-card-section>
             <q-card-section class="row q-gutter-md">
               <q-input
                 v-model="accounts.accountNotes"
@@ -273,6 +225,8 @@
 <script setup>
 import { useAccounts } from '../stores/useAccounts'
 import { usePrefs } from '../stores/usePrefs'
+import IndividualEntry from '../components/forms/IndividualEntry.vue'
+import BusinessEntry from '../components/forms/BusinessEntry.vue'
 
 const accounts = useAccounts()
 const prefs = usePrefs()
