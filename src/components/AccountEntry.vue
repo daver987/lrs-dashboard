@@ -197,8 +197,8 @@
                 dense
                 type="text"
                 label="Payment Method"
-                name="payment_method"
-                for="payment_method"
+                name="company_payment_method"
+                for="company_payment_method"
                 :options="prefs.paymentMethod"
               />
               <q-select
@@ -209,8 +209,8 @@
                 dense
                 type="text"
                 label="Payment Terms"
-                name="payment_terms"
-                for="payment_terms"
+                name="company_payment_terms"
+                for="company_payment_terms"
                 :options="prefs.paymentTerms"
               />
             </q-card-section>
@@ -224,8 +224,8 @@
                 dense
                 type="textarea"
                 label="Payment Info"
-                name="payment_info"
-                for="payment_info"
+                name="company_payment_info"
+                for="company_payment_info"
               />
             </q-card-section>
           </q-card>
@@ -277,7 +277,7 @@
               </div>
             </q-card-section>
 
-            <!-- Individual Entry -->
+            <!-- Contact Entry -->
             <q-card-section class="row q-gutter-md">
               <q-select
                 v-model="selectedContactNamePrefix"
@@ -287,8 +287,8 @@
                 dense
                 type="select"
                 label="Prefix"
-                name="name_prefix"
-                for="name_prefix"
+                name="contact_name_prefix"
+                for="contact_name_prefix"
                 :options="prefs.namePrefix" />
               <q-input
                 v-model="contactFirstName"
@@ -355,7 +355,7 @@
                   >Contact Type</q-item-label
                 >
                 <q-option-group
-                  name="accepted_genres"
+                  name="contact_type"
                   v-model="selectedContactType"
                   :options="prefs.contactType"
                   type="checkbox"
@@ -367,7 +367,7 @@
           </q-card>
         </q-expansion-item>
 
-        <!-- Individual Financial Entry -->
+        <!-- Contact Financial Entry -->
         <q-expansion-item
           v-if="contactAddFinancialDetails"
           group="contact_details"
@@ -391,8 +391,8 @@
                 dense
                 type="text"
                 label="Payment Method"
-                name="payment_method"
-                for="payment_method"
+                name="contact_payment_method"
+                for="contact_payment_method"
                 :options="prefs.paymentMethod"
               />
               <q-select
@@ -403,8 +403,8 @@
                 dense
                 type="text"
                 label="Payment Terms"
-                name="payment_terms"
-                for="payment_terms"
+                name="contact_payment_terms"
+                for="contact_payment_terms"
                 :options="prefs.paymentTerms"
               />
             </q-card-section>
@@ -418,8 +418,8 @@
                 dense
                 type="textarea"
                 label="Payment Info"
-                name="payment_info"
-                for="payment_info"
+                name="contact_payment_info"
+                for="contact_payment_info"
               />
             </q-card-section>
           </q-card>
