@@ -7,6 +7,8 @@ export const useAccounts = defineStore({
   state: () => ({
     companyName: '',
     companyAddress: '',
+    companyPhone: '',
+    companyEmail: '',
     billingContact: '',
     selectedNamePrefix: '',
     bookingFirstName: '',
@@ -17,7 +19,8 @@ export const useAccounts = defineStore({
     paymentMethod: '',
     paymentTerms: '',
     paymentInfo: '',
-    selectedAccountType: 'corporate',
+    selectedAccountType: 'coprorate',
+    selectedSubAccountType: [],
     passengerFirstName: '',
     passengerLastName: '',
     passengerEmail: '',

@@ -53,13 +53,84 @@
                 for="company_address"
                 :rules="[(val) => !!val || 'Field is required']"
               />
+              <div class="row q-gutter-md">
+                <q-input
+                  v-model="accounts.companyPhone"
+                  mask="phone"
+                  fill-mask
+                  bg-color="white"
+                  class="col-3"
+                  outlined
+                  dense
+                  type="tel"
+                  label="Company Phone"
+                  name="company_phone"
+                  for="company_phone"
+                />
+                <q-input
+                  v-model="accounts.companyEmail"
+                  mask="email"
+                  bg-color="white"
+                  class="col"
+                  outlined
+                  dense
+                  type="email"
+                  label="Company Email"
+                  name="company_email"
+                  for="company_email"
+                />
+              </div>
             </q-card-section>
 
-            <q-card-section
-              ><span class="text-bold text-lg"
-                >Booking Contact</span
-              ></q-card-section
-            >
+            <q-card-section class="row q-gutter-md">
+              <q-input
+                v-model="accounts.accountNotes"
+                bg-color="white"
+                class="col"
+                outlined
+                dense
+                type="textarea"
+                label="Account Notes"
+                name="account_notes"
+                for="account_notes"
+              />
+            </q-card-section>
+          </q-card>
+        </q-expansion-item>
+      </q-list>
+    </q-card>
+
+    <!-- second column -->
+    <q-card flat class="col">
+      <q-list class="space-y-2"
+        ><q-expansion-item
+          group="account_financial"
+          icon="groups"
+          label="Contact Details"
+          header-class="text-black bg-grey-5"
+          default-opened
+        >
+          <q-card bordered flat class="bg-grey-3">
+            <q-card-section class="row"
+              ><div class="col-5">
+                <span class="text-bold text-lg">Account Contact </span>
+                <span class="text-bold text-md text-red-700">
+                  {{ prefs.accountNumber }} </span
+                ><span class="text-bold text-md text-red-700"
+                  >-{{ prefs.subAccountNumber }}</span
+                >
+              </div>
+              <div class="col">
+                <q-option-group
+                  name="accepted_genres"
+                  v-model="accounts.selectedSubAccountType"
+                  :options="prefs.subAccountType"
+                  type="checkbox"
+                  color="primary"
+                  inline
+                  dense
+                /></div
+            ></q-card-section>
 
             <q-card-section class="row q-gutter-md">
               <q-select
@@ -101,13 +172,13 @@
                 mask="phone"
                 fill-mask
                 bg-color="white"
-                class="col"
+                class="col-3"
                 outlined
                 dense
                 type="tel"
-                label="Account Phone"
-                name="account_phone"
-                for="account_phone" />
+                label="Contact Phone"
+                name="contact_phone"
+                for="contact_phone" />
               <q-input
                 v-model="accounts.bookingEmail"
                 mask="email"
@@ -116,9 +187,9 @@
                 outlined
                 dense
                 type="email"
-                label="Account Email"
-                name="account_email"
-                for="account_email"
+                label="Contact Email"
+                name="contact_email"
+                for="contact_email"
             /></q-card-section>
             <q-card-section class="row q-gutter-md">
               <q-input
@@ -128,26 +199,19 @@
                 outlined
                 dense
                 type="textarea"
-                label="Account Notes"
-                name="account_notes"
-                for="account_notes"
+                label="Contact Notes"
+                name="contact_notes"
+                for="contact_notes"
               />
             </q-card-section>
           </q-card>
         </q-expansion-item>
-      </q-list>
-    </q-card>
 
-    <!-- second column -->
-    <q-card flat class="col">
-      <q-list
-        ><q-expansion-item
+        <q-expansion-item
           group="account_financial"
           icon="attach_money"
           label="Financial Details"
           header-class="text-black bg-grey-5"
-          default-opened
-          disable
         >
           <q-card bordered flat class="bg-grey-3">
             <q-card-section

@@ -19,7 +19,7 @@
     class="row q-gutter-md q-pa-md"
   >
     <q-card class="bg-white col" flat>
-      <q-list class="bg-white space-y-6">
+      <q-list class="bg-white space-y-2">
         <q-expansion-item
           group="tripDetails"
           icon="explore"
@@ -255,7 +255,7 @@
 
     <!-- Column Two -->
     <q-card class="bg-white col" flat>
-      <q-list class="bg-white space-y-6">
+      <q-list class="bg-white space-y-2">
         <q-expansion-item
           group="summary"
           icon="event"
