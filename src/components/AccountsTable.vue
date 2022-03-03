@@ -11,6 +11,19 @@
 </template>
 
 <script setup>
+import { db } from '../firebase'
+import { ref, onValue } from 'firebase/database'
+import { onMounted } from 'vue'
+import { usePrefs } from '../stores/usePrefs'
+
+const prefs = usePrefs()
+onMounted(() => {
+  const accountsRef = ref(db, '/')
+  onValue(accountsRef, (snapshot) => {
+    prefs.testData = snapshot.val()
+  })
+})
+
 const pagination = {
   rowsPerPage: 10,
 }

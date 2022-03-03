@@ -1,5 +1,4 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-import { readData } from '../firebase'
 
 export const usePrefs = defineStore({
   id: 'prefs',
@@ -59,6 +58,7 @@ export const usePrefs = defineStore({
     ],
     paymentTerms: ['On Completion', 'Net 15', 'Net 30', 'Net 60', 'Net 90'],
     tripType: ['In House', 'Farm In', 'Farm Out'],
+    testData: {},
   }),
   actions: {
     //actions go here
