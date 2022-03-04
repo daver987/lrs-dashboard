@@ -415,16 +415,15 @@
 import { storeToRefs } from 'pinia'
 import { useMap } from '../stores/useMap'
 import { useAccounts } from '../stores/useAccounts'
-import { useCounterStore } from '../stores/counter'
-import { usePrefs } from '../stores/usePrefs'
+import { data } from '../data/useData'
 
-const counterStore = useCounterStore()
+// const counterStore = useCounterStore()
 const accounts = useAccounts()
 const { contactFirstName, contactLastName, contactEmail, contactPhone } =
   storeToRefs(accounts)
 
 const store = useMap()
-const prefs = usePrefs()
+const prefs = data
 
 const fareInfo = $ref([
   {

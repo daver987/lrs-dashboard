@@ -14,9 +14,9 @@
 import { db } from '../firebase'
 import { ref, onValue } from 'firebase/database'
 import { onMounted } from 'vue'
-import { usePrefs } from '../stores/usePrefs'
+import { data } from '../data/useData'
 
-const prefs = usePrefs()
+const prefs = data()
 onMounted(() => {
   const accountsRef = ref(db, '/')
   onValue(accountsRef, (snapshot) => {

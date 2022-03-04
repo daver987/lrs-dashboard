@@ -21,16 +21,18 @@ const app = initializeApp({
 
 // Initialize Firebase
 
-export const db = getDatabase(app)
+const db = getDatabase(app)
 const analytics = getAnalytics(app)
 
-export function saveData(path, dataToSave) {
+function saveData(path, dataToSave) {
   set(ref(db, path), dataToSave)
 }
 
-export function readData(path) {
+function readData(path) {
   onValue(ref(db, path), (snapshot) => {
     const data = snapshot.val()
     return data
   })
 }
+
+export { db, saveData, readData }

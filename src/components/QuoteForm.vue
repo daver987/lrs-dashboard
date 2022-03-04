@@ -355,7 +355,7 @@ import { storeToRefs } from 'pinia'
 import { useQuote } from '../stores/useQuote'
 import { useCounterStore } from '../stores/counter'
 import { usePriceCalculator } from '../stores/usePriceCalculator'
-import { usePrefs } from '../stores/usePrefs'
+import { data } from '../data/useData'
 
 //TODO: Add price calculation function possible composable, add enable and disable buttons
 
@@ -363,7 +363,7 @@ const total = usePriceCalculator()
 const counter = useCounterStore()
 const quote = useQuote()
 const store = useMap()
-const prefs = usePrefs()
+const prefs = data
 
 const {
   sedDistTotal,

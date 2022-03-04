@@ -1,6 +1,7 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { useMap } from './useMap'
 import { usePrefs } from './usePrefs'
+import { data } from '../data/useData'
 
 export const usePriceCalculator = defineStore({
   id: 'priceCalculator',
@@ -22,7 +23,7 @@ export const usePriceCalculator = defineStore({
 
   actions: {
     priceCalculator() {
-      const prefs = usePrefs()
+      const prefs = data()
       const mapStore = useMap()
 
       this.distance = mapStore.routeDistance.match(/[+-]?\d+(\.\d+)?/g)
