@@ -33,7 +33,7 @@ async function emailAuth() {
   const { user, error } = props.signUp
     ? await supabase.auth.signUp(credentials.value)
     : await supabase.auth.signIn(credentials.value)
-  if (user) router.push('/')
+  if (user) router.push('/dashboard')
   else if (error) {
     alert(error.message)
     emailLoading.value = false
@@ -50,7 +50,7 @@ async function gitHubAuth() {
       redirectTo: `${window.location.origin}/callback`,
     }
   )
-  if (user) router.push('/')
+  if (user) router.push('/dashboard')
   else if (error) {
     alert(error.message)
     gitHubLoading.value = false
@@ -67,7 +67,7 @@ async function googleAuth() {
       redirectTo: `${window.location.origin}/callback`,
     }
   )
-  if (user) router.push('/')
+  if (user) router.push('/dashboard')
   else if (error) {
     alert(error.message)
     googleLoading.value = false
@@ -84,7 +84,7 @@ async function twitterAuth() {
       redirectTo: `${window.location.origin}/callback`,
     }
   )
-  if (user) router.push('/')
+  if (user) router.push('/dashboard')
   else if (error) {
     alert(error.message)
     twitterLoading.value = false
@@ -101,7 +101,7 @@ async function facebookAuth() {
       redirectTo: `${window.location.origin}/callback`,
     }
   )
-  if (user) router.push('/')
+  if (user) router.push('/dashboard')
   else if (error) {
     alert(error.message)
     facebookLoading.value = false

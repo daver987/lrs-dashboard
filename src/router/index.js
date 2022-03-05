@@ -94,9 +94,9 @@ const router = createRouter({
       },
       children: [
         {
-          path: '/',
+          path: '/dashboard',
           name: 'My Office',
-          component: () => import('@/pages/Index.vue'),
+          component: () => import('@/pages/Dashboard.vue'),
         },
         // {
         //   path: '/profile',

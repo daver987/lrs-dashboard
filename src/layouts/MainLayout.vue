@@ -77,7 +77,7 @@ async function signOut() {
         <q-item
           clickable
           v-ripple
-          to="/"
+          to="/dashboard"
           exact-active-class="bg-primary/20 text-primary"
         >
           <q-item-section avatar>
