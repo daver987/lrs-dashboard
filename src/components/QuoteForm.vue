@@ -350,12 +350,12 @@
 
 <script setup>
 import { Loader } from '@googlemaps/js-api-loader'
-import { useMap } from '../stores/useMap'
+import { useMap } from '@/stores/useMap'
 import { storeToRefs } from 'pinia'
-import { useQuote } from '../stores/useQuote'
-import { useCounterStore } from '../stores/counter'
-import { usePriceCalculator } from '../stores/usePriceCalculator'
-import { data } from '../data/useData'
+import { useQuote } from '@/stores/useQuote'
+import { useCounterStore } from '@/stores/counter'
+import { usePriceCalculator } from '@/stores/usePriceCalculator'
+import { data } from '@/data/useData'
 
 //TODO: Add price calculation function possible composable, add enable and disable buttons
 

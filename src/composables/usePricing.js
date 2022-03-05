@@ -10,14 +10,14 @@ export function usePricing(
   minDistance
 ) {
   if (distance < minDistance) {
-    distTotal = hourlyCost
+    distTotal.value = hourlyCost
   } else {
-    distTotal = distanceCost * distance - minDistance + hourlyCost
+    distTotal.value = distanceCost * distance - minDistance + hourlyCost
   }
   if (60 / time > 1) {
-    timeTotal = hourlyCost * 2
+    timeTotal.value = hourlyCost * 2
   } else {
-    timeTotal = (hourlyCost * time) / 60
+    timeTotal.value = (hourlyCost * time) / 60
   }
   return {
     distTotal,

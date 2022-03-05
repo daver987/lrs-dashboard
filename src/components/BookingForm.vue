@@ -413,9 +413,9 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { useMap } from '../stores/useMap'
-import { useAccounts } from '../stores/useAccounts'
-import { data } from '../data/useData'
+import { useMap } from '@/stores/useMap'
+import { useAccounts } from '@/stores/useAccounts'
+import { data } from '@/data/useData'
 
 // const counterStore = useCounterStore()
 const accounts = useAccounts()

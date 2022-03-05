@@ -11,7 +11,7 @@
     </div>
     <div>
       <label for="website">Website</label>
-      <input id="website" type="website" v-model="website" />
+      <input id="website" type="text" v-model="website" />
     </div>
 
     <div>
@@ -32,9 +32,10 @@
 </template>
 
 <script setup>
-import { useUserStore } from '../stores/useUserStore'
+import { useUserStore } from '@/stores/useUserStore'
 import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
+import { supabase} from '@/services/supabase'
 
 const loading = ref(true)
 const username = ref('')
@@ -47,9 +48,9 @@ const { user } = storeToRefs(useUser)
 async function getProfile() {
   try {
     loading.value = true
-    user.value = useSupabase().auth.user()
+    user.value = supabase.auth.user()
 
-    let { data, error, status } = await useSupabase()
+    let { data, error, status } = await supabase
       .from('profiles')
       .select(`username, website, avatar_url`)
       .eq('id', user.value.id)
@@ -72,7 +73,7 @@ async function getProfile() {
 async function updateProfile() {
   try {
     loading.value = true
-    user.value = useSupabase().auth.user()
+    user.value = supabase.auth.user()
 
     const updates = {
       id: user.value.id,
@@ -82,7 +83,7 @@ async function updateProfile() {
       updated_at: new Date(),
     }
 
-    let { error } = await useSupabase().from('profiles').upsert(updates, {
+    let { error } = await supabase.from('profiles').upsert(updates, {
       returning: 'minimal', // Don't return the value after inserting
     })
 
@@ -97,8 +98,8 @@ async function updateProfile() {
 async function signOut() {
   try {
     loading.value = true
-    let { error } = await useSupabase().auth.signOut()
-    if (error) throw error
+    let { error } = await supabase.auth.signOut()
+    if (error)  throw error
   } catch (error) {
     alert(error.message)
   } finally {

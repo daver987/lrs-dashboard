@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '../stores/useAuth'
-import { pinia } from '../stores/usePiniaStore'
+import { useAuthStore } from '@/stores/useAuth'
+import { pinia } from '@/stores/usePiniaStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -98,11 +98,6 @@ const router = createRouter({
           name: 'My Office',
           component: () => import('@/pages/Dashboard.vue'),
         },
-        // {
-        //   path: '/profile',
-        //   name: 'Profile',
-        //   component: () => import('@/pages/ProfileView.vue'),
-        // },
         {
           path: '/quotes',
           name: 'Quotes',
@@ -154,14 +149,14 @@ const router = createRouter({
 const { supabase } = useAuthStore(pinia)
 supabase.auth.onAuthStateChange((event) => {
   console.log(event)
-  if (event == 'SIGNED_OUT') return router.push('/signin')
-  if (event == 'SIGNED_IN') {
+  if (event === 'SIGNED_OUT') return router.push('/signin')
+  if (event === 'SIGNED_IN') {
     const routeName = router.currentRoute.value.name
     console.log('routeName', routeName)
 
-    if (routeName == 'callback') {
+    if (routeName === 'callback') {
       setTimeout(() => {
-        return router.push({ name: 'home' })
+        return router.push({ name: 'Dashboard' })
       }, 0)
     }
   }

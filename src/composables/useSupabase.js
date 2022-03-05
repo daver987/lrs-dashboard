@@ -1,6 +1,6 @@
 import { supabase } from '@/services/supabase'
 
-function addAccount(account) {
+async function addAccount(account) {
   const { data, error } = await supabase.from('accounts').insert([account])
   return { data, error }
 }

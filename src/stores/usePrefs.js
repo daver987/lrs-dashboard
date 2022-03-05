@@ -9,8 +9,8 @@ export const usePrefs = defineStore({
     quoteNumber: null,
     accountType: [
       {
-        label: 'Coprorate',
-        value: 'coprorate',
+        label: 'Corporate',
+        value: 'corporate',
       },
       {
         label: 'Individual',
@@ -40,7 +40,7 @@ export const usePrefs = defineStore({
     ],
     serviceType: ['To Airport', 'From Airport', 'Point To Point', 'Hourly'],
     selectNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    tripStatus: ['Unasigned', 'Assigned', 'Done'],
+    tripStatus: ['Unassigned', 'Assigned', 'Done'],
     hourlyCost: {
       sedan: 80,
       suv: 105,

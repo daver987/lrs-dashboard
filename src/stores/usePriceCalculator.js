@@ -1,6 +1,6 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { useMap } from './useMap'
-import { data } from '../data/useData'
+import { data } from '@/data/useData'
 
 export const usePriceCalculator = defineStore({
   id: 'priceCalculator',

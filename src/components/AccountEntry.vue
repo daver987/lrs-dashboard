@@ -30,7 +30,7 @@
               </div>
             </q-card-section>
 
-            <template v-if="selectedAccountType === 'coprorate'">
+            <template v-if="selectedAccountType === 'corporate'">
               <q-card-section class="col q-gutter-sm">
                 <q-input
                   v-model="companyName"
@@ -450,11 +450,11 @@
 </template>
 
 <script setup>
-import { useAccounts } from '../stores/useAccounts'
+import { useAccounts } from '@/stores/useAccounts'
 // import { usePrefs } from '../stores/usePrefs'
 import { storeToRefs } from 'pinia'
 import { watch, ref } from 'vue'
-import { data } from '../data/useData'
+import { data } from '@/data/useData'
 
 const accounts = useAccounts()
 const prefs = data()
@@ -490,6 +490,7 @@ const {
   individualEmail,
   individualPhone,
   individualNotes,
+  individualAddress,
   contactPaymentTerms,
   contactPaymentInfo,
   selectedContactNamePrefix,

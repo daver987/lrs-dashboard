@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import EyeSlashed from '~icons/akar-icons/eye-slashed'
 import EyeOpen from '~icons/akar-icons/eye-open'
+import { ref, watch } from 'vue'
 
 const showPassword = ref(false)
 
