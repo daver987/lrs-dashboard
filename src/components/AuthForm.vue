@@ -143,6 +143,7 @@ const loading = computed(
       <q-input
         outlined
         dense
+        label="Password"
         :disabled="loading"
         name="password"
         type="password"
@@ -159,10 +160,13 @@ const loading = computed(
           class="row"
         />
         <q-btn
+          no-caps
           :loading="emailLoading"
           :disabled="loading"
           type="submit"
           class="row full-width"
+          color="primary"
+          unelevated
           >{{ signUp ? 'Sign Up' : 'Sign In' }}</q-btn
         >
       </div>

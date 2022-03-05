@@ -21,30 +21,39 @@ async function onSubmit() {
 }
 </script>
 <template>
-  <div>
-    <h2 class="font-bold mb- text-2xl">Lost your password?</h2>
-    <p class="text-sm mb-4 text-slate-500">Let's sort that for you</p>
-    <form class="flex flex-col w-full items-start" @submit.prevent="onSubmit">
-      <VLabel for="email">Email</VLabel>
-      <VInput
+  <q-card-section>
+    <h2 class="font-bold text-center mb-2 text-2xl text-grey-9">
+      Lost your password?
+    </h2>
+    <p class="text-sm text-center mb-4 text-grey-9">Let's sort that for you</p>
+  </q-card-section>
+  <q-card-section>
+    <q-form class="q-gutter-md" @submit.prevent="onSubmit">
+      <q-input
         required
         :disabled="loading"
-        class="w-full"
         name="email"
-        id="email"
         type="email"
         placeholder="Enter your email"
         v-model="email"
+        outlined
+        dense
       />
-
-      <VButton :loading="loading" type="submit" class="bg-teal-700">
-        Reset
-      </VButton>
-    </form>
-
-    <span class="text-sm">
-      <router-link to="/signup" class="font-bold">Sign up</router-link><br />
-      <router-link to="/signin" class="font-bold">Sign in</router-link>
-    </span>
-  </div>
+      <div>
+        <q-btn
+          :loading="loading"
+          type="submit"
+          class="full-width"
+          color="primary"
+          unelevated
+        >
+          Reset
+        </q-btn>
+      </div>
+    </q-form>
+  </q-card-section>
+  <q-card-section>
+    <q-btn to="/signup" label="Sign up" flat no-caps />
+    <q-btn to="/signin" label="Sign in" flat no-caps />
+  </q-card-section>
 </template>

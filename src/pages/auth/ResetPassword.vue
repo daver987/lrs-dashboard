@@ -36,23 +36,28 @@ async function onSubmit() {
 }
 </script>
 <template>
-  <div>
-    <h2 class="font-bold mb- text-2xl">Reset Password</h2>
-    <p class="text-sm mb-4 text-slate-500">Choose a new password below</p>
-    <form class="flex flex-col w-full items-start" @submit.prevent="onSubmit">
-      <VLabel for="password">Password</VLabel>
-      <VPasswordInput
+  <q-card-section>
+    <h2 class="font-bold mb-2 text-2xl text-grey-9">Reset Password</h2>
+    <p class="text-sm mb-4 text-grey-9">Choose a new password below</p>
+  </q-card-section>
+  <q-card-section>
+    <q-form class="q-gutter-md" @submit.prevent="onSubmit">
+      <q-input
         :disabled="loading"
-        class="mb-4 w-full"
         name="password"
-        id="password"
         placeholder="Choose your password"
         v-model="password"
       />
 
-      <VButton :loading="loading" type="submit" class="bg-teal-700">
+      <q-btn
+        :loading="loading"
+        type="submit"
+        no-caps
+        color="primary"
+        unelevated
+      >
         Reset
-      </VButton>
-    </form>
-  </div>
+      </q-btn>
+    </q-form>
+  </q-card-section>
 </template>
