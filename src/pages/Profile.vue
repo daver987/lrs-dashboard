@@ -4,7 +4,7 @@
       <h2
         class="font-bold text-center text-black tracking-wider text-3xl uppercase"
       >
-        Resources Page
+        Profile Page
       </h2>
     </div>
   </q-page>

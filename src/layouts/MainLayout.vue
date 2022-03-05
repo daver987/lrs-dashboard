@@ -44,7 +44,7 @@ async function signOut() {
 
 <template>
   <q-layout view="lHh lpR fFf">
-    <q-header reveal bordered class="bg-black text-white">
+    <q-header reveal class="bg-black text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
         <q-toolbar-title></q-toolbar-title>
@@ -65,7 +65,7 @@ async function signOut() {
       :width="200"
       :mini="miniMode"
     >
-      <q-item class="bg-grey-3 q-pa-sm">
+      <q-item class="bg-grey-3">
         <q-item-section avatar>
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
@@ -73,83 +73,96 @@ async function signOut() {
         </q-item-section>
         <q-item-section>My Dashboard</q-item-section>
       </q-item>
-      <q-list padding class="bg-white">
-        <q-item clickable v-ripple to="/">
+      <q-list padding class="bg-white text-black">
+        <q-item
+          clickable
+          v-ripple
+          to="/"
+          exact-active-class="bg-primary/20 text-primary"
+        >
           <q-item-section avatar>
             <q-icon name="inbox" />
           </q-item-section>
           <q-item-section> My Office </q-item-section>
         </q-item>
 
-        <q-expansion-item
-          group="accounts"
-          icon="groups"
-          label="Accounts"
-          header-class="text-black"
+        <q-item
+          clickable
+          v-ripple
           to="/accounts"
-          class="bg-white"
+          exact-active-class="bg-primary/20 text-primary"
         >
-          <q-item clickable v-ripple to="/accounts">
-            <q-item-section avatar> </q-item-section>
-            <q-item-section> At A Glance </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple to="/account-entry">
-            <q-item-section avatar>
-              <q-icon name="groups" />
-            </q-item-section>
-            <q-item-section> Account Entry </q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-expansion-item
-          group="quotes"
-          icon="request_quote"
-          label="Quotes"
-          header-class="text-black"
-          to="/quotes"
-          class="bg-white"
+          <q-item-section avatar> <q-icon name="groups" /> </q-item-section>
+          <q-item-section> Accounts </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          v-ripple
+          to="/account-entry"
+          exact-active-class="bg-primary/20 text-primary"
         >
-          <q-item clickable v-ripple to="quotes">
-            <q-item-section avatar>
-              <q-icon name="request_quote" />
-            </q-item-section>
-            <q-item-section> At A Glance </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple to="/quick-quote">
-            <q-item-section avatar>
-              <q-icon name="attach_money" />
-            </q-item-section>
-            <q-item-section> Quick Quote </q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-expansion-item
-          group="reservations"
-          icon="calendar_month"
-          label="Reservations"
-          header-class="text-black"
-          to="/reservations"
-          class="bg-white"
-        >
-          <q-item clickable v-ripple to="/reservations">
-            <q-item-section avatar>
-              <q-icon name="calendar_month" />
-            </q-item-section>
-            <q-item-section> At A Glance </q-item-section>
-          </q-item>
-          <q-item clickable v-ripple to="/bookings">
-            <q-item-section avatar>
-              <q-icon name="attach_money" />
-            </q-item-section>
-            <q-item-section> Booking Form </q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-item clickable v-ripple to="/resources">
           <q-item-section avatar>
-            <q-icon name="category" />
+            <q-icon name="groups" />
           </q-item-section>
-          <q-item-section> Resources </q-item-section>
+          <q-item-section> Account Entry </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          to="quotes"
+          exact-active-class="bg-primary/20 text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="request_quote" />
+          </q-item-section>
+          <q-item-section> Quotes </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          v-ripple
+          to="/quick-quote"
+          exact-active-class="bg-primary/20 text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="attach_money" />
+          </q-item-section>
+          <q-item-section> Quick Quote </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          to="/reservations"
+          exact-active-class="bg-primary/20 text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="calendar_month" />
+          </q-item-section>
+          <q-item-section> Reservations </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          v-ripple
+          to="/bookings"
+          exact-active-class="bg-primary/20 text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="attach_money" />
+          </q-item-section>
+          <q-item-section> Booking Form </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          to="/profile"
+          exact-active-class="bg-primary/20 text-primary"
+        >
+          <q-item-section avatar>
+            <q-icon name="group" />
+          </q-item-section>
+          <q-item-section> My Profile </q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
@@ -183,3 +196,9 @@ async function signOut() {
     </q-footer>
   </q-layout>
 </template>
+
+<!-- <style lang="sass">
+.my-menu-link
+  color: white
+  background: #F2C037
+</style> -->

@@ -132,9 +132,9 @@ const router = createRouter({
           component: () => import('@/pages/Bookings.vue'),
         },
         {
-          path: '/resources',
-          name: 'Resources',
-          component: () => import('@/pages/Resources.vue'),
+          path: '/profile',
+          name: 'Profile',
+          component: () => import('@/pages/Profile.vue'),
         },
         {
           path: '/reservations',
