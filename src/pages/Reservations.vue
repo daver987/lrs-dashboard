@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <QuoteCard
+    <!-- <QuoteCard
       v-for="quotes in data"
       :key="quotes.quote_number"
       :quoteNumber="quotes.quote_number"
@@ -12,19 +12,19 @@
       :routeDuration="quotes.route_duration"
       :date="quotes.pickup_time"
       :selectedServiceType="quotes.service_type"
-    />
+    /> -->
   </q-page>
 </template>
 
 <script setup>
-import { ref, onValue } from 'firebase/database'
-import { ref as myRef } from 'vue'
-import { db } from '../firebase'
+// import { ref, onValue } from 'firebase/database'
+// import { ref as myRef } from 'vue'
+// import { db } from '../firebase'
 
-const data = myRef(null)
-const quoteRef = ref(db, '/quotes/quote_number')
-onValue(quoteRef, (snapshot) => {
-  data.value = snapshot.val()
-  console.log(data.value)
-})
+// const data = myRef(null)
+// const quoteRef = ref(db, '/quotes/quote_number')
+// onValue(quoteRef, (snapshot) => {
+//   data.value = snapshot.val()
+//   console.log(data.value)
+// })
 </script>

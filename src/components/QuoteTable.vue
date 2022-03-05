@@ -1,6 +1,6 @@
 <template>
-  <q-markup-table flat square
-    ><thead class="bg-grey-5">
+  <q-markup-table flat square>
+    <!-- <thead class="bg-grey-5">
       <tr>
         <th v-for="col in columns" :key="col.name" class="text-center">
           {{ col.label }}
@@ -16,14 +16,14 @@
         <td class="text-center">{{ row.service_type }}</td>
         <td class="text-center">{{ row.pickup_address }}</td>
       </tr>
-    </tbody>
+    </tbody> -->
   </q-markup-table>
 </template>
 <script setup>
 //Todo: Migrate to q-table, fix firebase keys for quotes and accounts and customers
-import { ref, onValue } from 'firebase/database'
+// import { ref, onValue } from 'firebase/database'
 
-import { db } from '../firebase'
+// import { db } from '../firebase'
 const columns = [
   {
     name: 'quote_number',
@@ -70,11 +70,11 @@ const columns = [
   },
 ]
 
-const data = $ref(null)
-const rows = $ref(null)
-onValue(ref(db, '/quotes/quote_number'), (snapshot) => {
-  data = snapshot.val()
-  rows = data
-  console.log(data)
-})
+// const data = $ref(null)
+// const rows = $ref(null)
+// onValue(ref(db, '/quotes/quote_number'), (snapshot) => {
+//   data = snapshot.val()
+//   rows = data
+//   console.log(data)
+// })
 </script>

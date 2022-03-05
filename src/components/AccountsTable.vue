@@ -11,18 +11,18 @@
 </template>
 
 <script setup>
-import { db } from '../firebase'
-import { ref, onValue } from 'firebase/database'
-import { onMounted } from 'vue'
-import { data } from '../data/useData'
+// import { db } from '../firebase'
+// import { ref, onValue } from 'firebase/database'
+// import { onMounted } from 'vue'
+// import { data } from '../data/useData'
 
-const prefs = data()
-onMounted(() => {
-  const accountsRef = ref(db, '/')
-  onValue(accountsRef, (snapshot) => {
-    prefs.testData = snapshot.val()
-  })
-})
+// const prefs = data()
+// onMounted(() => {
+//   const accountsRef = ref(db, '/')
+//   onValue(accountsRef, (snapshot) => {
+//     prefs.testData = snapshot.val()
+//   })
+// })
 
 const pagination = {
   rowsPerPage: 10,

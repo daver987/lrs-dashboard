@@ -1,8 +1,8 @@
 <script setup>
-import { onMounted } from 'vue'
+// import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
-import { db } from '../firebase'
-import { ref, onValue } from 'firebase/database'
+// import { db } from '../firebase'
+// import { ref, onValue } from 'firebase/database'
 import { usePrefs } from '../stores/usePrefs'
 import { storeToRefs } from 'pinia'
 import { usePriceCalculator } from '../stores/usePriceCalculator'
@@ -14,20 +14,20 @@ const { accountNumber, quoteNumber, contactAccountNumber } = storeToRefs(prefs)
 const price = usePriceCalculator()
 const accounts = useAccounts()
 
-onMounted(() => {
-  const quoteCount = ref(db, 'prefs/quote_number')
-  const accNum = ref(db, 'prefs/account_number/')
-  const contactAccNum = ref(db, 'prefs/contact_account_number/')
-  onValue(quoteCount, (snapshot) => {
-    quoteNumber.value = snapshot.val()
-  })
-  onValue(accNum, (snapshot) => {
-    accountNumber.value = snapshot.val()
-  })
-  onValue(contactAccNum, (snapshot) => {
-    contactAccountNumber.value = snapshot.val()
-  })
-})
+// onMounted(() => {
+//   const quoteCount = ref(db, 'prefs/quote_number')
+//   const accNum = ref(db, 'prefs/account_number/')
+//   const contactAccNum = ref(db, 'prefs/contact_account_number/')
+//   onValue(quoteCount, (snapshot) => {
+//     quoteNumber.value = snapshot.val()
+//   })
+//   onValue(accNum, (snapshot) => {
+//     accountNumber.value = snapshot.val()
+//   })
+//   onValue(contactAccNum, (snapshot) => {
+//     contactAccountNumber.value = snapshot.val()
+//   })
+// })
 
 let leftDrawerOpen = $ref(true)
 let miniMode = $ref(false)

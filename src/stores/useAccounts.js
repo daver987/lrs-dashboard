@@ -1,7 +1,6 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-import { saveData } from '../firebase'
+
 import { data } from '../data/useData'
-// import { addDoc, getDocs } from 'firebase/firestore'
 
 export const useAccounts = defineStore({
   id: 'accounts',

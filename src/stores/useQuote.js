@@ -1,7 +1,6 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { useMap } from './useMap'
 import { useCounterStore } from '../stores/counter'
-import { saveData } from '../firebase'
 
 export const useQuote = defineStore({
   id: 'quote',
