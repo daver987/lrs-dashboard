@@ -1,17 +1,25 @@
-<script lang="ts" setup>
+<script setup>
 import { useAuthStore } from '@/stores/useAuth'
-import { Ref } from 'vue'
-import { UserCredentials } from '@supabase/supabase-js'
 
-const props = defineProps<{
-  signUp: boolean
-  title: string
-  subtitle: string
-  emailPlaceholder: string
-  passwordPlaceholder: string
-}>()
+const props = defineProps({
+  signUp: {
+    type: Boolean,
+  },
+  title: {
+    type: String,
+  },
+  subtitle: {
+    type: String,
+  },
+  emailPlaceholder: {
+    type: String,
+  },
+  passwordPlaceholder: {
+    type: String,
+  },
+})
 
-const credentials: Ref<UserCredentials> = ref({
+const credentials = ref({
   email: '',
   password: '',
 })
@@ -110,89 +118,96 @@ const loading = computed(
 )
 </script>
 <template>
-  <div>
-    <h2 class="font-bold text-center mb-2 text-2xl text-slate-500">
+  <q-card-section>
+    <h2 class="font-bold text-center mb-2 text-2xl text-grey-9">
       {{ title }}
     </h2>
-    <p class="text-center text-sm mb-4 text-slate-500">
+    <p class="text-center text-sm mb-4 text-grey-9">
       {{ subtitle }}
     </p>
-    <form class="flex flex-col w-full items-start" @submit.prevent="emailAuth">
-      <VLabel for="email">Email</VLabel>
-      <VInput
+  </q-card-section>
+  <q-card-section>
+    <q-form class="q-gutter-md" @submit.prevent="emailAuth">
+      <q-input
+        label="Email"
+        name="email"
+        outlined
+        dense
         required
         :disabled="loading"
-        class="w-full"
-        name="email"
-        id="email"
         type="email"
         :placeholder="emailPlaceholder"
-        v-model="(credentials.email as string)"
+        v-model="credentials.email"
       />
-      <VLabel for="password">Password</VLabel>
-      <VPasswordInput
+
+      <q-input
+        outlined
+        dense
         :disabled="loading"
-        class="mb-4 w-full"
         name="password"
-        id="password"
+        type="password"
         :placeholder="passwordPlaceholder"
-        v-model="(credentials.password as string)"
+        v-model="credentials.password"
       />
+      <div class="space-y-2 col">
+        <q-btn
+          v-if="!signUp"
+          to="/forgotpassword"
+          label="Forgot your password"
+          flat
+          no-caps
+          class="row"
+        />
+        <q-btn
+          :loading="emailLoading"
+          :disabled="loading"
+          type="submit"
+          class="row full-width"
+          >{{ signUp ? 'Sign Up' : 'Sign In' }}</q-btn
+        >
+      </div>
+    </q-form>
+  </q-card-section>
 
-      <router-link
-        v-if="!signUp"
-        to="/forgotpassword"
-        class="font-bold mx-auto text-sm mb-4"
-        >Forgot your password?</router-link
-      >
-
-      <VButton
-        :loading="emailLoading"
-        :disabled="loading"
-        type="submit"
-        class="bg-teal-700"
-        >{{ signUp ? 'Sign Up' : 'Sign In' }}</VButton
-      >
-    </form>
-    <div class="flex flex-row space-x-2">
-      <VButton
-        :loading="gitHubLoading"
-        :disabled="loading"
-        type="button"
-        class="flex bg-blue-900 items-center justify-center"
-        @click="gitHubAuth"
-      >
-        <i-mdi-github class="h-5 w-5" />
-      </VButton>
-      <VButton
-        :loading="googleLoading"
-        :disabled="loading"
-        type="button"
-        class="flex bg-[#EA4335] items-center justify-center"
-        @click="googleAuth"
-      >
-        <i-mdi-google class="h-5 w-5" />
-      </VButton>
-      <VButton
-        :loading="twitterLoading"
-        :disabled="loading"
-        type="button"
-        class="flex bg-[#1DA1F2] items-center justify-center"
-        @click="twitterAuth"
-      >
-        <i-mdi-twitter class="h-5 w-5" />
-      </VButton>
-      <VButton
-        :loading="facebookLoading"
-        :disabled="loading"
-        type="button"
-        class="flex bg-[#425F9C] items-center justify-center"
-        @click="facebookAuth"
-      >
-        <i-mdi-facebook class="h-5 w-5" />
-      </VButton>
-    </div>
-
+  <q-card-section class="row justify-between">
+    <q-btn
+      :loading="gitHubLoading"
+      :disabled="loading"
+      type="button"
+      class="flex bg-blue-900 items-center justify-center"
+      @click="gitHubAuth"
+    >
+      <i-mdi-github class="h-5 w-5" />
+    </q-btn>
+    <q-btn
+      :loading="googleLoading"
+      :disabled="loading"
+      type="button"
+      class="flex bg-[#EA4335] items-center justify-center"
+      @click="googleAuth"
+    >
+      <i-mdi-google class="h-5 w-5" />
+    </q-btn>
+    <q-btn
+      :loading="twitterLoading"
+      :disabled="loading"
+      type="button"
+      class="flex bg-[#1DA1F2] items-center justify-center"
+      @click="twitterAuth"
+    >
+      <i-mdi-twitter class="h-5 w-5" />
+    </q-btn>
+    <q-btn
+      :loading="facebookLoading"
+      :disabled="loading"
+      type="button"
+      class="flex bg-[#425F9C] items-center justify-center"
+      @click="facebookAuth"
+    >
+      <i-mdi-facebook class="h-5 w-5" />
+    </q-btn>
+  </q-card-section>
+  <q-card-section>
     <slot name="actions" />
-  </div>
+  </q-card-section>
 </template>

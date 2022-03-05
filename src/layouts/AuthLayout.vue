@@ -1,16 +1,22 @@
 <template>
-  <div class="flex h-full min-h-full liquid-cheese items-center">
-    <div
-      class="rounded-lg mx-auto max-h-full bg-slate-900 py-8 px-4 text-slate-50 sm:px-6 md:p-8 lg:p-12"
-    >
-      <div class="flex flex-col items-start">
-        <h1 class="font-bold mx-auto text-center mb-4 text-4xl">
-          LRS Dashboard
-        </h1>
-        <router-view />
-      </div>
-    </div>
-  </div>
+  <q-layout view="hHh lpR fFf" class="liquid-cheese">
+    <q-page-container>
+      <q-page class="flex flex-center">
+        <q-card
+          class="bg-white rounded-lg max-h-full max-w-md py-8 px-4 text-grey-9 sm:px-6 md:p-8"
+        >
+          <q-card-section>
+            <h1 class="font-bold mx-auto text-center mb-4 text-4xl">
+              LRS Dashboard
+            </h1>
+          </q-card-section>
+          <q-card-section>
+            <router-view />
+          </q-card-section>
+        </q-card>
+      </q-page>
+    </q-page-container>
+  </q-layout>
 </template>
 
 <style>
