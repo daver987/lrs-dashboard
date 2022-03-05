@@ -43,11 +43,11 @@ async function signOut() {
 </script>
 
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="lHh lpR fFf">
     <q-header reveal bordered class="bg-black text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title> LRS Dashboard </q-toolbar-title>
+        <q-toolbar-title></q-toolbar-title>
         <span
           class="text-lg text-primary text-bold tracking-widest uppercase"
           >{{ $route.name }}</span
@@ -63,11 +63,18 @@ async function signOut() {
       side="left"
       bordered
       :width="200"
-      class="bg-grey-3"
       :mini="miniMode"
     >
-      <q-list padding>
-        <q-item clickable v-ripple to="/" class="bg-grey-3">
+      <q-item class="bg-grey-3 q-pa-sm">
+        <q-item-section avatar>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+          </q-avatar>
+        </q-item-section>
+        <q-item-section>My Dashboard</q-item-section>
+      </q-item>
+      <q-list padding class="bg-white">
+        <q-item clickable v-ripple to="/">
           <q-item-section avatar>
             <q-icon name="inbox" />
           </q-item-section>
@@ -78,7 +85,7 @@ async function signOut() {
           group="accounts"
           icon="groups"
           label="Accounts"
-          header-class="text-black bg-grey-3"
+          header-class="text-black"
           to="/accounts"
           class="bg-white"
         >
@@ -98,7 +105,7 @@ async function signOut() {
           group="quotes"
           icon="request_quote"
           label="Quotes"
-          header-class="text-black bg-grey-3"
+          header-class="text-black"
           to="/quotes"
           class="bg-white"
         >
@@ -120,7 +127,7 @@ async function signOut() {
           group="reservations"
           icon="calendar_month"
           label="Reservations"
-          header-class="text-black bg-grey-3"
+          header-class="text-black"
           to="/reservations"
           class="bg-white"
         >
@@ -138,7 +145,7 @@ async function signOut() {
           </q-item>
         </q-expansion-item>
 
-        <q-item clickable v-ripple to="/resources" class="bg-grey-3">
+        <q-item clickable v-ripple to="/resources">
           <q-item-section avatar>
             <q-icon name="category" />
           </q-item-section>

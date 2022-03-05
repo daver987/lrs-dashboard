@@ -2,11 +2,9 @@
   <q-layout view="hHh lpR fFf" class="liquid-cheese">
     <q-page-container>
       <q-page class="flex flex-center">
-        <q-card
-          class="bg-white rounded-lg h-xl max-h-full max-w-md py-8 px-4 text-grey-9 sm:px-6 md:p-8"
-        >
+        <q-card class="bg-white max-w-md text-grey-9 q-pa-md">
           <q-card-section>
-            <h1 class="font-bold mx-auto text-center mb-4 text-4xl">
+            <h1 class="font-bold mx-auto text-center text-4xl">
               LRS Dashboard
             </h1>
           </q-card-section>
