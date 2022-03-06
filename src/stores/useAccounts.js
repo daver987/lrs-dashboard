@@ -1,6 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { supabase } from '@/services/supabase'
-// import { data } from '../data/useData'
 
 export const useAccounts = defineStore({
   id: 'accounts',

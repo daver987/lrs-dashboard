@@ -1,35 +1,82 @@
 <template>
   <q-table
-    :rows='rows'
-    :columns='columns'
-    row-key='name'
-    table-header-class='bg-grey-5'
+    :rows="rows"
+    :columns="columns"
+    row-key="name"
+    table-header-class="bg-grey-5"
     flat
     square
-    :pagination='pagination'
-  />
+    :pagination="pagination"
+    title="Accounts"
+    :row-key="(row) => row.id"
+    v-model:fullscreen="isFullscreen"
+    v-model:grid="isGrid"
+    ><template v-slot:top>
+      <q-btn
+        :disable="loading"
+        label="Add New"
+        @click="addAccount"
+        outline
+        color="blue-4"
+      />
+      <q-space />
+      <q-btn
+        flat
+        :disable="loading"
+        :icon="isFullscreen ? 'fullscreen_exit' : 'fullscreen'"
+        @click="setFullscreen"
+      />
+      <q-btn
+        flat
+        :disable="loading"
+        :icon="isGrid ? 'view_list' : 'grid_view'"
+        @click="setGrid"
+      /> </template
+  ></q-table>
+  <q-dialog v-model="isOpen">
+    <AddAccountModal />
+  </q-dialog>
 </template>
 
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
 import { useAuthStore } from '@/stores/useAuth'
 
+const isGrid = ref(false)
+function setGrid(value) {
+  isGrid.value = !isGrid.value
+}
+
+const isOpen = ref(false)
+function addAccount() {
+  isOpen.value = !isOpen.value
+  console.log('addAccount')
+}
+const isFullscreen = ref(false)
+function setFullscreen() {
+  isFullscreen.value = !isFullscreen.value
+  console.log('setFullscreen')
+}
+
 onMounted(() => {
   getRows()
   console.log(getRows())
 })
-const rows = ref([{
-  id: null,
-  company_email: '',
-  company_name: '',
-  company_phone: '',
-  company_address: '',
-}])
+const rows = ref([
+  {
+    id: null,
+    company_email: '',
+    company_name: '',
+    company_phone: '',
+    company_address: '',
+  },
+])
 const { supabase } = useAuthStore()
 const store = reactive({
   user: {},
 })
 const loading = ref(true)
+// const selection = ref([])
 
 async function getRows() {
   try {
@@ -40,7 +87,6 @@ async function getRows() {
       .from('accounts')
       .select(`id, company_name, company_address, company_phone, company_email`)
       .eq('user_id', store.user.id)
-
 
     if (error && status !== 406) throw error
 

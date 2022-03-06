@@ -6,6 +6,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AccountEntry: typeof import('./src/components/AccountEntry.vue')['default']
     AccountsTable: typeof import('./src/components/AccountsTable.vue')['default']
+    AddAccountModal: typeof import('./src/components/AddAccountModal.vue')['default']
     Alert: typeof import('./src/components/Alert.vue')['default']
     AuthForm: typeof import('./src/components/AuthForm.vue')['default']
     Avatar: typeof import('./src/components/Avatar.vue')['default']

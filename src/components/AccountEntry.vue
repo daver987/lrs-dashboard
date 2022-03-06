@@ -451,7 +451,6 @@
 
 <script setup>
 import { useAccounts } from '@/stores/useAccounts'
-// import { usePrefs } from '../stores/usePrefs'
 import { storeToRefs } from 'pinia'
 import { watch, ref } from 'vue'
 import { data } from '@/data/useData'
