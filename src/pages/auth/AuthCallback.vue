@@ -1,5 +1,7 @@
 <script setup>
-import { useAuthStore } from '../../stores/useAuth'
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/useAuth'
 
 const router = useRouter()
 const { supabase } = useAuthStore()

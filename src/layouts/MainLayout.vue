@@ -1,7 +1,5 @@
 <script setup>
-
 import { RouterView } from 'vue-router'
-
 import { usePrefs } from '@/stores/usePrefs'
 import { storeToRefs } from 'pinia'
 import { usePriceCalculator } from '@/stores/usePriceCalculator'
@@ -165,13 +163,6 @@ async function signOut() {
           <q-item-section> Log Out </q-item-section>
         </q-item>
       </q-list>
-<!--      <q-btn-->
-<!--        @click='signOut'-->
-<!--        color='primary'-->
-<!--        label='Log Out'-->
-<!--        class='q-mr-lg'-->
-<!--        center-->
-<!--      />-->
     </q-drawer>
     <q-page-container>
       <router-view />
@@ -198,8 +189,3 @@ async function signOut() {
   </q-layout>
 </template>
 
-<!-- <style lang="sass">
-.my-menu-link
-  color: white
-  background: #F2C037
-</style> -->

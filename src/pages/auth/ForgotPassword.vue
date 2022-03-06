@@ -1,5 +1,5 @@
 <script setup>
-import { useAuthStore } from '../../stores/useAuth'
+import { useAuthStore } from '@/stores/useAuth'
 
 const email = ref('')
 const loading = ref(false)

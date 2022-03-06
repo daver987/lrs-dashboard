@@ -1,5 +1,5 @@
 <template>
-  <q-page class="subcontent">
+  <q-page>
     <navigation-bar @today="onToday" @prev="onPrev" @next="onNext" />
 
     <div class="row justify-center q-pa-md">
