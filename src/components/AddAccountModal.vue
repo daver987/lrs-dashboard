@@ -23,7 +23,14 @@
                     dense
                   />
                 </div>
-                <q-btn icon="close" flat round dense v-close-popup />
+                <q-btn
+                  icon="close"
+                  @click="icon = false"
+                  flat
+                  round
+                  dense
+                  v-close-popup
+                />
               </q-card-section>
               <q-form @reset="onReset" @submit="onSubmit">
                 <template v-if="selectedAccountType === 'corporate'">

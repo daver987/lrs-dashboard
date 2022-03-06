@@ -18,7 +18,6 @@ declare module 'vue' {
     LoadingIcon: typeof import('./src/components/LoadingIcon.vue')['default']
     MyProfile: typeof import('./src/components/MyProfile.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
-    Profile: typeof import('./src/components/Profile.vue')['default']
     QuoteCard: typeof import('./src/components/QuoteCard.vue')['default']
     QuoteForm: typeof import('./src/components/QuoteForm.vue')['default']
     QuoteTable: typeof import('./src/components/QuoteTable.vue')['default']
