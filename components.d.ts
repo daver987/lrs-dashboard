@@ -16,6 +16,7 @@ declare module 'vue' {
     IMdiGoogle: typeof import('~icons/mdi/google')['default']
     IMdiTwitter: typeof import('~icons/mdi/twitter')['default']
     LoadingIcon: typeof import('./src/components/LoadingIcon.vue')['default']
+    MyProfile: typeof import('./src/components/MyProfile.vue')['default']
     NavigationBar: typeof import('./src/components/NavigationBar.vue')['default']
     Profile: typeof import('./src/components/Profile.vue')['default']
     QuoteCard: typeof import('./src/components/QuoteCard.vue')['default']

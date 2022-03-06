@@ -4,6 +4,7 @@ import { supabase } from '@/services/supabase'
 export const useAccounts = defineStore({
   id: 'accounts',
   state: () => ({
+    rows: [],
     selectedAccountType: 'corporate',
     combinedContactAccountNumber: null,
     companyName: '',
@@ -14,6 +15,7 @@ export const useAccounts = defineStore({
     companyPaymentMethod: '',
     companyPaymentTerms: '',
     companyPaymentInfo: '',
+    companyAccountNumber: null,
 
     individualPrefix: '',
     individualFirstName: '',
@@ -38,6 +40,8 @@ export const useAccounts = defineStore({
     billingContact: '',
     accountInfo: {},
     contactInfo: {},
+    loading: true,
+    user: null,
   }),
   actions: {
     // addAccount() {
@@ -120,24 +124,61 @@ export const useAccounts = defineStore({
     //   }
     // },
 
-    async addAccount() {
+    async saveAccount() {
       const user = supabase.auth.user()
       const { id } = user
+      const incrementAccountNumber = async () => {
+        const { data } = await supabase.rpc('increment_account_number')
+        this.companyAccountNumber = data
+        console.log(data)
+      }
       this.accountInfo = {
         user_id: id,
-        company_account_number: 1004,
+        company_account_number: this.companyAccountNumber++,
+        company_account_type: this.selectedAccountType,
         company_name: this.companyName,
         company_address: this.companyAddress,
         company_phone: this.companyPhone,
         company_email: this.companyEmail,
         company_notes: this.companyNotes,
+        company_payment_method: this.companyPaymentMethod,
+        company_payment_terms: this.companyPaymentTerms,
+        contact_account_number: 10,
       }
       if (this.selectedAccountType === 'corporate') {
         const { data, error } = await supabase
           .from('accounts')
           .insert([this.accountInfo])
-        console.log(data)
-        console.log(error)
+        await incrementAccountNumber()
+        await this.getRows()
+        console.error(error)
+      }
+    },
+
+    async getRows() {
+      try {
+        this.loading = true
+        this.user = supabase.auth.user()
+        const { data, error, status } = await supabase
+          .from('accounts')
+          .select(
+            `company_name, company_address, company_phone, company_email, company_account_number`
+          )
+          .eq('user_id', this.user.id)
+
+        if (error && status !== 406) {
+          console.log(error)
+          return
+        }
+
+        if (data) {
+          this.rows = data
+          console.log(this.rows)
+        }
+      } catch (error) {
+        alert(error.message)
+      } finally {
+        this.loading = false
       }
     },
   },

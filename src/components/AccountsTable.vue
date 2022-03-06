@@ -1,6 +1,6 @@
 <template>
   <q-table
-    :rows="rows"
+    :rows="accounts.rows"
     :columns="columns"
     row-key="name"
     table-header-class="bg-grey-5"
@@ -15,9 +15,9 @@
       <q-btn
         :disable="loading"
         label="Add New"
-        @click="addAccount"
+        @click="isOpen = !isOpen"
         outline
-        color="blue-4"
+        color="primary"
       />
       <q-space />
       <q-btn
@@ -33,12 +33,14 @@
         @click="setGrid"
       /> </template
   ></q-table>
-  <AddAccountModal :isOpen="isOpen" />
+  <AddAccountModal :icon="isOpen" />
 </template>
 
 <script setup>
-import { onMounted, ref, reactive } from 'vue'
+import { onMounted, ref, reactive, watch } from 'vue'
 import { useAuthStore } from '@/stores/useAuth'
+import { useAccounts } from '@/stores/useAccounts'
+// import { storeToRefs } from 'pinia'
 
 const isGrid = ref(false)
 function setGrid() {
@@ -46,10 +48,7 @@ function setGrid() {
 }
 
 const isOpen = ref(false)
-function addAccount() {
-  isOpen.value = !isOpen.value
-  console.log('addAccount')
-}
+
 const isFullscreen = ref(false)
 function setFullscreen() {
   isFullscreen.value = !isFullscreen.value
@@ -60,21 +59,49 @@ onMounted(() => {
   getRows()
   console.log(getRows())
 })
-const rows = ref([
-  {
-    id: null,
-    company_email: '',
-    company_name: '',
-    company_phone: '',
-    company_address: '',
-  },
-])
+// const rows = ref([
+//   {
+//     id: null,
+//     company_email: '',
+//     company_name: '',
+//     company_phone: '',
+//     company_address: '',
+//   },
+// ])
 const { supabase } = useAuthStore()
 const store = reactive({
   user: {},
 })
 const loading = ref(true)
+
 // const selection = ref([])
+
+// async function getAccountNumber() {
+//   try {
+//     loading.value = true
+//     store.user = supabase.auth.user()
+//
+//     let { data, error, status } = await supabase
+//       .from('profiles')
+//       .select(`account_number`)
+//       .eq('user_id', store.user.id)
+//
+//     if (error && status !== 406) {
+//       console.log(error)
+//       return
+//     }
+//
+//     if (data) {
+//       accNumber.value = data
+//       console.log(rows.value)
+//     }
+//   } catch (error) {
+//     alert(error.message)
+//   } finally {
+//     loading.value = false
+//   }
+// }
+const accounts = useAccounts()
 
 async function getRows() {
   try {
@@ -83,14 +110,19 @@ async function getRows() {
 
     let { data, error, status } = await supabase
       .from('accounts')
-      .select(`id, company_name, company_address, company_phone, company_email`)
+      .select(
+        `company_name, company_address, company_phone, company_email, company_account_number`
+      )
       .eq('user_id', store.user.id)
 
-    if (error && status !== 406) throw error
+    if (error && status !== 406) {
+      console.log(error)
+      return
+    }
 
     if (data) {
-      rows.value = data
-      console.log(rows.value)
+      accounts.rows = data
+      console.log(accounts.rows)
     }
   } catch (error) {
     alert(error.message)
@@ -108,7 +140,7 @@ const columns = [
     required: true,
     label: 'Account Number',
     align: 'left',
-    field: 'id',
+    field: 'company_account_number',
     // field: (row) => row.name,
     // format: (val) => `${val}`,
     sortable: true,
