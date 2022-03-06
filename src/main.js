@@ -3,7 +3,6 @@ import { createPinia } from 'pinia'
 import { Quasar } from 'quasar'
 import App from './App.vue'
 import router from './router'
-import VWave from 'v-wave'
 
 import '@purge-icons/generated'
 import 'quasar/src/css/index.sass'
@@ -17,7 +16,7 @@ const pinia = createPinia()
 app
   .use(router)
   .use(pinia)
-  .use(VWave)
+
   .use(Quasar, {
     plugins: {}, // import Quasar plugins and add here
 

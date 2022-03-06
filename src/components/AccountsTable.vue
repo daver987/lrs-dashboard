@@ -33,9 +33,7 @@
         @click="setGrid"
       /> </template
   ></q-table>
-  <q-dialog v-model="isOpen">
-    <AddAccountModal />
-  </q-dialog>
+  <AddAccountModal :isOpen="isOpen" />
 </template>
 
 <script setup>

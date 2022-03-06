@@ -1,12 +1,12 @@
 <template>
-  <q-layout view="hHh lpR fFf" container>
-    <q-page-container>
-      <q-page>
-        <q-card flat class="col">
-          <q-list class="space-y-2">
-            <!-- Company Entry -->
+  <q-dialog v-model="isOpen">
+    <q-layout view="hHh lpR fFf" container class="h-2xl bg-white">
+      <q-page-container>
+        <q-page>
+          <q-card flat class="col q-pa-sm bg-white">
+            <q-list class="space-y-2">
+              <!-- Company Entry -->
 
-            <q-card bordered flat class="bg-grey-3">
               <q-card-section class="row"
                 ><div class="col-5">
                   <span class="text-bold text-lg"> Account Number </span
@@ -51,7 +51,7 @@
                     for="company_address"
                     :rules="[(val) => !!val || 'Field is required']"
                   />
-                  <div class="row gap-2">
+                  <div class="row q-gutter-sm">
                     <q-input
                       v-model="companyPhone"
                       mask="phone"
@@ -78,20 +78,6 @@
                       for="company_email"
                     />
                   </div>
-                </q-card-section>
-
-                <q-card-section class="row q-gutter-sm">
-                  <q-input
-                    v-model="companyNotes"
-                    bg-color="white"
-                    class="col"
-                    outlined
-                    dense
-                    type="textarea"
-                    label="Account Notes"
-                    name="company_notes"
-                    for="company_notes"
-                  />
                 </q-card-section>
               </template>
 
@@ -143,7 +129,7 @@
                     for="individual_address"
                     :rules="[(val) => !!val || 'Field is required']"
                   />
-                  <div class="row gap-2">
+                  <div class="row q-gutter-sm">
                     <q-input
                       v-model="individualPhone"
                       mask="phone"
@@ -186,18 +172,10 @@
                   />
                 </q-card-section>
               </template>
-            </q-card>
 
-            <!--Company Financial Entry -->
+              <!--Company Financial Entry -->
 
-            <q-card bordered flat class="bg-grey-3">
-              <q-card-section
-                ><span class="text-bold text-lg"
-                  >Financial Details</span
-                ></q-card-section
-              >
-
-              <q-card-section class="row q-gutter-md">
+              <q-card-section class="row q-gutter-sm">
                 <q-select
                   v-model="companyPaymentMethod"
                   bg-color="white"
@@ -224,38 +202,46 @@
                 />
               </q-card-section>
 
-              <q-card-section class="row q-gutter-md">
+              <q-card-section class="row q-gutter-sm">
                 <q-input
-                  v-model="companyPaymentInfo"
+                  v-model="companyNotes"
                   bg-color="white"
                   class="col"
                   outlined
                   dense
                   type="textarea"
-                  label="Payment Info"
-                  name="company_payment_info"
-                  for="company_payment_info"
+                  label="Account Notes"
+                  name="company_notes"
+                  for="company_notes"
                 />
               </q-card-section>
+
               <q-card-section>
                 <q-btn
                   outline
-                  color="blue-9"
+                  color="secondary"
                   label="Save Account"
                   @click="accounts.addAccount"
                 />
               </q-card-section>
-            </q-card>
-          </q-list> </q-card
-      ></q-page>
-    </q-page-container>
-  </q-layout>
+            </q-list> </q-card
+        ></q-page>
+      </q-page-container>
+    </q-layout>
+  </q-dialog>
 </template>
 
 <script setup>
 import { useAccounts } from '@/stores/useAccounts'
 import { storeToRefs } from 'pinia'
 import { data } from '@/data/useData'
+
+defineProps({
+  isOpen: {
+    default: false,
+    type: Boolean,
+  },
+})
 
 const accounts = useAccounts()
 const prefs = data()

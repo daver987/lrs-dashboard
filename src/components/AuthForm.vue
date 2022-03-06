@@ -42,9 +42,9 @@ async function emailAuth() {
   }
 }
 
-const gitHubLoading = ref(false)
-async function gitHubAuth() {
-  gitHubLoading.value = true
+const appleLoading = ref(false)
+async function appleAuth() {
+  appleLoading.value = true
   const { supabase } = useAuthStore()
   const { user, error } = await supabase.auth.signIn(
     { provider: 'github' },
@@ -55,7 +55,7 @@ async function gitHubAuth() {
   if (user) await router.push('/dashboard')
   else if (error) {
     alert(error.message)
-    gitHubLoading.value = false
+    appleLoading.value = false
   }
 }
 
@@ -112,7 +112,7 @@ async function facebookAuth() {
 
 const loading = computed(
   () =>
-    gitHubLoading.value ||
+    appleLoading.value ||
     emailLoading.value ||
     googleLoading.value ||
     twitterLoading.value ||
@@ -175,42 +175,46 @@ const loading = computed(
     </q-form>
   </q-card-section>
 
-  <q-card-section class="row justify-between">
+  <q-card-section class="row justify-evenly">
     <q-btn
-      :loading="gitHubLoading"
+      :loading="appleLoading"
       :disabled="loading"
       type="button"
-      class="flex bg-blue-900 items-center justify-center"
-      @click="gitHubAuth"
+      @click="appleAuth"
+      round
+      flat
     >
-      <i-mdi-github class="h-5 w-5" />
+      <i-mdi-apple class="h-8 w-8 color-[#121212]" />
     </q-btn>
     <q-btn
       :loading="googleLoading"
       :disabled="loading"
       type="button"
-      class="flex bg-[#EA4335] items-center justify-center"
       @click="googleAuth"
+      round
+      flat
     >
-      <i-mdi-google class="h-5 w-5" />
+      <i-mdi-google class="h-8 w-8 text-[#D73F2A]" />
     </q-btn>
     <q-btn
       :loading="twitterLoading"
       :disabled="loading"
       type="button"
-      class="flex bg-[#1DA1F2] items-center justify-center"
       @click="twitterAuth"
+      round
+      flat
     >
-      <i-mdi-twitter class="h-5 w-5" />
+      <i-mdi-twitter class="h-8 w-8 text-[#1DA1F2]" />
     </q-btn>
     <q-btn
       :loading="facebookLoading"
       :disabled="loading"
       type="button"
-      class="flex bg-[#425F9C] items-center justify-center"
       @click="facebookAuth"
+      round
+      flat
     >
-      <i-mdi-facebook class="h-5 w-5" />
+      <i-mdi-facebook class="h-8 w-8 text-[#3B5998]" />
     </q-btn>
   </q-card-section>
   <q-card-section>
