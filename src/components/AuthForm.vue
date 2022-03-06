@@ -133,6 +133,8 @@ const loading = computed(
       <q-input
         label="Email"
         name="email"
+        for="email"
+        color="grey-9"
         outlined
         dense
         required
@@ -148,9 +150,11 @@ const loading = computed(
         label="Password"
         :disabled="loading"
         name="password"
+        for="password"
         type="password"
         :placeholder="passwordPlaceholder"
         v-model="credentials.password"
+        color="grey-9"
       />
       <div class="space-y-2 col">
         <q-btn

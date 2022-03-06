@@ -41,7 +41,7 @@ import { onMounted, ref, reactive } from 'vue'
 import { useAuthStore } from '@/stores/useAuth'
 
 const isGrid = ref(false)
-function setGrid(value) {
+function setGrid() {
   isGrid.value = !isGrid.value
 }
 

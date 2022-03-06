@@ -116,17 +116,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <q-layout view="hHh lpR fFf" class="liquid-cheese">
+  <q-layout view="hHh lpR fFf">
     <q-page-container>
       <q-page class="flex flex-center">
         <div id="particles-js" class="dark_gradient"></div>
-        <q-card class="bg-white max-w-md text-grey-9 q-pa-md">
+        <q-card class="bg-white max-w-md min-w-md text-grey-9 q-pa-md">
           <q-card-section>
-            <h1 class="font-bold uppercase mx-auto text-center text-4xl">
-              MY Dashboard
+            <h1 class="text-capitalize mx-auto text-center text-4xl">
+              My Dashboard
             </h1>
           </q-card-section>
-
           <router-view />
         </q-card>
       </q-page>
@@ -157,8 +156,5 @@ onMounted(() => {
 }
 .dark_gradient {
   background: linear-gradient(145deg, rgb(7, 7, 7) 35%, #8a6100 70%);
-}
-.login-form {
-  position: absolute;
 }
 </style>
