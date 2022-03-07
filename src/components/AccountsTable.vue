@@ -2,13 +2,13 @@
   <q-table
     :rows="accounts.rows"
     :columns="columns"
-    row-key="name"
+    :loading="loading"
     table-header-class="bg-grey-5"
     flat
     square
     :pagination="pagination"
     title="Accounts"
-    :row-key="(row) => row.id"
+    :row-key="(rows) => accounts.rows.id"
     v-model:fullscreen="isFullscreen"
     v-model:grid="isGrid"
     ><template v-slot:top>
@@ -31,8 +31,9 @@
         :disable="loading"
         :icon="isGrid ? 'view_list' : 'grid_view'"
         @click="setGrid"
-      /> </template
-  ></q-table>
+      />
+    </template>
+  </q-table>
   <AddAccountModal :icon="isOpen" />
 </template>
 
@@ -72,7 +73,7 @@ const { supabase } = useAuthStore()
 const store = reactive({
   user: {},
 })
-const loading = ref(true)
+const loading = ref(false)
 
 // const selection = ref([])
 
@@ -111,7 +112,7 @@ async function getRows() {
     let { data, error, status } = await supabase
       .from('accounts')
       .select(
-        `company_name, company_address, company_phone, company_email, company_account_number`
+        `id, company_name, company_address, company_phone, company_email, company_account_number`
       )
       .eq('user_id', store.user.id)
 

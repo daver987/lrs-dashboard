@@ -162,7 +162,7 @@ export const useAccounts = defineStore({
         const { data, error, status } = await supabase
           .from('accounts')
           .select(
-            `company_name, company_address, company_phone, company_email, company_account_number`
+            `id, company_name, company_address, company_phone, company_email, company_account_number`
           )
           .eq('user_id', this.user.id)
 

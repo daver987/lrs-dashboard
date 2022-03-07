@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="icon">
+  <q-dialog v-model="icon" @update:model-value="icon">
     <q-layout view="hHh lpR fFf" container class="h-2xl bg-white">
       <q-page-container>
         <q-page>
@@ -244,12 +244,20 @@ import { storeToRefs } from 'pinia'
 import { data } from '@/data/useData'
 import { onMounted, ref } from 'vue'
 
-defineProps({
+const props = defineProps({
   icon: {
     default: false,
     type: Boolean,
   },
 })
+
+const newValue = ref(false)
+
+const hides = (evt) => {
+  if (evt) {
+    props.icon = false
+  }
+}
 
 const onSubmit = () => {
   accounts.saveAccount()
