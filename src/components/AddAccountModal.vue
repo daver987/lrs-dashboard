@@ -251,13 +251,11 @@ const props = defineProps({
   },
 })
 
-const newValue = ref(false)
-
-const hides = (evt) => {
-  if (evt) {
-    props.icon = false
-  }
-}
+// const hides = (evt) => {
+//   if (evt) {
+//     props.icon = false
+//   }
+// }
 
 const onSubmit = () => {
   accounts.saveAccount()
