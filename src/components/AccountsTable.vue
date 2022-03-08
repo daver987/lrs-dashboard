@@ -25,12 +25,14 @@
         :disable="loading"
         :icon="isFullscreen ? 'fullscreen_exit' : 'fullscreen'"
         @click="setFullscreen"
+        v-if="!isGrid"
       />
       <q-btn
         flat
         :disable="loading"
         :icon="isGrid ? 'view_list' : 'grid_view'"
         @click="setGrid"
+        v-if="!isFullscreen"
       />
     </template>
   </q-table>
@@ -38,7 +40,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, reactive, watch } from 'vue'
+import { onMounted, ref, reactive } from 'vue'
 import { useAuthStore } from '@/stores/useAuth'
 import { useAccounts } from '@/stores/useAccounts'
 // import { storeToRefs } from 'pinia'
@@ -51,6 +53,7 @@ function setGrid() {
 const isOpen = ref(false)
 
 const isFullscreen = ref(false)
+
 function setFullscreen() {
   isFullscreen.value = !isFullscreen.value
   console.log('setFullscreen')
@@ -135,6 +138,7 @@ async function getRows() {
 const pagination = {
   rowsPerPage: 10,
 }
+
 const columns = [
   {
     name: 'name',

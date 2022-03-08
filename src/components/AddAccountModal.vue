@@ -7,8 +7,8 @@
             <q-list class="space-y-2">
               <!-- Company Entry -->
 
-              <q-card-section class="row"
-                ><div class="col">
+              <q-card-section class="row">
+                <div class="col">
                   <span class="text-bold text-lg"> Account Number </span
                   ><span class="text-bold text-md text-red-700">
                     {{ companyAccountNumber }}
@@ -32,6 +32,7 @@
                   v-close-popup
                 />
               </q-card-section>
+
               <q-form @reset="onReset" @submit="onSubmit">
                 <template v-if="selectedAccountType === 'corporate'">
                   <q-card-section class="col q-gutter-md">
@@ -228,10 +229,12 @@
                     label="Save Account"
                     type="submit"
                   />
+                  <q-btn outline color="primary" label="Reset" type="reset" />
                 </q-card-section>
               </q-form>
-            </q-list> </q-card
-        ></q-page>
+            </q-list>
+          </q-card>
+        </q-page>
       </q-page-container>
     </q-layout>
   </q-dialog>

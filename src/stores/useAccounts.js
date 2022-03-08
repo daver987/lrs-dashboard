@@ -146,7 +146,7 @@ export const useAccounts = defineStore({
         contact_account_number: 10,
       }
       if (this.selectedAccountType === 'corporate') {
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from('accounts')
           .insert([this.accountInfo])
         await incrementAccountNumber()

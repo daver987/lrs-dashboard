@@ -16,7 +16,6 @@ const pinia = createPinia()
 app
   .use(router)
   .use(pinia)
-
   .use(Quasar, {
     plugins: {}, // import Quasar plugins and add here
 
