@@ -96,54 +96,51 @@ onMounted(() => {
   useUser.getProfile()
 })
 
-function updateModel(val) {
-  profileInputs.value.model = val
-}
-const profileInputs = ref([
-  {
-    id: 1,
-    name: 'username',
-    model: useUser.userUserName,
-    label: 'Username',
-    type: 'text',
-    required: false,
-    disabled: false,
-  },
-  {
-    id: 2,
-    name: 'company_name',
-    model: useUser.userCompanyName,
-    label: 'Company Name',
-    type: 'text',
-    required: false,
-    disabled: false,
-  },
-  {
-    id: 3,
-    name: 'company_address',
-    model: userCompanyAddress.value,
-    label: 'Company Address',
-    type: 'text',
-    required: false,
-    disabled: false,
-  },
-  {
-    id: 4,
-    name: 'company_phone',
-    model: userCompanyPhone.value,
-    label: 'Company Phone',
-    type: 'text',
-    required: false,
-    disabled: false,
-  },
-  {
-    id: 5,
-    name: 'company_website',
-    model: userCompanyWebsite.value,
-    label: 'Company Website',
-    type: 'text',
-    required: false,
-    disabled: false,
-  },
-])
+// const profileInputs = ref([
+//   {
+//     id: 1,
+//     name: 'username',
+//     model: useUser.userUserName,
+//     label: 'Username',
+//     type: 'text',
+//     required: false,
+//     disabled: false,
+//   },
+//   {
+//     id: 2,
+//     name: 'company_name',
+//     model: useUser.userCompanyName,
+//     label: 'Company Name',
+//     type: 'text',
+//     required: false,
+//     disabled: false,
+//   },
+//   {
+//     id: 3,
+//     name: 'company_address',
+//     model: userCompanyAddress.value,
+//     label: 'Company Address',
+//     type: 'text',
+//     required: false,
+//     disabled: false,
+//   },
+//   {
+//     id: 4,
+//     name: 'company_phone',
+//     model: userCompanyPhone.value,
+//     label: 'Company Phone',
+//     type: 'text',
+//     required: false,
+//     disabled: false,
+//   },
+//   {
+//     id: 5,
+//     name: 'company_website',
+//     model: userCompanyWebsite.value,
+//     label: 'Company Website',
+//     type: 'text',
+//     required: false,
+//     disabled: false,
+//   },
+// ])
 </script>

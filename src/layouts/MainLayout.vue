@@ -1,17 +1,11 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { onMounted } from 'vue'
 import { supabase } from '@/services/supabase'
-import { usePrefs } from '@/stores/usePrefs'
 import { usePriceCalculator } from '@/stores/usePriceCalculator'
 import { useAccounts } from '@/stores/useAccounts'
 import { useUserStore } from '@/stores/useUserStore'
-// import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
 import { menu } from '@/data/menu'
 
-// const prefs = usePrefs()
-// const { accountNumber, quoteNumber } = storeToRefs(prefs)
 const price = usePriceCalculator()
 const accounts = useAccounts()
 const user = useUserStore()
@@ -32,9 +26,13 @@ const downloadImage = async () => {
   }
 }
 onMounted(() => {
+  user.getProfile()
   downloadImage()
 })
 
+const avatarUrl = ref(
+  'https://qiqfchmzgciceiftjszj.supabase.co/storage/v1/object/avatars/'
+)
 const leftDrawerOpen = ref(true)
 
 const miniMode = ref(false)
@@ -69,7 +67,7 @@ function toggleLeftDrawer() {
       <q-item class="bg-grey-3">
         <q-item-section avatar>
           <q-avatar>
-            <img :src="src" alt="avatar" />
+            <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="avatar" />
           </q-avatar>
         </q-item-section>
         <q-item-section>My Dashboard</q-item-section>

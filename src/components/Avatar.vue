@@ -11,7 +11,7 @@
   <div v-else class="avatar no-image" :style="{ height: size, width: size }" />
 
   <div :style="{ width: size }">
-    <label class="button primary block cursor-pointer" for="single">
+    <label class="cursor-pointer button primary block" for="single">
       {{ uploading ? 'Uploading ...' : 'Upload' }}
     </label>
     <input
@@ -33,6 +33,7 @@ export default {
   props: {
     path: String,
   },
+
   emits: ['upload', 'update:path'],
   setup(prop, { emit }) {
     const { path } = toRefs(prop)
