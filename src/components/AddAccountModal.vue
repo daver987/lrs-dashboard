@@ -66,7 +66,7 @@
                         mask="phone"
                         fill-mask
                         bg-color="white"
-                        class="col-4"
+                        class="col-3"
                         outlined
                         dense
                         type="tel"
@@ -222,7 +222,7 @@
                   />
                 </q-card-section>
 
-                <q-card-section>
+                <q-card-section class="q-gutter-md">
                   <q-btn
                     outline
                     color="primary"
@@ -266,6 +266,7 @@ const onSubmit = () => {
 }
 const onReset = () => {
   accounts.$reset()
+  accounts.getRows()
 }
 const accounts = useAccounts()
 const prefs = data()
@@ -285,6 +286,7 @@ const {
   individualPhone,
   individualAddress,
   selectedAccountType,
+  // accountIsCorporate,
 } = storeToRefs(accounts)
 
 const loading = ref(true)

@@ -5,6 +5,7 @@ export const useAccounts = defineStore({
   id: 'accounts',
   state: () => ({
     rows: [],
+    accountIsCorporate: true,
     selectedAccountType: 'corporate',
     combinedContactAccountNumber: null,
     companyName: '',
@@ -40,8 +41,8 @@ export const useAccounts = defineStore({
     billingContact: '',
     accountInfo: {},
     contactInfo: {},
-    loading: true,
-    user: null,
+    loading: false,
+    user: {},
   }),
   actions: {
     // addAccount() {
@@ -124,14 +125,15 @@ export const useAccounts = defineStore({
     //   }
     // },
 
+    async incrementAccountNumber() {
+      const { data } = await supabase.rpc('increment_account_number')
+      this.companyAccountNumber = data
+      console.log(data)
+    },
+
     async saveAccount() {
-      const user = supabase.auth.user()
-      const { id } = user
-      const incrementAccountNumber = async () => {
-        const { data } = await supabase.rpc('increment_account_number')
-        this.companyAccountNumber = data
-        console.log(data)
-      }
+      this.user = supabase.auth.user()
+      const { id } = this.user
       this.accountInfo = {
         user_id: id,
         company_account_number: this.companyAccountNumber++,
@@ -145,11 +147,11 @@ export const useAccounts = defineStore({
         company_payment_terms: this.companyPaymentTerms,
         contact_account_number: 10,
       }
-      if (this.selectedAccountType === 'corporate') {
+      if (this.accountIsCorporate) {
         const { error } = await supabase
           .from('accounts')
           .insert([this.accountInfo])
-        await incrementAccountNumber()
+        await this.incrementAccountNumber()
         await this.getRows()
         console.error(error)
       }

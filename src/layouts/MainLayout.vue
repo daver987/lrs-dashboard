@@ -1,27 +1,79 @@
 <script setup>
+import { supabase } from '@/services/supabase'
 import { RouterView } from 'vue-router'
+import { onMounted } from 'vue'
 import { usePrefs } from '@/stores/usePrefs'
 import { storeToRefs } from 'pinia'
 import { usePriceCalculator } from '@/stores/usePriceCalculator'
 import { useAccounts } from '@/stores/useAccounts'
-import { supabase } from '@/services/supabase'
+import { useUserStore } from '@/stores/useUserStore'
+import { ref } from 'vue'
+// import { menu } from '@/data/menu'
 
 const prefs = usePrefs()
 const { accountNumber, quoteNumber } = storeToRefs(prefs)
 const price = usePriceCalculator()
 const accounts = useAccounts()
+const user = useUserStore()
+// const { menuItems } = menu
 
-let leftDrawerOpen = $ref(true)
-let miniMode = $ref(false)
+const src = ref('')
+const path = ref('')
+
+const downloadImage = async () => {
+  try {
+    const { data, error } = await supabase.storage
+      .from('avatars')
+      .download(path.value)
+    if (error) throw error
+    src.value = URL.createObjectURL(data)
+  } catch (error) {
+    console.error('Error downloading image: ', error.message)
+  }
+}
+onMounted(() => {
+  downloadImage()
+})
+
+const leftDrawerOpen = ref(true)
+const miniMode = ref(false)
 
 function toggleLeftDrawer() {
-  miniMode = !miniMode
+  miniMode.value = !miniMode.value
 }
 
-async function signOut() {
-  const { error } = await supabase.auth.signOut()
-  if (error) alert(error.message)
-}
+const menuItems = [
+  {
+    name: 'My Office',
+    to: '/dashboard',
+    icon: 'inbox',
+    id: 1,
+  },
+  {
+    name: 'Accounts',
+    to: '/accounts',
+    icon: 'groups',
+    id: 2,
+  },
+  {
+    name: 'Quotes',
+    to: '/quotes',
+    icon: 'request_quote',
+    id: 3,
+  },
+  {
+    name: 'Reservations',
+    to: '/reservations',
+    icon: 'calendar_month',
+    id: 4,
+  },
+  {
+    name: 'My Profile',
+    to: '/profile',
+    icon: 'group',
+    id: 5,
+  },
+]
 </script>
 
 <template>
@@ -50,116 +102,119 @@ async function signOut() {
       <q-item class="bg-grey-3">
         <q-item-section avatar>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png" alt="avatar" />
+            <img :src="src" alt="avatar" />
           </q-avatar>
         </q-item-section>
-        <q-item-section>My Dashboard </q-item-section>
+        <q-item-section>My Dashboard</q-item-section>
       </q-item>
       <q-list padding class="bg-white text-black">
-        <q-item
-          clickable
-          v-ripple
-          to="/dashboard"
-          exact-active-class="bg-primary/20 text-primary"
-        >
-          <q-item-section avatar>
-            <q-icon name="inbox" />
-          </q-item-section>
-          <q-item-section> My Office </q-item-section>
-        </q-item>
+        <template v-for="item in menuItems" :key="item.id">
+          <q-item
+            class="q-mb-sm"
+            clickable
+            v-ripple
+            :to="item.to"
+            :tabindex="item.id"
+            exact-active-class="bg-primary/20 text-primary"
+          >
+            <q-item-section avatar>
+              <q-icon :name="item.icon" />
+            </q-item-section>
+            <q-item-section> {{ item.name }}</q-item-section>
+          </q-item>
+        </template>
+        <!--        <q-item-->
+        <!--          clickable-->
+        <!--          v-ripple-->
+        <!--          to="/accounts"-->
+        <!--          exact-active-class="bg-primary/20 text-primary"-->
+        <!--        >-->
+        <!--          <q-item-section avatar>-->
+        <!--            <q-icon name="groups" />-->
+        <!--          </q-item-section>-->
+        <!--          <q-item-section> Accounts </q-item-section>-->
+        <!--        </q-item>-->
+        <!--        <q-item-->
+        <!--          clickable-->
+        <!--          v-ripple-->
+        <!--          to="/account-entry"-->
+        <!--          exact-active-class="bg-primary/20 text-primary"-->
+        <!--        >-->
+        <!--          <q-item-section avatar>-->
+        <!--            <q-icon name="groups" />-->
+        <!--          </q-item-section>-->
+        <!--          <q-item-section> Account Entry </q-item-section>-->
+        <!--        </q-item>-->
 
-        <q-item
-          clickable
-          v-ripple
-          to="/accounts"
-          exact-active-class="bg-primary/20 text-primary"
-        >
-          <q-item-section avatar>
-            <q-icon name="groups" />
-          </q-item-section>
-          <q-item-section> Accounts </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          v-ripple
-          to="/account-entry"
-          exact-active-class="bg-primary/20 text-primary"
-        >
-          <q-item-section avatar>
-            <q-icon name="groups" />
-          </q-item-section>
-          <q-item-section> Account Entry </q-item-section>
-        </q-item>
+        <!--        <q-item-->
+        <!--          clickable-->
+        <!--          v-ripple-->
+        <!--          to="quotes"-->
+        <!--          exact-active-class="bg-primary/20 text-primary"-->
+        <!--        >-->
+        <!--          <q-item-section avatar>-->
+        <!--            <q-icon name="request_quote" />-->
+        <!--          </q-item-section>-->
+        <!--          <q-item-section> Quotes </q-item-section>-->
+        <!--        </q-item>-->
+        <!--        <q-item-->
+        <!--          clickable-->
+        <!--          v-ripple-->
+        <!--          to="/quick-quote"-->
+        <!--          exact-active-class="bg-primary/20 text-primary"-->
+        <!--        >-->
+        <!--          <q-item-section avatar>-->
+        <!--            <q-icon name="attach_money" />-->
+        <!--          </q-item-section>-->
+        <!--          <q-item-section> Quick Quote </q-item-section>-->
+        <!--        </q-item>-->
 
-        <q-item
-          clickable
-          v-ripple
-          to="quotes"
-          exact-active-class="bg-primary/20 text-primary"
-        >
-          <q-item-section avatar>
-            <q-icon name="request_quote" />
-          </q-item-section>
-          <q-item-section> Quotes </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          v-ripple
-          to="/quick-quote"
-          exact-active-class="bg-primary/20 text-primary"
-        >
-          <q-item-section avatar>
-            <q-icon name="attach_money" />
-          </q-item-section>
-          <q-item-section> Quick Quote </q-item-section>
-        </q-item>
+        <!--        <q-item-->
+        <!--          clickable-->
+        <!--          v-ripple-->
+        <!--          to="/reservations"-->
+        <!--          exact-active-class="bg-primary/20 text-primary"-->
+        <!--        >-->
+        <!--          <q-item-section avatar>-->
+        <!--            <q-icon name="calendar_month" />-->
+        <!--          </q-item-section>-->
+        <!--          <q-item-section> Reservations </q-item-section>-->
+        <!--        </q-item>-->
+        <!--        <q-item-->
+        <!--          clickable-->
+        <!--          v-ripple-->
+        <!--          to="/bookings"-->
+        <!--          exact-active-class="bg-primary/20 text-primary"-->
+        <!--        >-->
+        <!--          <q-item-section avatar>-->
+        <!--            <q-icon name="attach_money" />-->
+        <!--          </q-item-section>-->
+        <!--          <q-item-section> Booking Form </q-item-section>-->
+        <!--        </q-item>-->
 
-        <q-item
-          clickable
-          v-ripple
-          to="/reservations"
-          exact-active-class="bg-primary/20 text-primary"
-        >
-          <q-item-section avatar>
-            <q-icon name="calendar_month" />
-          </q-item-section>
-          <q-item-section> Reservations </q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          v-ripple
-          to="/bookings"
-          exact-active-class="bg-primary/20 text-primary"
-        >
-          <q-item-section avatar>
-            <q-icon name="attach_money" />
-          </q-item-section>
-          <q-item-section> Booking Form </q-item-section>
-        </q-item>
-
-        <q-item
-          clickable
-          v-ripple
-          to="/profile"
-          exact-active-class="bg-primary/20 text-primary"
-        >
-          <q-item-section avatar>
-            <q-icon name="group" />
-          </q-item-section>
-          <q-item-section> My Profile </q-item-section>
-        </q-item>
+        <!--        <q-item-->
+        <!--          clickable-->
+        <!--          v-ripple-->
+        <!--          to="/profile"-->
+        <!--          exact-active-class="bg-primary/20 text-primary"-->
+        <!--        >-->
+        <!--          <q-item-section avatar>-->
+        <!--            <q-icon name="group" />-->
+        <!--          </q-item-section>-->
+        <!--          <q-item-section> My Profile </q-item-section>-->
+        <!--        </q-item>-->
       </q-list>
       <q-list>
         <q-item
           clickable
           v-ripple
-          @click="signOut"
+          @click="user.signOut"
           exact-active-class="bg-primary/20 text-primary"
         >
           <q-item-section avatar>
             <q-icon name="logout" />
           </q-item-section>
-          <q-item-section> Log Out </q-item-section>
+          <q-item-section> Log Out</q-item-section>
         </q-item>
       </q-list>
     </q-drawer>

@@ -1,94 +1,97 @@
 <template>
-  <div>
-    <img
-      v-if="src"
-      :src="src"
-      alt="Avatar"
-      class="avatar image"
-      :style="{ height: size, width: size }"
-    />
-    <div
-      v-else
-      class="avatar no-image"
-      :style="{ height: size, width: size }"
-    />
+  <q-img
+    v-if="src"
+    :src="src"
+    alt="Avatar"
+    class="object-fit"
+    :width="size"
+    :height="size"
+    fit="contain"
+  />
+  <div v-else class="avatar no-image" :style="{ height: size, width: size }" />
 
-    <div :style="{ width: size }">
-      <label class="button primary block" for="single">
-        {{ uploading ? 'Uploading ...' : 'Upload' }}
-      </label>
-      <input
-        style="visibility: hidden; position: absolute"
-        type="file"
-        id="single"
-        accept="image/*"
-        @change="uploadAvatar"
-        :disabled="uploading"
-      />
-    </div>
+  <div :style="{ width: size }">
+    <label class="button primary block cursor-pointer" for="single">
+      {{ uploading ? 'Uploading ...' : 'Upload' }}
+    </label>
+    <input
+      style="visibility: hidden; position: absolute"
+      type="file"
+      id="single"
+      accept="image/*"
+      @change="uploadAvatar"
+      :disabled="uploading"
+    />
   </div>
 </template>
 
-<script setup>
+<script>
 import { ref, toRefs, watch } from 'vue'
-import { useAuthStore } from '@/stores/useAuth'
+import { supabase } from '@/services/supabase'
 
-const { supabase } = useAuthStore()
-
-const props = defineProps({
-  path: {
-    type: String,
-    default: '',
+export default {
+  props: {
+    path: String,
   },
-})
-const emit = defineEmits(['upload', 'update:path'])
+  emits: ['upload', 'update:path'],
+  setup(prop, { emit }) {
+    const { path } = toRefs(prop)
+    const size = ref('10em')
+    const uploading = ref(false)
+    const src = ref('')
+    const files = ref()
 
-const { path } = toRefs(props)
-const size = ref('10em')
-const uploading = ref(false)
-const src = ref('')
-const files = ref()
-
-const downloadImage = async () => {
-  try {
-    const { data, error } = await supabase.storage
-      .from('avatars')
-      .download(path.value)
-    if (error) throw error
-    src.value = URL.createObjectURL(data)
-  } catch (error) {
-    console.error('Error downloading image: ', error.message)
-  }
-}
-
-const uploadAvatar = async (evt) => {
-  files.value = evt.target.files
-  try {
-    uploading.value = true
-    if (!files.value || files.value.length === 0) {
-      throw new Error('You must select an image to upload.')
+    const downloadImage = async () => {
+      try {
+        const { data, error } = await supabase.storage
+          .from('avatars')
+          .download(path.value)
+        if (error) throw error
+        src.value = URL.createObjectURL(data)
+      } catch (error) {
+        console.error('Error downloading image: ', error.message)
+      }
     }
 
-    const file = files.value[0]
-    const fileExt = file.name.split('.').pop()
-    const fileName = `${Math.random()}.${fileExt}`
-    const filePath = `${fileName}`
+    const uploadAvatar = async (evt) => {
+      files.value = evt.target.files
+      try {
+        uploading.value = true
+        if (!files.value || files.value.length === 0) {
+          throw new Error('You must select an image to upload.')
+        }
 
-    let { error: uploadError } = await supabase.storage
-      .from('avatars')
-      .upload(filePath, file)
+        const file = files.value[0]
+        const fileExt = file.name.split('.').pop()
+        const fileName = `${Math.random()}.${fileExt}`
+        const filePath = `${fileName}`
 
-    if (uploadError) throw uploadError
-    emit('update:path', filePath)
-    emit('upload')
-  } catch (error) {
-    alert(error.message)
-  } finally {
-    uploading.value = false
-  }
+        let { error: uploadError } = await supabase.storage
+          .from('avatars')
+          .upload(filePath, file)
+
+        if (uploadError) throw uploadError
+        emit('update:path', filePath)
+        emit('upload')
+      } catch (error) {
+        alert(error.message)
+      } finally {
+        uploading.value = false
+      }
+    }
+
+    watch(path, () => {
+      if (path.value) downloadImage()
+    })
+
+    return {
+      size,
+      uploading,
+      src,
+      files,
+
+      uploadAvatar,
+    }
+  },
 }
-
-watch(path, () => {
-  if (path.value) downloadImage()
-})
 </script>
