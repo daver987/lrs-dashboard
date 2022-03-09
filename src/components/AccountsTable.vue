@@ -15,7 +15,7 @@
       <q-btn
         :disable="loading"
         label="Add New"
-        @click="isOpen = !isOpen"
+        @click="isOpen = true"
         outline
         color="primary"
       />
@@ -36,14 +36,13 @@
       />
     </template>
   </q-table>
-  <AddAccountModal :icon="isOpen" />
+  <AddAccountModal :openValue="isOpen" @hideModal="isOpen = false" />
 </template>
 
 <script setup>
 import { onMounted, ref, reactive } from 'vue'
 import { useAuthStore } from '@/stores/useAuth'
 import { useAccounts } from '@/stores/useAccounts'
-// import { storeToRefs } from 'pinia'
 
 const isGrid = ref(false)
 function setGrid() {
@@ -63,48 +62,13 @@ onMounted(() => {
   getRows()
   console.log(getRows())
 })
-// const rows = ref([
-//   {
-//     id: null,
-//     company_email: '',
-//     company_name: '',
-//     company_phone: '',
-//     company_address: '',
-//   },
-// ])
+
 const { supabase } = useAuthStore()
 const store = reactive({
   user: {},
 })
 const loading = ref(false)
 
-// const selection = ref([])
-
-// async function getAccountNumber() {
-//   try {
-//     loading.value = true
-//     store.user = supabase.auth.user()
-//
-//     let { data, error, status } = await supabase
-//       .from('profiles')
-//       .select(`account_number`)
-//       .eq('user_id', store.user.id)
-//
-//     if (error && status !== 406) {
-//       console.log(error)
-//       return
-//     }
-//
-//     if (data) {
-//       accNumber.value = data
-//       console.log(rows.value)
-//     }
-//   } catch (error) {
-//     alert(error.message)
-//   } finally {
-//     loading.value = false
-//   }
-// }
 const accounts = useAccounts()
 
 async function getRows() {
@@ -146,8 +110,6 @@ const columns = [
     label: 'Account Number',
     align: 'left',
     field: 'company_account_number',
-    // field: (row) => row.name,
-    // format: (val) => `${val}`,
     sortable: true,
   },
   {

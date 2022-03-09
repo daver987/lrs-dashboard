@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="icon" @update:model-value="icon">
+  <q-dialog v-model="openValue" @hide="$emit('hideModal')">
     <q-layout view="hHh lpR fFf" container class="h-2xl bg-white">
       <q-page-container>
         <q-page>
@@ -23,14 +23,7 @@
                     dense
                   />
                 </div>
-                <q-btn
-                  icon="close"
-                  @click="icon = false"
-                  flat
-                  round
-                  dense
-                  v-close-popup
-                />
+                <q-btn icon="close" flat round dense v-close-popup />
               </q-card-section>
 
               <q-form @reset="onReset" @submit="onSubmit">
@@ -248,17 +241,13 @@ import { data } from '@/data/useData'
 import { onMounted, ref } from 'vue'
 
 const props = defineProps({
-  icon: {
+  openValue: {
     default: false,
     type: Boolean,
   },
 })
 
-// const hides = (evt) => {
-//   if (evt) {
-//     props.icon = false
-//   }
-// }
+defineEmits(['hideModal'])
 
 const onSubmit = () => {
   accounts.saveAccount()
@@ -286,7 +275,6 @@ const {
   individualPhone,
   individualAddress,
   selectedAccountType,
-  // accountIsCorporate,
 } = storeToRefs(accounts)
 
 const loading = ref(true)
