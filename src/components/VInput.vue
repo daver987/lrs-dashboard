@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 defineProps<{
   modelValue: string
+  label: string
 }>()
 
 const emit = defineEmits<{
@@ -13,9 +14,10 @@ function onInput(event: Event): void {
 }
 </script>
 <template>
+  <label>{{ label }}</label>
   <input
     :value="modelValue"
     @input="onInput"
-    class="border rounded outline-none mb-4 py-1 px-3 transition text-slate-900 focus:ring"
+    class="border rounded outline-none text-black mb-4 py-1 px-3 transition focus:ring"
   />
 </template>

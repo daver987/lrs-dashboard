@@ -25,13 +25,19 @@ export const useUserStore = defineStore({
 
         const { data, error, status } = await supabase
           .from('profiles')
-          .select(`username, website, avatar_url`)
+          .select(
+            `username, website, avatar_url, company_name, company_address, company_phone, company_email`
+          )
           .eq('user_id', this.user.id)
           .single()
 
         if (error && status !== 406) throw error
 
         if (data) {
+          this.userCompanyAddress = data.company_address
+          this.userCompanyEmail = data.company_email
+          this.userCompanyName = data.company_name
+          this.userCompanyPhone = data.company_phone
           this.userUserName = data.username
           this.userCompanyWebsite = data.website
           this.userAvatarUrl = data.avatar_url

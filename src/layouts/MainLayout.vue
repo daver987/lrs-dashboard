@@ -1,17 +1,17 @@
 <script setup>
-import { supabase } from '@/services/supabase'
 import { RouterView } from 'vue-router'
 import { onMounted } from 'vue'
+import { supabase } from '@/services/supabase'
 import { usePrefs } from '@/stores/usePrefs'
-import { storeToRefs } from 'pinia'
 import { usePriceCalculator } from '@/stores/usePriceCalculator'
 import { useAccounts } from '@/stores/useAccounts'
 import { useUserStore } from '@/stores/useUserStore'
+// import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { menu } from '@/data/menu'
 
-const prefs = usePrefs()
-const { accountNumber, quoteNumber } = storeToRefs(prefs)
+// const prefs = usePrefs()
+// const { accountNumber, quoteNumber } = storeToRefs(prefs)
 const price = usePriceCalculator()
 const accounts = useAccounts()
 const user = useUserStore()
@@ -36,44 +36,11 @@ onMounted(() => {
 })
 
 const leftDrawerOpen = ref(true)
-const miniMode = ref(false)
 
+const miniMode = ref(false)
 function toggleLeftDrawer() {
   miniMode.value = !miniMode.value
 }
-
-// const menuItems = [
-//   {
-//     name: 'My Office',
-//     to: '/dashboard',
-//     icon: 'inbox',
-//     id: 1,
-//   },
-//   {
-//     name: 'Accounts',
-//     to: '/accounts',
-//     icon: 'groups',
-//     id: 2,
-//   },
-//   {
-//     name: 'Quotes',
-//     to: '/quotes',
-//     icon: 'request_quote',
-//     id: 3,
-//   },
-//   {
-//     name: 'Reservations',
-//     to: '/reservations',
-//     icon: 'calendar_month',
-//     id: 4,
-//   },
-//   {
-//     name: 'My Profile',
-//     to: '/profile',
-//     icon: 'group',
-//     id: 5,
-//   },
-// ]
 </script>
 
 <template>
@@ -111,7 +78,7 @@ function toggleLeftDrawer() {
         <q-item
           v-for="item in menuItems"
           :key="item.id"
-          class="q-mb-sm q-mr-md rounded-r-full"
+          class="rounded-r-full q-mb-sm q-mr-md"
           clickable
           v-ripple
           :to="item.to"
