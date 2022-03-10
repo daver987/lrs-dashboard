@@ -1,22 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <div class="px-4 sm:px-6 lg:px-8">
-    <div class="sm:flex sm:items-center">
-      <div class="sm:flex-auto">
-        <h1 class="font-semibold text-xl text-gray-900">Accounts</h1>
-        <p class="mt-2 text-sm text-gray-700">
-          A list of all accounts including their name, title, email and role.
-        </p>
-      </div>
-      <div class="mt-4 sm:flex-none sm:mt-0 sm:ml-16">
-        <button
-          type="button"
-          class="border border-transparent rounded-md font-medium bg-indigo-600 shadow-sm text-sm text-white py-2 px-4 inline-flex items-center justify-center sm:w-auto hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        >
-          Add user
-        </button>
-      </div>
-    </div>
+    <div class="sm:flex sm:items-center"></div>
     <div class="flex flex-col mt-8">
       <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="min-w-full py-2 inline-block align-middle md:px-6 lg:px-8">
@@ -87,7 +72,9 @@
                     <div class="text-gray-900">{{ items.company_address }}</div>
                   </td>
                   <td class="text-sm py-4 px-3 text-gray-500 whitespace-nowrap">
-                    <div class="text-gray-900">{{ items.company_phone }}</div>
+                    <a class="text-gray-900" :href="items.company_phone">{{
+                      items.company_phone
+                    }}</a>
                   </td>
                   <td class="text-sm py-4 px-3 text-gray-500 whitespace-nowrap">
                     <div class="text-gray-900">{{ items.company_email }}</div>
@@ -133,20 +120,6 @@
 import { onMounted, ref, reactive } from 'vue'
 import { useAuthStore } from '@/stores/useAuth'
 import { useAccounts } from '@/stores/useAccounts'
-
-// const isGrid = ref(false)
-// function setGrid() {
-//   isGrid.value = !isGrid.value
-// }
-
-// const isOpen = ref(false)
-
-// const isFullscreen = ref(false)
-
-// function setFullscreen() {
-//   isFullscreen.value = !isFullscreen.value
-//   console.log('setFullscreen')
-// }
 
 onMounted(() => {
   getRows()
