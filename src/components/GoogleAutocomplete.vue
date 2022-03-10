@@ -106,24 +106,7 @@
             autocomplete="address"
           />
         </q-card-section>
-        <!--        <q-card-section-->
-        <!--          class="row q-gutter-sm"-->
-        <!--          v-if="selectedServiceType !== 'Hourly'"-->
-        <!--        >-->
-        <!--          <q-input-->
-        <!--            name="destination-input"-->
-        <!--            type="text"-->
-        <!--            for="destination-input"-->
-        <!--            outlined-->
-        <!--            bg-color="white"-->
-        <!--            class="col"-->
-        <!--            v-model="selectedDestinationAddress"-->
-        <!--            label="Drop-Off Address"-->
-        <!--            hint="Enter in the name or address of the drop-off location"-->
-        <!--            dense-->
-        <!--            hide-bottom-space-->
-        <!--          />-->
-        <!--        </q-card-section>-->
+
         <q-card-section
           class="row q-gutter-sm"
           v-if="selectedServiceType === 'Hourly'"

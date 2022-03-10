@@ -74,8 +74,8 @@ export const usePriceCalculator = defineStore({
       } else {
         this.premSuvTimeTotal = (prefs.hourlyCost.premSuv * this.time) / 60
       }
-      this.isOpen = true
-      this.isClosed = false
+      // this.isOpen = true
+      // this.isClosed = false
     },
   },
 })
