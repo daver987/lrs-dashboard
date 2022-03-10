@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": "./",
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
     "isolatedModules": true,
-    "strict": true,
+    "strict": false,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
@@ -24,6 +25,7 @@
     "src/**/*",
     "src/**/*.vue",
     "components.d.ts",
-    "auto-imports.d.ts"
+    "auto-imports.d.ts",
+    "node_modules/vue/macros-global.d.ts"
   ]
 }

@@ -1,5 +1,5 @@
 <template>
   <q-page>
-    <QuoteTable />
+    <Paypal />
   </q-page>
 </template>

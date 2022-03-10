@@ -1,15 +1,16 @@
 import { supabase } from '@/services/supabase'
 import { ref } from 'vue'
 
-const user = ref({})
+const user = ref(null)
 const loading = ref(true)
 const accNum = ref(null)
 
-const getAccountNumber = async () => {
+const getAccountNumber: () => Promise<any> = async () => {
   try {
     loading.value = true
     user.value = supabase.auth.user()
 
+    // @ts-ignore
     let { data, error, status } = await supabase
       .from('profiles')
       .select(`account_number`)

@@ -8,7 +8,7 @@
     square
     :pagination="pagination"
     title="Accounts"
-    :row-key="(rows) => accounts.rows.id"
+    :row-key="accounts.rows.id"
     v-model:fullscreen="isFullscreen"
     v-model:grid="isGrid"
     ><template v-slot:top>
@@ -105,12 +105,13 @@ const pagination = {
 
 const columns = [
   {
-    name: 'name',
+    name: 'account_number',
     required: true,
     label: 'Account Number',
     align: 'left',
     field: 'company_account_number',
-    sortable: true,
+    // field: (row) => row.name,
+    format: (val) => `${val}`,
   },
   {
     name: 'Company Name',
@@ -139,6 +140,13 @@ const columns = [
     label: 'Company Email',
     field: 'company_email',
     sortable: true,
+  },
+  {
+    name: 'details',
+    align: 'center',
+    label: 'Details',
+    field: 'details',
+    sortable: false,
   },
 ]
 </script>

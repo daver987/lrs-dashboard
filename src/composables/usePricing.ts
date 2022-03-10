@@ -2,13 +2,7 @@ import { ref } from 'vue'
 
 const distTotal = ref(0)
 const timeTotal = ref(0)
-export function usePricing(
-  hourlyCost,
-  distanceCost,
-  time,
-  distance,
-  minDistance
-) {
+function usePricing(hourlyCost, distanceCost, time, distance, minDistance) {
   if (distance < minDistance) {
     distTotal.value = hourlyCost
   } else {
@@ -24,3 +18,5 @@ export function usePricing(
     timeTotal,
   }
 }
+
+export { usePricing }

@@ -8,9 +8,7 @@ export const useCounterStore = defineStore({
     orderNumber: null,
     hourCount: 1,
   }),
-  getters: {
-    doubleCount: (state) => state.counter * 2,
-  },
+
   actions: {
     increment() {
       this.quoteNumber++

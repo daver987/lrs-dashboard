@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { useAuthStore } from '../stores/useAuth'
+import { useAuthStore } from '@/stores/useAuth'
 const { supabase } = useAuthStore()
 
 const reRoute = computed(() => {

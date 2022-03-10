@@ -1,5 +1,6 @@
 <script setup>
-import { useAuthStore } from '../../stores/useAuth'
+import { useAuthStore } from '@/stores/useAuth'
+import { useRoute, useRouter } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 
@@ -30,7 +31,7 @@ async function onSubmit() {
     alert(error.message)
   } else {
     alert('successfully reset password.')
-    router.push('/')
+    await router.push('/')
   }
   loading.value = false
 }

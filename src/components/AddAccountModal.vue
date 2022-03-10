@@ -278,7 +278,7 @@ const {
 } = storeToRefs(accounts)
 
 const loading = ref(true)
-const user = ref({})
+const user = ref(null)
 async function getAccountNumber() {
   try {
     loading.value = true

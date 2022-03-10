@@ -10,10 +10,10 @@ export const useMap = defineStore({
 
       luggageCount: 1,
       selectedLuggageCount: null,
-
+      destinationInput: '',
       passengerCount: 1,
       selectedPassengerCount: null,
-
+      originInput: '',
       selectedHourCount: '',
 
       selectedTripStatus: '',
@@ -27,7 +27,7 @@ export const useMap = defineStore({
       tripNotes: '',
 
       locationDescription: '',
-
+      modelValue: '',
       pickupAddress: '',
       selectedOriginAddress: '',
       originAutocomplete: null,
@@ -38,9 +38,9 @@ export const useMap = defineStore({
 
       date: null,
 
-      originInput: '',
+      originAddress: '',
 
-      destinationInput: '',
+      destinationAddress: '',
       place: null,
 
       routeDistance: null,

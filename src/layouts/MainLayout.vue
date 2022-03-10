@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { supabase } from '@/services/supabase'
 import { usePriceCalculator } from '@/stores/usePriceCalculator'

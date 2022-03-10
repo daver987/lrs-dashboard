@@ -1,5 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia'
-import { useMap } from './useMap'
+import { useMap } from '@/stores/useMap'
 import { useCounterStore } from '@/stores/counter'
 
 export const useQuote = defineStore({
@@ -8,7 +8,7 @@ export const useQuote = defineStore({
   state: () => ({}),
 
   actions: {
-    async addQuote() {
+    addQuote: async function () {
       const getQuote = useMap()
       const counter = useCounterStore()
       const quotes = 'quotes/quote_number/' + counter.quoteNumber
@@ -25,7 +25,7 @@ export const useQuote = defineStore({
         route_distance: getQuote.routeDistance,
         route_duration: getQuote.routeDuration,
       }
-      saveData(quotes, myQuote)
+      // saveData(quotes, myQuote)
       counter.quoteNumber++
       getQuote.openDialog()
     },

@@ -363,7 +363,7 @@ const total = usePriceCalculator()
 const counter = useCounterStore()
 const quote = useQuote()
 const store = useMap()
-const prefs = data
+const prefs = data()
 
 const {
   sedDistTotal,
