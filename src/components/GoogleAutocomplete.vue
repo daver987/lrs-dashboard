@@ -1,7 +1,7 @@
 <template>
   <q-form
     @submit.prevent="total.priceCalculator"
-    @reset="store.$reset()"
+    @reset="onReset"
     class="row q-gutter-md q-pa-sm"
   >
     <q-expansion-item
@@ -295,6 +295,10 @@ const counter = useCounterStore()
 const quote = useQuote()
 const store = useMap()
 const prefs = data()
+const onReset = () => {
+  total.$reset()
+  store.$reset()
+}
 
 const {
   sedDistTotal,
