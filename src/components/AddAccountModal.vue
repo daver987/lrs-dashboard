@@ -23,7 +23,7 @@
                     dense
                   />
                 </div>
-                <q-btn icon="close" flat round dense v-close-popup />
+                <q-btn icon="close" flat round dense v-close-popup="true" />
               </q-card-section>
 
               <q-form @reset="onReset" @submit="onSubmit">
@@ -59,7 +59,7 @@
                         mask="phone"
                         fill-mask
                         bg-color="white"
-                        class="col-3"
+                        class="col-4"
                         outlined
                         dense
                         type="tel"
@@ -145,7 +145,7 @@
                         mask="phone"
                         fill-mask
                         bg-color="white"
-                        class="col-3"
+                        class="col-4"
                         outlined
                         dense
                         type="tel"

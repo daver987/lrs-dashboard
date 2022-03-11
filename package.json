@@ -1,6 +1,6 @@
 {
   "name": "lrs-dashboard",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "LRS Dashboard",
   "author": {
     "name": "David Robertson",
@@ -30,7 +30,6 @@
     "@googlemaps/js-api-loader": "^1.13.8",
     "@iconify/json": "^2.1.13",
     "@paypal/paypal-js": "^5.0.2",
-    "@quasar/quasar-ui-qcalendar": "^4.0.0-beta.13",
     "@quasar/vite-plugin": "^1.0.6",
     "@types/google.maps": "^3.48.2",
     "@unocss/reset": "^0.27.5",
