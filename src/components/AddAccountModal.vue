@@ -145,7 +145,7 @@
                         mask="phone"
                         fill-mask
                         bg-color="white"
-                        class="col-3"
+                        class="col-4"
                         outlined
                         dense
                         type="tel"

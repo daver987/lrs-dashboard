@@ -25,9 +25,7 @@ declare module 'vue' {
     QuoteForm: typeof import('./src/components/QuoteForm.vue')['default']
     QuoteTable: typeof import('./src/components/QuoteTable.vue')['default']
     VButton: typeof import('./src/components/VButton.vue')['default']
-    VIconButton: typeof import('./src/components/VIconButton.vue')['default']
     VInput: typeof import('./src/components/VInput.vue')['default']
-    VLabel: typeof import('./src/components/VLabel.vue')['default']
     VPasswordInput: typeof import('./src/components/VPasswordInput.vue')['default']
   }
 }

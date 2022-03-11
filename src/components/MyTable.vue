@@ -47,12 +47,18 @@
                   >
                     Details
                   </th>
-                  <!-- <th
+                  <th
                     scope="col"
                     class="font-semibold text-left text-sm py-3.5 px-3 text-gray-900"
                   >
-                    Actions
-                  </th> -->
+                    <q-btn
+                      :disable="loading"
+                      label="Add New"
+                      @click="isOpen = true"
+                      outline
+                      color="primary"
+                    />
+                  </th>
                   <th scope="col" class="py-3.5 pr-4 pl-3 relative sm:pr-6">
                     <span class="sr-only">Edit</span>
                   </th>
@@ -72,12 +78,18 @@
                     <div class="text-gray-900">{{ items.company_address }}</div>
                   </td>
                   <td class="text-sm py-4 px-3 text-gray-500 whitespace-nowrap">
-                    <a class="text-gray-900" :href="items.company_phone">{{
-                      items.company_phone
-                    }}</a>
+                    <a
+                      class="text-blue-900"
+                      :href="`tel:${items.company_phone}`"
+                      >{{ items.company_phone }}</a
+                    >
                   </td>
                   <td class="text-sm py-4 px-3 text-gray-500 whitespace-nowrap">
-                    <div class="text-gray-900">{{ items.company_email }}</div>
+                    <a
+                      class="text-gray-900"
+                      :href="`mailto:${items.company_email}`"
+                      >{{ items.company_email }}</a
+                    >
                   </td>
                   <td class="text-sm py-4 px-3 text-gray-500 whitespace-nowrap">
                     <div class="flex flex-row place-items-center">
@@ -99,13 +111,6 @@
                       />
                     </div>
                   </td>
-                  <!-- <td
-                    class="font-medium text-right text-sm py-4 pr-4 pl-3 relative whitespace-nowrap sm:pr-6"
-                  >
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                      >Edit<span class="sr-only">, {{ person.name }}</span></a
-                    >
-                  </td> -->
                 </tr>
               </tbody>
             </table>
@@ -113,6 +118,7 @@
         </div>
       </div>
     </div>
+    <AddAccountModal :openValue="isOpen" @hideModal="isOpen = false" />
   </div>
 </template>
 
@@ -120,6 +126,8 @@
 import { onMounted, ref, reactive } from 'vue'
 import { useAuthStore } from '@/stores/useAuth'
 import { useAccounts } from '@/stores/useAccounts'
+
+const isOpen = ref(false)
 
 onMounted(() => {
   getRows()
