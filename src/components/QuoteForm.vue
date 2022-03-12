@@ -438,8 +438,9 @@ const options = $ref([
   },
 ])
 
+const mapKey = import.meta.env.VITE_MAPS_KEY
 const loader = new Loader({
-  apiKey: 'AIzaSyAHssosELrwwDVsFJUwVchowi-Asv65pow',
+  apiKey: mapKey,
   libraries: ['places'],
   version: 'weekly',
   region: 'ca',

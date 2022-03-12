@@ -12,6 +12,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "noImplicitThis": true,
     "paths": {
       "@/*": ["src/*"]
     },

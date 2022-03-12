@@ -10,10 +10,10 @@ export const useMap = defineStore({
 
       luggageCount: 1,
       selectedLuggageCount: null,
-      destinationInput: '',
+      destinationInput: <HTMLElement | null>null,
       passengerCount: 1,
       selectedPassengerCount: null,
-      originInput: '',
+      originInput: undefined as HTMLElement | null,
       selectedHourCount: '',
 
       selectedTripStatus: '',

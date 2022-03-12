@@ -87,7 +87,7 @@
             name="origin-input"
             type="text"
             id="origin-input"
-            class="p-2 shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+            class="rounded-md border-gray-300 shadow-sm w-full p-2 block sm:text-sm focus:border-gray-500 focus:ring-gray-500"
             autocomplete="address"
             @input="$emit('update:modelValue', $event.target.value)"
             v-model="selectedOriginAddress"
@@ -101,7 +101,7 @@
             name="destination-input"
             type="text"
             id="destination-input"
-            class="p-2 shadow-sm focus:ring-gray-500 focus:border-gray-500 block w-full sm:text-sm border-gray-300 rounded-md"
+            class="rounded-md border-gray-300 shadow-sm w-full p-2 block sm:text-sm focus:border-gray-500 focus:ring-gray-500"
             v-model="selectedDestinationAddress"
             autocomplete="address"
           />
@@ -182,10 +182,10 @@
           <div v-show="true" class="h-48 w-full" id="map" ref="myMap"></div>
         </q-card-section>
         <q-card-section
-          class="py-0 flex-center"
+          class="flex-center py-0"
           v-if="selectedDestinationAddress"
         >
-          <div class="row w-full">
+          <div class="w-full row">
             <p class="col">
               Service Type:
               <span class="text-bold">{{ selectedServiceType }}</span>
@@ -292,7 +292,7 @@ import { ref } from 'vue'
 
 const total = usePriceCalculator()
 const counter = useCounterStore()
-const quote = useQuote()
+// const quote = useQuote()
 const store = useMap()
 const prefs = data()
 const onReset = () => {
@@ -382,9 +382,10 @@ const {
   tripNotes,
 } = storeToRefs(store)
 
-const myMap = ref(null)
+const myMap = ref<HTMLElement>(null)
+const mapKey: string = import.meta.env.VITE_MAPS_KEY as string
 const loader = new Loader({
-  apiKey: 'AIzaSyAHssosELrwwDVsFJUwVchowi-Asv65pow',
+  apiKey: mapKey,
   libraries: ['places'],
   version: 'weekly',
   region: 'ca',
@@ -418,7 +419,7 @@ class AutocompleteDirectionsHandler {
 
     originInput.value = document.getElementById('origin-input')
     originAutocomplete.value = new google.maps.places.Autocomplete(
-      originInput.value
+      originInput.value as HTMLInputElement
     )
     // Specify just the place data fields that you need.
     originAutocomplete.value.setFields(['all'])
@@ -426,7 +427,7 @@ class AutocompleteDirectionsHandler {
 
     destinationInput.value = document.getElementById('destination-input')
     destinationAutocomplete.value = new google.maps.places.Autocomplete(
-      destinationInput.value
+      destinationInput.value as HTMLInputElement
     )
     // Specify just the place data fields that you need.
     destinationAutocomplete.value.setFields(['all'])

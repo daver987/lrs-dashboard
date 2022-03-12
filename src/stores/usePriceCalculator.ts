@@ -39,7 +39,7 @@ export const usePriceCalculator = defineStore({
       } else {
         this.sedTimeTotal = (prefs.hourlyCost.sedan * this.time) / 60
       }
-      if (this.distance < 30) {
+      if (this.distance < 25) {
         this.suvDistTotal = prefs.hourlyCost.suv
       } else {
         this.suvDistTotal =
@@ -63,7 +63,7 @@ export const usePriceCalculator = defineStore({
       } else {
         this.premSedanTimeTotal = (prefs.hourlyCost.premSedan * this.time) / 60
       }
-      if (this.distance < 29) {
+      if (this.distance < 25) {
         this.premSuvDistTotal = prefs.hourlyCost.premSuv
       } else {
         this.premSuvDistTotal =
