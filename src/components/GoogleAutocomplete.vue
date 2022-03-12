@@ -89,11 +89,13 @@
             id="origin-input"
             class="rounded-md border-gray-300 shadow-sm w-full p-2 block sm:text-sm focus:border-gray-500 focus:ring-gray-500"
             autocomplete="address"
-            @input="$emit('update:modelValue', $event.target.value)"
             v-model="selectedOriginAddress"
           />
         </q-card-section>
-        <q-card-section class="row q-gutter-sm">
+        <q-card-section
+          class="row q-gutter-sm"
+          v-show="selectedServiceType !== 'Hourly'"
+        >
           <label for="destination-input" class="sr-only"
             >Drop-Off Address</label
           >
@@ -291,7 +293,6 @@ import { ref } from 'vue'
 
 const total = usePriceCalculator()
 const counter = useCounterStore()
-// const quote = useQuote()
 const store = useMap()
 const prefs = data()
 const onReset = () => {

@@ -1,6 +1,6 @@
 {
   "name": "lrs-dashboard",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "LRS Dashboard",
   "author": {
     "name": "David Robertson",
@@ -20,31 +20,31 @@
   "dependencies": {
     "@quasar/extras": "^1.13.0",
     "@supabase/supabase-js": "^1.31.1",
-    "@vueuse/core": "^7.7.1",
+    "@vueuse/core": "^8.0.0",
     "pinia": "^2.0.11",
     "quasar": "^2.5.5",
     "vue": "^3.2.31",
-    "vue-router": "^4.0.13"
+    "vue-router": "^4.0.14"
   },
   "devDependencies": {
     "@googlemaps/js-api-loader": "^1.13.8",
-    "@iconify/json": "^2.1.13",
+    "@iconify/json": "^2.1.14",
     "@paypal/paypal-js": "^5.0.2",
     "@quasar/vite-plugin": "^1.0.6",
     "@types/google.maps": "^3.48.2",
-    "@unocss/reset": "^0.27.5",
+    "@unocss/reset": "^0.28.0",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vue/compiler-sfc": "^3.2.31",
     "@vue/test-utils": "^2.0.0-rc.18",
     "cypress": "^9.5.1",
     "jsdom": "^19.0.0",
     "prettier": "^2.5.1",
-    "sass": "~1.32.13",
+    "sass": "~1.32.0",
     "start-server-and-test": "^1.14.0",
-    "unocss": "^0.27.5",
-    "unplugin-auto-import": "^0.6.1",
+    "unocss": "^0.28.0",
+    "unplugin-auto-import": "^0.6.4",
     "unplugin-icons": "^0.13.3",
-    "unplugin-vue-components": "^0.17.21",
+    "unplugin-vue-components": "^0.18.0",
     "vite": "^2.8.6",
     "vite-plugin-purge-icons": "^0.8.1",
     "vitest": "^0.6.0"
