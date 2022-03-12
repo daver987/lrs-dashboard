@@ -42,7 +42,7 @@ export const useAccounts = defineStore({
     accountInfo: {},
     contactInfo: {},
     loading: false,
-    user: {},
+    user: null,
   }),
   actions: {
     // addAccount() {

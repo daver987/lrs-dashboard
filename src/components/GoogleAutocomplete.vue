@@ -282,7 +282,6 @@
 import { Loader } from '@googlemaps/js-api-loader'
 import { useMap } from '@/stores/useMap'
 import { storeToRefs } from 'pinia'
-import { useQuote } from '@/stores/useQuote'
 import { useCounterStore } from '@/stores/counter'
 import { usePriceCalculator } from '@/stores/usePriceCalculator'
 import { data } from '@/data/useData'
@@ -372,13 +371,10 @@ const {
   selectedServiceType,
   selectedOriginAddress,
   selectedDestinationAddress,
-  modelValue,
   place,
   routeDistance,
   routeDuration,
   firstName,
-  email,
-  phone,
   tripNotes,
 } = storeToRefs(store)
 

@@ -122,7 +122,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref, reactive } from 'vue'
 import { useAuthStore } from '@/stores/useAuth'
 import { useAccounts } from '@/stores/useAccounts'
@@ -135,9 +135,7 @@ onMounted(() => {
 })
 
 const { supabase } = useAuthStore()
-const store = reactive({
-  user: {},
-})
+const user = ref(null)
 const loading = ref(false)
 
 const accounts = useAccounts()
@@ -145,14 +143,14 @@ const accounts = useAccounts()
 async function getRows() {
   try {
     loading.value = true
-    store.user = supabase.auth.user()
+    user.value = supabase.auth.user()
 
     let { data, error, status } = await supabase
       .from('accounts')
       .select(
         `id, company_name, company_address, company_phone, company_email, company_account_number`
       )
-      .eq('user_id', store.user.id)
+      .eq('user_id', user.value.id)
 
     if (error && status !== 406) {
       console.log(error)
@@ -169,10 +167,6 @@ async function getRows() {
     loading.value = false
   }
 }
-
-// const pagination = {
-//   rowsPerPage: 10,
-// }
 
 const columns = [
   {

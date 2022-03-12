@@ -120,9 +120,9 @@ onMounted(() => {
     <q-page-container>
       <q-page class="flex flex-center">
         <div id="particles-js" class="dark_gradient"></div>
-        <q-card class="bg-white max-w-md min-w-md text-grey-9 q-pa-md">
+        <q-card class="bg-white min-w-md max-w-md text-grey-9 q-pa-md">
           <q-card-section>
-            <h1 class="text-capitalize mx-auto text-center text-4xl">
+            <h1 class="mx-auto text-capitalize text-center text-4xl">
               My Dashboard
             </h1>
           </q-card-section>
@@ -134,15 +134,6 @@ onMounted(() => {
 </template>
 
 <style>
-/*.liquid-cheese {*/
-/*  background-color: #0a0e46;*/
-/*  background-image: url('./assets/background.svg');*/
-/*  background-attachment: fixed;*/
-/*  background-size: contain;*/
-/*  background-position: center;*/
-/*  !* background by SVGBackgrounds.com *!*/
-/*}*/
-
 #particles-js {
   position: absolute;
   width: 100%;

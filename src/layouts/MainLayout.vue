@@ -1,5 +1,5 @@
-<script setup>
-import { onMounted } from 'vue'
+<script setup lang="ts">
+import { onMounted, Ref, ref } from 'vue'
 import { RouterView } from 'vue-router'
 import { supabase } from '@/services/supabase'
 import { usePriceCalculator } from '@/stores/usePriceCalculator'
@@ -12,8 +12,8 @@ const accounts = useAccounts()
 const user = useUserStore()
 const menuItems = menu()
 
-const src = ref('')
-const path = ref('')
+const src: Ref<string> = ref('')
+const path: Ref<string> = ref('')
 
 const downloadImage = async () => {
   try {
@@ -114,7 +114,7 @@ function toggleLeftDrawer() {
           v-if="$route.name === 'Account Entry'"
           label="Save Account"
           class="bg-primary"
-          @click="accounts.addAccount"
+          @click="accounts.saveAccount"
         />
         <q-btn
           v-if="$route.name === 'Quick Quote'"
