@@ -23,7 +23,7 @@
     "quasar": "^2.5.5",
     "@quasar/extras": "^1.12.5",
     "vue": "^3.3.4",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.2.2"
   },
   "devDependencies": {
     "@googlemaps/js-api-loader": "^1.13.7",
